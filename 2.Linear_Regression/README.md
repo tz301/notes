@@ -38,6 +38,8 @@
 优模型. 给定初始的参数<img src="/2.Linear_Regression/tex/1a3151e36f9f52b61f5bf76c08bdae2b.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>和<img src="/2.Linear_Regression/tex/edcbf8dd6dd9743cceeee21183bbc3b6.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>, 采用梯度下降算法对参数不断更新, 在
 曲面上不断"下山", 直达最低点, 就可以得到最优的参数.
 
+<div align=center><img width="400" height="250" src="2.png"/></div>
+
 梯度下降算法:
 <p align="center"><img src="/2.Linear_Regression/tex/f5661ce40a5e880ca6d224c617618ebc.svg?invert_in_darkmode&sanitize=true" align=middle width=241.79507715pt height=38.5152603pt/></p>
 
