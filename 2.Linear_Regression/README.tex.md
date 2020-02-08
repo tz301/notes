@@ -67,17 +67,18 @@ $$\frac {\partial} {\partial{\theta_j}} J(\theta_0, \theta_1) =
 \frac {\partial} {\partial{\theta_j}} \cdot \frac {1} {2m}
 \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) ^2 =
 \frac {\partial} {\partial{\theta_j}} \cdot \frac {1} {2m}
-\sum_{i=1}^m (\theta_0 + theta_1x^{(i)} - y^{(i)}) ^2$$
+\sum_{i=1}^m (\theta_0 + \theta_1x^{(i)} - y^{(i)}) ^2$$
 
 可以求出$j=0$和$j=1$时的偏导项为:
 $$
 \frac {\partial} {\partial{\theta_0}} J(\theta_0, \theta_1) =
-\frac {1} {m}\sum_{i=1}^m (\theta_0 + theta_1x^{(i)} - y^{(i)}) =
+\frac {1} {m}\sum_{i=1}^m (\theta_0 + \theta_1x^{(i)} - y^{(i)}) =
 \frac {1} {m}\sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})
 
-\frac {\partial} {\partial{\theta_1}} J(\theta_0,\theta_1) =
-\frac {1} {m}\sum_{i=1}^m (\theta_0 + theta_1x^{(i)} - y^{(i)})
-\cdot x^{(i)} = \frac {1} {m}\sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})
+\frac {\partial} {\partial{\theta_1}} J(\theta_0, \theta_1) =
+\frac {1} {m}\sum_{i=1}^m (\theta_0 + \theta_1x^{(i)} - y^{(i)})
+\cdot x^{(i)} =
+\frac {1} {m}\sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) \cdot x^{(i)}
 $$
 
 ## Quiz
