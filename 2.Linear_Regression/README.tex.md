@@ -13,7 +13,7 @@
 ## Model Representation
 学习算法通过对训练数据的学习来获取模型$h: X \rightarrow Y$, 也称作hypothesis.
 在预测阶段, 将$x$输入模型$h$得到预测的$y$.
-<div align=center><img width="250" src="1.png" alt=" "/></div>
+<div align=center><img width="250" src="figure/1.png" alt=" "/></div>
 
 ## Cost Function
 我们可以采用代价函数来评估模型的准确性.
@@ -39,7 +39,7 @@ $$ \mathop{min}\limits_{\theta_0, \theta_1}J(\theta_0, \theta_1) $$
 此时的参数就是最优模型. 给定初始的参数$\theta_0$和$\theta_1$,
 采用梯度下降算法对参数不断更新, 在曲面上不断"下山", 直到最低点得到最优的参数.
 
-<div align=center><img width="400" src="2.png" alt=" "/></div>
+<div align=center><img width="400" src="figure/2.png" alt=" "/></div>
 
 梯度下降算法:
 $$ \theta_j := \theta_j - \alpha \frac {\partial} {\partial{\theta_j}}
@@ -57,11 +57,11 @@ J(\theta_0,\theta_1), \  j = 0,1 $$
 
 学习率太大, 梯度下降可能错误局部最优点, 可能不会收敛, 甚至发散.
 
-<div align=center><img width="250" src="3.png" alt=" "/></div>
+<div align=center><img width="250" src="figure/3.png" alt=" "/></div>
 
 如果达到最优点, 此时梯度下降算法再更新, 参数就不会再发生变化.
 
-<div align=center><img width="300" src="4.png" alt=" "/></div>
+<div align=center><img width="300" src="figure/4.png" alt=" "/></div>
 
 由于梯度下降过程中, 梯度项会不断减小, 因此, 即时学习率固定, 也可以收敛到局部最优.
 
@@ -91,7 +91,7 @@ $$ \theta0 := \theta0 - \alpha \frac {1} {m} \sum_{i=1}^m
 $$ \theta1 := \theta1 - \alpha \frac {1} {m} \sum_{i=1}^m
 (h_\theta(x^{(i)}) - y^{(i)}) \cdot x^{(i)} $$
 
-<div align=center><img src="5.png" alt=" "/></div>
+<div align=center><img src="figure/5.png" alt=" "/></div>
 
 注意: 线性回归的搜索空间为凸函数, 因此仅存在全局最优解.
 
