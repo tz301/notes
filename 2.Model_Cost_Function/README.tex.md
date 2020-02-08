@@ -19,6 +19,8 @@ $(x^{(i)}, y^{(i)})$ - 第$i$个样本对 <br/>
 代价函数指导了模型拟合的方向. <br/>
 假设模型为: <br/>
 <div align=center>$$h_\theta(x)=\theta_0+\theta_1x$$</div> <br/>
+$\theta_0$和$\theta_1$ <br/><br/>
+
 其中, $\theta_0$和$\theta_1$是待定参数, 不同的参数得到的模型也不同. <br/><br/>
 目标是选取最好的$\theta_0$和$\theta_1$, 使得模型对训练集的拟合程度较好, 即
 $h_\theta(x)$尽可能与$y$接近, 那么可以将代价函数写成: <br/>
