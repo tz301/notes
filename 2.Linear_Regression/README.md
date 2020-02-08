@@ -53,7 +53,7 @@
 ## Learning Rate
 学习率太小, 梯度下降速度可能会很慢.
 
-学习率太大, 梯度下降可能错误局部最优点, 可能不会收敛, 甚至发散.
+学习率太大, 梯度下降可能错过局部最优点, 可能不会收敛, 甚至发散.
 
 <div align=center><img width="250" src="figure/3.png" alt=" "/></div>
 
@@ -65,7 +65,7 @@
 
 ## Gradient Descent For Linear Regression
 将线性回归的模型代入梯度下降的公式, 偏导项变为:
-<p align="center"><img src="/2.Linear_Regression/tex/439d2926e0a2cb83c5f0ddd3cf6defbf.svg?invert_in_darkmode&sanitize=true" align=middle width=576.1502075999999pt height=44.89738935pt/></p>
+<p align="center"><img src="/2.Linear_Regression/tex/b6595a6690eb9acf09c0c91440ffb30c.svg?invert_in_darkmode&sanitize=true" align=middle width=552.40624395pt height=44.89738935pt/></p>
 
 可以求出<img src="/2.Linear_Regression/tex/2d72a911a19b952b476268360c3d83be.svg?invert_in_darkmode&sanitize=true" align=middle width=37.84725779999999pt height=21.68300969999999pt/>和<img src="/2.Linear_Regression/tex/808d7610d22dae56fe8166a58e9f8c92.svg?invert_in_darkmode&sanitize=true" align=middle width=37.84725779999999pt height=21.68300969999999pt/>时的偏导项为:
 <p align="center"><img src="/2.Linear_Regression/tex/e0617ea090810b374c92c0663be9f722.svg?invert_in_darkmode&sanitize=true" align=middle width=466.03110014999993pt height=44.89738935pt/></p>
@@ -74,9 +74,9 @@
 
 那么梯度下降算法变为:
 
-<p align="center"><img src="/2.Linear_Regression/tex/8260fbd48656c5871c60f6b424bd24a3.svg?invert_in_darkmode&sanitize=true" align=middle width=246.90748499999998pt height=44.89738935pt/></p>
+<p align="center"><img src="/2.Linear_Regression/tex/faf137dd895970c5d7ce2e170b35be10.svg?invert_in_darkmode&sanitize=true" align=middle width=244.3047156pt height=44.89738935pt/></p>
 
-<p align="center"><img src="/2.Linear_Regression/tex/d094402037a7343d2890aa3051397cad.svg?invert_in_darkmode&sanitize=true" align=middle width=283.09938525pt height=44.89738935pt/></p>
+<p align="center"><img src="/2.Linear_Regression/tex/dde3241b2aef27cfae1113f7365976de.svg?invert_in_darkmode&sanitize=true" align=middle width=280.49661585pt height=44.89738935pt/></p>
 
 <div align=center><img src="figure/5.png" alt=" "/></div>
 
@@ -88,7 +88,7 @@ second year of college/university, given how well she did in her first
 year. <br/>
 Specifically, let <img src="/2.Linear_Regression/tex/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode&sanitize=true" align=middle width=9.39498779999999pt height=14.15524440000002pt/> be equal to the number of "A" grades (including
 A-. A and A+ grades) that a student receives in their first year of
-college (freshmen year). We would like to predict the value of y,
+college (freshmen year). We would like to predict the value of <img src="/2.Linear_Regression/tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode&sanitize=true" align=middle width=8.649225749999989pt height=14.15524440000002pt/>,
 which we define as the number of "A" grades they get in their second
 year (sophomore year). <br/>
 Refer to the following training set of a small sample of different
