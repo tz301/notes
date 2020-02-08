@@ -18,15 +18,15 @@ $(x^{(i)}, y^{(i)})$ - 第$i$个样本对 <br/>
 ## Cost Function
 代价函数指导了模型拟合的方向. <br/>
 假设模型为: <br/>
-<div align=center>$h_\theta(x)=\theta_0+\theta_1x$</div> <br/>
+<div align=center>$$h_\theta(x)=\theta_0+\theta_1x$$</div> <br/>
 其中, $\theta_0$和$\theta_1$是待定参数, 不同的参数得到的模型也不同. <br/><br/>
 目标是选取最好的$\theta_0$和$\theta_1$, 使得模型对训练集的拟合程度较好, 即
 $h_\theta(x)$尽可能与$y$接近, 那么可以将代价函数写成: <br/>
-<div align=center>$J(\theta_0, \theta_1)=\frac {1} {2m}\sum_{i=1}^{m}
-(h_\theta(x^{(i)})-y^{(i)})^2$</div> <br/>
+<div align=center>$$J(\theta_0, \theta_1)=\frac {1} {2m}\sum_{i=1}^{m}
+(h_\theta(x^{(i)})-y^{(i)})^2$$</div> <br/>
 目标就是最小化代价函数
-<div align=center>$\mathop{minimize}\limits_{\theta_0, \theta_1}
-J(\theta_0, \theta_1)$</div> <br/><br/>
+<div align=center>$$\mathop{minimize}\limits_{\theta_0, \theta_1}
+J(\theta_0, \theta_1)$$</div> <br/><br/>
 可以将代价函数对$\theta_0$和$\theta_1$求偏导并等于0, 从而得到最优的参数.<br/>
 
 可以将代价函数对$\theta_0$和$\theta_1$求偏导并等于0, 从而得到最优的参数.<br/>
