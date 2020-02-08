@@ -3,12 +3,12 @@
 # Model and Cost Function
 
 ## Definition
-对于回归问题, 假设有一堆训练集, 记: <br/>
-$m$ - 训练集的样本数量 <br/>
-$x_s$ - 输入变量/特征 <br/>
-$y_s$ - 输出变量/目标变量 <br/>
-$(x, y)$ - 一个样本对 <br/>
-$(x^{(i)}, y^{(i)})$ - 第$i$个样本对 <br/>
+对于回归问题, 假设有一堆训练集, 记:
+* $m$ - 训练集的样本数量 <br/>
+* $x_s$ - 输入变量/特征 <br/>
+* $y_s$ - 输出变量/目标变量 <br/>
+* $(x, y)$ - 一个样本对 <br/>
+* $(x^{(i)}, y^{(i)})$ - 第$i$个样本对 <br/>
 
 ## Model Representation
 学习算法通过对训练数据的学习来获取模型$h: X \rightarrow Y$, 也称作hypothesis.
@@ -18,7 +18,7 @@ $(x^{(i)}, y^{(i)})$ - 第$i$个样本对 <br/>
 ## Cost Function
 代价函数指导了模型拟合的方向. <br/>
 假设模型为: <br/>
-<div align=center>$$h_\theta(x)=\theta_0+\theta_1x$$</div> <br/>
+<div align=center>$$h_\theta(x)=\theta_0+\theta_1x$$</div>
 
 其中, $\theta_0$和$\theta_1$是待定参数, 不同的参数得到的模型也不同. <br/><br/>
 目标是选取最好的$\theta_0$和$\theta_1$, 使得模型对训练集的拟合程度较好, 即
