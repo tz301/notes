@@ -3,4 +3,4 @@
 
 # 目录
 1. [Introduction](1.introduction/README.md)
-2. [Linear Regression](2.Model_Cost_Function/README.md)
+2. [Linear Regression](2.Linear_Regression/README.md)

@@ -39,6 +39,8 @@ $$\mathop{minimize}\limits_{\theta_0, \theta_1}J(\theta_0, \theta_1)$$
 优模型. 给定初始的参数$\theta_0$和$\theta_1$, 采用梯度下降算法对参数不断更新, 在
 曲面上不断"下山", 直达最低点, 就可以得到最优的参数.
 
+<div align=center><img width="400" height="250" src="2.png"/></div>
+
 梯度下降算法:
 $$\theta_j:=\theta_j-\alpha \frac {\partial} {\partial{\theta_j}}
 J(\theta_0,\theta_1), \  j=0,1$$
