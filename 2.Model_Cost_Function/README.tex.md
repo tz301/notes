@@ -1,6 +1,6 @@
 # [目录](../README.md)
 
-# Model and Cost Function
+# Linear Regression
 
 ## Definition
 对于回归问题, 假设有一堆训练集, 记:
@@ -32,5 +32,18 @@ $$J(\theta_0, \theta_1)=\frac {1} {2m}\sum_{i=1}^{m}
 $$\mathop{minimize}\limits_{\theta_0, \theta_1}J(\theta_0, \theta_1)$$
 
 可以将代价函数对$\theta_0$和$\theta_1$求偏导并等于0, 从而得到最优的参数.
+
+## Gradient Descent
+给定不同的参数$\theta_0$和$\theta_1$, 得到的代价函数值也不一样, 可以将代价函数随
+着参数变化的曲面绘制出来. 代价函数最小的点, 也就是曲线上最低的点, 此时的参数就是最
+优模型. 给定初始的参数$\theta_0$和$\theta_1$, 采用梯度下降算法对参数不断更新, 在
+曲面上不断"下山", 直达最低点, 就可以得到最优的参数.
+
+梯度下降算法:
+$$\theta_j:=\theta_j-\alpha \frac {\partial} {\partial{\theta_j}}
+J(\theta_0,\theta_1), \  j=0,1$$
+
+上式中, $\alpha称作学习率. 如果学习率较大, 梯度下降就会采用较大的步长下降; 如果学
+习率较小, 梯度下降就会采用较小的步长下降.
 
 ## Quiz
