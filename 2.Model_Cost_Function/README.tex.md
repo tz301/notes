@@ -27,6 +27,9 @@ $h_\theta(x)$尽可能与$y$接近, 那么可以将代价函数写成: <br/>
 目标就是最小化代价函数
 <div align=center>$\mathop{minimize}\limits_{\theta_0, \theta_1}
 J(\theta_0, \theta_1)$</div> <br/>
-可以将代价函数对$\theta_0$和$\theta_1$求偏导并等于0, 从而得到最优的参数.
+可以将代价函数对$\theta_0$和$\theta_1$求偏导并等于0, 从而得到最优的参数.<br/>
+
+$\theta_0$和$\theta_1$ <br/>  
+$\theta_0$ and $\theta_1$
 
 ## Quiz
