@@ -61,9 +61,9 @@
 
 ## Gradient Descent For Linear Regression
 将线性回归的模型代入梯度下降的公式, 偏导项变为:
-<p align="center"><img src="/2.Linear_Regression/tex/a9ed249a58bd6e0d4579744c74cba174.svg?invert_in_darkmode&sanitize=true" align=middle width=606.1199165999999pt height=44.89738935pt/></p>
+<p align="center"><img src="/2.Linear_Regression/tex/d30868dbef07d533e81f25daf74bfb06.svg?invert_in_darkmode&sanitize=true" align=middle width=576.1502075999999pt height=44.89738935pt/></p>
 
 可以求出<img src="/2.Linear_Regression/tex/2d72a911a19b952b476268360c3d83be.svg?invert_in_darkmode&sanitize=true" align=middle width=37.84725779999999pt height=21.68300969999999pt/>和<img src="/2.Linear_Regression/tex/808d7610d22dae56fe8166a58e9f8c92.svg?invert_in_darkmode&sanitize=true" align=middle width=37.84725779999999pt height=21.68300969999999pt/>时的偏导项为:
-<p align="center"><img src="/2.Linear_Regression/tex/ace93c5216ff9294cf6ae5e6d658b9ae.svg?invert_in_darkmode&sanitize=true" align=middle width=574.46626875pt height=80.0153376pt/></p>
+<p align="center"><img src="/2.Linear_Regression/tex/d54a38ace526553d735e68db97a3b04d.svg?invert_in_darkmode&sanitize=true" align=middle width=559.48138455pt height=80.0153376pt/></p>
 
 ## Quiz
