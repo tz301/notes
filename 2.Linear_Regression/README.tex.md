@@ -153,7 +153,7 @@ very long time to converge. <br/>
 B. If $\theta_0$ and $\theta_1$ are initialized so that
 $ \theta_0 = \theta_1 $, then by symmetry (because we do simultaneous
 updates to the two parameters), after one iteration of gradient descent,
-we will still have \theta_0 = \theta_1θ. <br/>
+we will still have $ \theta_0 = \theta_1 $. <br/>
 C. Even if the learning rate $\alpha$ is very large, every iteration of
 gradient descent will decrease the value of $ f(\theta_0, \theta_1) $. <br/>
 D. If $\theta_0$ and $\theta_1$ are initialized at a local minimum,
