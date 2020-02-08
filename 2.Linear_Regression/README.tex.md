@@ -55,7 +55,7 @@ J(\theta_0,\theta_1), \  j = 0,1 $$
 ## Learning Rate
 学习率太小, 梯度下降速度可能会很慢.
 
-学习率太大, 梯度下降可能错误局部最优点, 可能不会收敛, 甚至发散.
+学习率太大, 梯度下降可能错过局部最优点, 可能不会收敛, 甚至发散.
 
 <div align=center><img width="250" src="figure/3.png" alt=" "/></div>
 
@@ -68,9 +68,9 @@ J(\theta_0,\theta_1), \  j = 0,1 $$
 ## Gradient Descent For Linear Regression
 将线性回归的模型代入梯度下降的公式, 偏导项变为:
 $$ \frac {\partial} {\partial{\theta_j}} J(\theta_0, \theta_1) =
-\frac {\partial} {\partial{\theta_j}} \cdot \frac {1} {2m}
+\frac {\partial} {\partial{\theta_j}} \frac {1} {2m}
 \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) ^2 =
-\frac {\partial} {\partial{\theta_j}} \cdot \frac {1} {2m}
+\frac {\partial} {\partial{\theta_j}} \frac {1} {2m}
 \sum_{i=1}^m (\theta_0 + \theta_1x^{(i)} - y^{(i)}) ^2 $$
 
 可以求出$j=0$和$j=1$时的偏导项为:
@@ -85,10 +85,10 @@ $$ \frac {\partial} {\partial{\theta_1}} J(\theta_0, \theta_1) =
 
 那么梯度下降算法变为:
 
-$$ \theta0 := \theta0 - \alpha \frac {1} {m} \sum_{i=1}^m
+$$ \theta_0 := \theta_0 - \alpha \frac {1} {m} \sum_{i=1}^m
 (h_\theta(x^{(i)}) - y^{(i)}) $$
 
-$$ \theta1 := \theta1 - \alpha \frac {1} {m} \sum_{i=1}^m
+$$ \theta_1 := \theta_1 - \alpha \frac {1} {m} \sum_{i=1}^m
 (h_\theta(x^{(i)}) - y^{(i)}) \cdot x^{(i)} $$
 
 <div align=center><img src="figure/5.png" alt=" "/></div>
@@ -101,7 +101,7 @@ second year of college/university, given how well she did in her first
 year. <br/>
 Specifically, let $x$ be equal to the number of "A" grades (including
 A-. A and A+ grades) that a student receives in their first year of
-college (freshmen year). We would like to predict the value of y,
+college (freshmen year). We would like to predict the value of $y$,
 which we define as the number of "A" grades they get in their second
 year (sophomore year). <br/>
 Refer to the following training set of a small sample of different
