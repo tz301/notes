@@ -1,4 +1,4 @@
-<div align=center><img src="/2.Model_Cost_Function/tex/2190502259f8ae80b42b5ee425bb0ab9.svg?invert_in_darkmode&sanitize=true" align=middle width=239.91913109999996pt height=29.190975000000005pt/></div> <br/># [目录](../README.md)
+# [目录](../README.md)
 
 # Model and Cost Function
 
@@ -19,12 +19,12 @@
 代价函数指导了模型拟合的方向. <br/>
 假设模型为: <br/>
 <div align=center><img src="/2.Model_Cost_Function/tex/e36f28d780ec0924f78b822d0d8c2ff9.svg?invert_in_darkmode&sanitize=true" align=middle width=120.67521674999999pt height=24.65753399999998pt/></div> <br/>
-其中, <img src="/2.Model_Cost_Function/tex/1a3151e36f9f52b61f5bf76c08bdae2b.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>和<img src="/2.Model_Cost_Function/tex/edcbf8dd6dd9743cceeee21183bbc3b6.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>是待定参数, 不同的参数得到的模型也不同. <br/>
-目标是选取最好的<img src="/2.Model_Cost_Function/tex/1a3151e36f9f52b61f5bf76c08bdae2b.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>和<img src="/2.Model_Cost_Function/tex/edcbf8dd6dd9743cceeee21183bbc3b6.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>, 使得模型对训练集的拟合程序较好, 即
+其中, <img src="/2.Model_Cost_Function/tex/1a3151e36f9f52b61f5bf76c08bdae2b.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>和<img src="/2.Model_Cost_Function/tex/edcbf8dd6dd9743cceeee21183bbc3b6.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>是待定参数, 不同的参数得到的模型也不同. <br/><br/>
+目标是选取最好的<img src="/2.Model_Cost_Function/tex/1a3151e36f9f52b61f5bf76c08bdae2b.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>和<img src="/2.Model_Cost_Function/tex/edcbf8dd6dd9743cceeee21183bbc3b6.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>, 使得模型对训练集的拟合程度较好, 即
 <img src="/2.Model_Cost_Function/tex/b687e9cb7f5356da0e24f1b1cac73585.svg?invert_in_darkmode&sanitize=true" align=middle width=39.088702949999984pt height=24.65753399999998pt/>尽可能与<img src="/2.Model_Cost_Function/tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode&sanitize=true" align=middle width=8.649225749999989pt height=14.15524440000002pt/>接近, 那么可以将代价函数写成: <br/>
-<div align=center><img src="/2.Model_Cost_Function/tex/b67af61eaaf3552d34ade882096aecc7.svg?invert_in_darkmode&sanitize=true" align=middle width=270.48554774999997pt height=29.190975000000005pt/></div> <br/>
+<div align=center><img src="/2.Model_Cost_Function/tex/c0f62c0781a95862763e35a0e0ff8741.svg?invert_in_darkmode&sanitize=true" align=middle width=265.91932455pt height=29.190975000000005pt/></div> <br/>
 目标就是最小化代价函数
-<div align=center><img src="/2.Model_Cost_Function/tex/f54ae20a4f529b83fb10abee1d8461e8.svg?invert_in_darkmode&sanitize=true" align=middle width=142.76042385pt height=25.936006800000015pt/></div> <br/>
+<div align=center><img src="/2.Model_Cost_Function/tex/010a29b9d4db013f24a9accbd5ae4e67.svg?invert_in_darkmode&sanitize=true" align=middle width=135.45454064999998pt height=25.936006800000015pt/></div> <br/>
 可以将代价函数对<img src="/2.Model_Cost_Function/tex/1a3151e36f9f52b61f5bf76c08bdae2b.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>和<img src="/2.Model_Cost_Function/tex/edcbf8dd6dd9743cceeee21183bbc3b6.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>求偏导并等于0, 从而得到最优的参数.
 
 ## Quiz
