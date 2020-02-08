@@ -28,7 +28,7 @@ $h_\theta(x)$尽可能与$y$接近, 那么可以将代价函数写成:
 $$J(\theta_0, \theta_1)=\frac {1} {2m}\sum_{i=1}^{m}
 (h_\theta(x^{(i)})-y^{(i)})^2$$
 
-因此, 目标就转化为最小化代价函数
+因此, 目标就转化为最小化代价函数:
 $$\mathop{minimize}\limits_{\theta_0, \theta_1}J(\theta_0, \theta_1)$$
 
 可以将代价函数对$\theta_0$和$\theta_1$求偏导并等于0, 从而得到最优的参数.
