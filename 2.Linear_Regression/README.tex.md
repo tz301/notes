@@ -96,3 +96,80 @@ $$ \theta1 := \theta1 - \alpha \frac {1} {m} \sum_{i=1}^m
 注意: 线性回归的搜索空间为凸函数, 因此仅存在全局最优解.
 
 ## Quiz
+1. Consider the problem of predicting how well a student does in her
+second year of college/university, given how well she did in her first
+year. <br/>
+Specifically, let $x$ be equal to the number of "A" grades (including
+A-. A and A+ grades) that a student receives in their first year of
+college (freshmen year). We would like to predict the value of y,
+which we define as the number of "A" grades they get in their second
+year (sophomore year). <br/>
+Refer to the following training set of a small sample of different
+students' performances (note that this training set may also be
+referenced in other questions in this quiz). Here each row is one
+training example. Recall that in linear regression, our hypothesis is
+$ h_\theta(x) = \theta_0 + \theta_1x $, and we use $m$ to denote the
+number of training examples. <br/>
+For the training set given above, what is the value of $m$? <br/>
+(4)
+
+<div align=center><img src="figure/6.png" alt=" "/></div>
+
+2. Many substances that can burn (such as gasoline and alcohol) have a
+chemical structure based on carbon atoms; for this reason they are
+called hydrocarbons. A chemist wants to understand how the number of
+carbon atoms in a molecule affects how much energy is released when that
+molecule combusts (meaning that it is burned). The chemist obtains the
+dataset below. In the column on the right, "kJ/mol" is the unit
+measuring the amount of energy released. <br/>
+You would like to use linear regression ($ h_\theta(x) = \theta_0 +
+\theta_1x $) to estimate the amount of energy released ($y$) as a
+function of the number of carbon atoms ($x$). Which of the following do
+you think will be the values you obtain for $\theta_0$ and $\theta_1$?
+You should be able to select the right answer without actually
+implementing linear regression. <br/>
+(D) <br/>
+A. $ \theta_0 = -1780.0, \theta_1 = 530.9θ $ <br/>
+B. $ \theta_0 = -569.6, \theta_1 = 530.9θ $ <br/>
+C. $ \theta_0 = -1780.0, \theta_1 = -530.9θ $ <br/>
+D. $ \theta_0 = -569.6, \theta_1 = -530.9θ $
+
+<div align=center><img src="figure/7.png" alt=" "/></div>
+
+3. Suppose we set $ \theta_0 = -1, \theta_1 = 2θ $ in the linear
+regression hypothesis from Q1. What is $ h_\theta(6) $? <br/>
+(11)
+
+4. Let $f$ be some function so that $ f(\theta_0, \theta_1) $ outputs a
+number. For this problem, $f$ is some arbitrary/unknown smooth function
+(not necessarily the cost function of linear regression, so $f$ may have
+local optima). <br/>
+Suppose we use gradient descent to try to minimize
+$ f(\theta_0, \theta_1) $ as a function of $\theta_0$ and $\theta_1$.
+Which of the following statements are true? (Check all that apply.) <br/>
+(AD) <br/>
+A. If the learning rate is too small, then gradient descent may take a
+very long time to converge. <br/>
+B. If $\theta_0$ and $\theta_1$ are initialized so that
+$ \theta_0 = \theta_1 $, then by symmetry (because we do simultaneous
+updates to the two parameters), after one iteration of gradient descent,
+we will still have \theta_0 = \theta_1θ. <br/>
+C. Even if the learning rate $\alpha$ is very large, every iteration of
+gradient descent will decrease the value of $ f(\theta_0, \theta_1) $. <br/>
+D. If $\theta_0$ and $\theta_1$ are initialized at a local minimum,
+then one iteration will not change their values.
+
+5. Suppose that for some linear regression problem (say, predicting
+housing prices as in the lecture), we have some training set, and for
+our training set we managed to find some $\theta_0$, $\theta_1$ such
+that $ J(\theta_0, \theta_1) = 0 $. <br/>
+Which of the statements below must then be true? (Check all that apply.) <br/>
+(D) <br/>
+A. For this to be true, we must have $ \theta_0 = 0 $ and
+$ \theta_1 = 0 $, so that $ h_\theta(x) = 0 $. <br/>
+B. Gradient descent is likely to get stuck at a local minimum and fail
+to find the global minimum. <br/>
+C. For this to be true, we must have $ y^{(i)} = 0 $ for every value of
+$ i = 1, 2, \cdots, m $. <br/>
+D. Our training set can be fit perfectly by a straight line, i.e., all
+of our training examples lie perfectly on some straight line.
