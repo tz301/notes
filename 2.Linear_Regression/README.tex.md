@@ -48,6 +48,10 @@ J(\theta_0,\theta_1), \  j = 0,1 $$
 上式中, $\alpha$称作学习率. 如果学习率较大, 梯度下降就会采用较大的步长下降;
 如果学习率较小, 梯度下降就会采用较小的步长下降.
 
+梯度下降算法根据每次更新使用的数据量, 分为:
+* Batch Gradient Descent: 每次使用所有训练数据.
+* Mini-Batch Gradient Descent: 每次使用训练数据的一个子集.
+
 ## Learning Rate
 学习率太小, 梯度下降速度可能会很慢.
 
@@ -71,12 +75,24 @@ $$ \frac {\partial} {\partial{\theta_j}} J(\theta_0, \theta_1) =
 
 可以求出$j=0$和$j=1$时的偏导项为:
 $$ \frac {\partial} {\partial{\theta_0}} J(\theta_0, \theta_1) =
-\frac {1} {m}\sum_{i=1}^m (\theta_0 + \theta_1x^{(i)} - y^{(i)}) =
-\frac {1} {m}\sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) $$
+\frac {1} {m} \sum_{i=1}^m (\theta_0 + \theta_1x^{(i)} - y^{(i)}) =
+\frac {1} {m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) $$
 
 $$ \frac {\partial} {\partial{\theta_1}} J(\theta_0, \theta_1) =
 \frac {1} {m}\sum_{i=1}^m (\theta_0 + \theta_1x^{(i)} - y^{(i)})
 \cdot x^{(i)} =
 \frac {1} {m}\sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) \cdot x^{(i)} $$
+
+那么梯度下降算法变为:
+
+$$ \theta0 := \theta0 - \alpha \frac {1} {m} \sum_{i=1}^m
+(h_\theta(x^{(i)}) - y^{(i)}) $$
+
+$$ \theta1 := \theta1 - \alpha \frac {1} {m} \sum_{i=1}^m
+(h_\theta(x^{(i)}) - y^{(i)}) \cdot x^{(i)} $$
+
+<div align=center><img src="5.png" alt=" "/></div>
+
+注意: 线性回归的搜索空间为凸函数, 因此仅存在全局最优解.
 
 ## Quiz
