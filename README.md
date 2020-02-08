@@ -3,4 +3,4 @@
 
 # 目录
 1. [Introduction](1.introduction/README.md)
-2. [Model and Cost Function](1.Model_Cost_Function/README.md)
+2. [Model and Cost Function](2.Model_Cost_Function/README.md)
