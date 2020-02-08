@@ -20,6 +20,7 @@
 
 假设模型为:
 <p align="center"><img src="/2.Model_Cost_Function/tex/ab3fbf9c981f774b779b68f7d1a26f87.svg?invert_in_darkmode&sanitize=true" align=middle width=120.67521674999999pt height=16.438356pt/></p>
+
 其中, <img src="/2.Model_Cost_Function/tex/1a3151e36f9f52b61f5bf76c08bdae2b.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>和<img src="/2.Model_Cost_Function/tex/edcbf8dd6dd9743cceeee21183bbc3b6.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>是待定参数, 不同的参数得到的模型也不同.
 
 目标是选取最好的<img src="/2.Model_Cost_Function/tex/1a3151e36f9f52b61f5bf76c08bdae2b.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>和<img src="/2.Model_Cost_Function/tex/edcbf8dd6dd9743cceeee21183bbc3b6.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>, 使得模型对训练集的拟合程度较好, 即
@@ -28,6 +29,7 @@
 
 因此, 目标就转化为最小化代价函数
 <p align="center"><img src="/2.Model_Cost_Function/tex/44021dff828afef7ca48354d45a21015.svg?invert_in_darkmode&sanitize=true" align=middle width=135.45454064999998pt height=25.2967704pt/></p>
+
 可以将代价函数对<img src="/2.Model_Cost_Function/tex/1a3151e36f9f52b61f5bf76c08bdae2b.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>和<img src="/2.Model_Cost_Function/tex/edcbf8dd6dd9743cceeee21183bbc3b6.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>求偏导并等于0, 从而得到最优的参数.
 
 ## Quiz
