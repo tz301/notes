@@ -46,6 +46,10 @@
 上式中, <img src="/2.Linear_Regression/tex/c745b9b57c145ec5577b82542b2df546.svg?invert_in_darkmode&sanitize=true" align=middle width=10.57650494999999pt height=14.15524440000002pt/>称作学习率. 如果学习率较大, 梯度下降就会采用较大的步长下降;
 如果学习率较小, 梯度下降就会采用较小的步长下降.
 
+梯度下降算法根据每次更新使用的数据量, 分为:
+* Batch Gradient Descent: 每次使用所有训练数据.
+* Mini-Batch Gradient Descent: 每次使用训练数据的一个子集.
+
 ## Learning Rate
 学习率太小, 梯度下降速度可能会很慢.
 
@@ -64,8 +68,18 @@
 <p align="center"><img src="/2.Linear_Regression/tex/439d2926e0a2cb83c5f0ddd3cf6defbf.svg?invert_in_darkmode&sanitize=true" align=middle width=576.1502075999999pt height=44.89738935pt/></p>
 
 可以求出<img src="/2.Linear_Regression/tex/2d72a911a19b952b476268360c3d83be.svg?invert_in_darkmode&sanitize=true" align=middle width=37.84725779999999pt height=21.68300969999999pt/>和<img src="/2.Linear_Regression/tex/808d7610d22dae56fe8166a58e9f8c92.svg?invert_in_darkmode&sanitize=true" align=middle width=37.84725779999999pt height=21.68300969999999pt/>时的偏导项为:
-<p align="center"><img src="/2.Linear_Regression/tex/e22f31422e05c7d6b1f32f4a37f248da.svg?invert_in_darkmode&sanitize=true" align=middle width=466.03110014999993pt height=44.89738935pt/></p>
+<p align="center"><img src="/2.Linear_Regression/tex/e0617ea090810b374c92c0663be9f722.svg?invert_in_darkmode&sanitize=true" align=middle width=466.03110014999993pt height=44.89738935pt/></p>
 
 <p align="center"><img src="/2.Linear_Regression/tex/d9b523343141836160a656789b1599f8.svg?invert_in_darkmode&sanitize=true" align=middle width=539.2367904pt height=44.89738935pt/></p>
+
+那么梯度下降算法变为:
+
+<p align="center"><img src="/2.Linear_Regression/tex/8260fbd48656c5871c60f6b424bd24a3.svg?invert_in_darkmode&sanitize=true" align=middle width=246.90748499999998pt height=44.89738935pt/></p>
+
+<p align="center"><img src="/2.Linear_Regression/tex/d094402037a7343d2890aa3051397cad.svg?invert_in_darkmode&sanitize=true" align=middle width=283.09938525pt height=44.89738935pt/></p>
+
+<div align=center><img src="5.png" alt=" "/></div>
+
+注意: 线性回归的搜索空间为凸函数, 因此仅存在全局最优解.
 
 ## Quiz
