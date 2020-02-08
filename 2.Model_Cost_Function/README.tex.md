@@ -16,7 +16,7 @@
 <div align=center><img width="250" height="250" src="1.png"/></div>
 
 ## Cost Function
-代价函数指导了模型拟合的方向.
+我们可以采用代价函数来评估模型的准确性.
 
 假设模型为:
 $$h_\theta(x)=\theta_0+\theta_1x$$
