@@ -13,7 +13,7 @@
 ## Model Representation
 学习算法通过对训练数据的学习来获取模型<img src="/2.Linear_Regression/tex/f79ff4ffc0429ece3cfe30e85017e634.svg?invert_in_darkmode&sanitize=true" align=middle width=76.84518929999999pt height=22.831056599999986pt/>, 也称作hypothesis.
 在预测阶段, 将<img src="/2.Linear_Regression/tex/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode&sanitize=true" align=middle width=9.39498779999999pt height=14.15524440000002pt/>输入模型<img src="/2.Linear_Regression/tex/2ad9d098b937e46f9f58968551adac57.svg?invert_in_darkmode&sanitize=true" align=middle width=9.47111549999999pt height=22.831056599999986pt/>得到预测的<img src="/2.Linear_Regression/tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode&sanitize=true" align=middle width=8.649225749999989pt height=14.15524440000002pt/>.
-<div align=center><img width="250" height="250" src="1.png"/></div>
+<div align=center><img width="250" src="1.png" alt=" "/></div>
 
 ## Cost Function
 我们可以采用代价函数来评估模型的准确性.
@@ -38,12 +38,25 @@
 此时的参数就是最优模型. 给定初始的参数<img src="/2.Linear_Regression/tex/1a3151e36f9f52b61f5bf76c08bdae2b.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>和<img src="/2.Linear_Regression/tex/edcbf8dd6dd9743cceeee21183bbc3b6.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>,
 采用梯度下降算法对参数不断更新, 在曲面上不断"下山", 直到最低点得到最优的参数.
 
-<div align=center><img width="400" height="250" src="2.png"/></div>
+<div align=center><img width="400" src="2.png" alt=" "/></div>
 
 梯度下降算法:
 <p align="center"><img src="/2.Linear_Regression/tex/f5661ce40a5e880ca6d224c617618ebc.svg?invert_in_darkmode&sanitize=true" align=middle width=241.79507715pt height=38.5152603pt/></p>
 
-上式中, <img src="/2.Linear_Regression/tex/c745b9b57c145ec5577b82542b2df546.svg?invert_in_darkmode&sanitize=true" align=middle width=10.57650494999999pt height=14.15524440000002pt/>称作学习率. 如果学习率较大, 梯度下降就会采用较大的步长下降; 如果学
-习率较小, 梯度下降就会采用较小的步长下降.
+上式中, <img src="/2.Linear_Regression/tex/c745b9b57c145ec5577b82542b2df546.svg?invert_in_darkmode&sanitize=true" align=middle width=10.57650494999999pt height=14.15524440000002pt/>称作学习率. 如果学习率较大, 梯度下降就会采用较大的步长下降;
+如果学习率较小, 梯度下降就会采用较小的步长下降.
+
+## Learning Rate
+学习率太小, 梯度下降速度可能会很慢.
+
+学习率太大, 梯度下降可能错误局部最优点, 可能不会收敛, 甚至发散.
+
+<div align=center><img width="250" src="3.png" alt=" "/></div>
+
+如果达到最优点, 此时梯度下降算法再更新, 参数就不会再发生变化.
+
+<div align=center><img width="300" src="4.png" alt=" "/></div>
+
+由于梯度下降过程中, 梯度项会不断减小, 因此, 即时学习率固定, 也可以收敛到局部最优.
 
 ## Quiz
