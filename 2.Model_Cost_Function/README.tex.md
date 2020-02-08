@@ -13,12 +13,12 @@
 ## Model Representation
 学习算法通过对训练数据的学习来获取模型$h: X \rightarrow Y$, 也称作hypothesis.
 在预测阶段, 将$x$输入模型$h$得到预测的$y$.
-<div align=center><img width="150" height="150" src="1.png"/></div>
+<div align=center><img width="250" height="250" src="1.png"/></div>
 
 ## Cost Function
 代价函数指导了模型拟合的方向.
 
-假设模型为: <br/>
+假设模型为:
 <div align=center>$$h_\theta(x)=\theta_0+\theta_1x$$</div>
 其中, $\theta_0$和$\theta_1$是待定参数, 不同的参数得到的模型也不同.
 
