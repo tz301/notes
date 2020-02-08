@@ -23,21 +23,21 @@ $$h_\theta(x)=\theta_0+\theta_1x$$
 
 其中, $\theta_0$和$\theta_1$是待定参数, 不同的参数得到的模型也不同.
 
-目标是选取最好的$\theta_0$和$\theta_1$, 使得模型对训练集的拟合程度较好, 即
-$h_\theta(x)$尽可能与$y$接近, 那么可以将代价函数写成:
+目标是选取最好的$\theta_0$和$\theta_1$, 使得模型对训练集的拟合程度较好,
+即$h_\theta(x)$尽可能与$y$接近, 那么可以将代价函数写成:
 $$J(\theta_0, \theta_1)=\frac {1} {2m}\sum_{i=1}^{m}
 (h_\theta(x^{(i)})-y^{(i)})^2$$
 
 因此, 目标就转化为最小化代价函数:
-$$\mathop{minimize}\limits_{\theta_0, \theta_1}J(\theta_0, \theta_1)$$
+$$\mathop{min}\limits_{\theta_0, \theta_1}J(\theta_0, \theta_1)$$
 
 可以将代价函数对$\theta_0$和$\theta_1$求偏导并等于0, 从而得到最优的参数.
 
 ## Gradient Descent
-给定不同的参数$\theta_0$和$\theta_1$, 得到的代价函数值也不一样, 可以将代价函数随
-着参数变化的曲面绘制出来. 代价函数最小的点, 也就是曲线上最低的点, 此时的参数就是最
-优模型. 给定初始的参数$\theta_0$和$\theta_1$, 采用梯度下降算法对参数不断更新, 在
-曲面上不断"下山", 直达最低点, 就可以得到最优的参数.
+给定不同的参数$\theta_0$和$\theta_1$, 得到的代价函数值也不一样,
+可以将代价函数随着参数变化的曲面绘制出来. 代价函数最小的点, 也就是曲线上最低的点,
+此时的参数就是最优模型. 给定初始的参数$\theta_0$和$\theta_1$,
+采用梯度下降算法对参数不断更新, 在曲面上不断"下山", 直到最低点得到最优的参数.
 
 <div align=center><img width="400" height="250" src="2.png"/></div>
 
@@ -45,7 +45,7 @@ $$\mathop{minimize}\limits_{\theta_0, \theta_1}J(\theta_0, \theta_1)$$
 $$\theta_j:=\theta_j-\alpha \frac {\partial} {\partial{\theta_j}}
 J(\theta_0,\theta_1), \  j=0,1$$
 
-上式中, $\alpha称作学习率. 如果学习率较大, 梯度下降就会采用较大的步长下降; 如果学
+上式中, $\alpha$称作学习率. 如果学习率较大, 梯度下降就会采用较大的步长下降; 如果学
 习率较小, 梯度下降就会采用较小的步长下降.
 
 ## Quiz
