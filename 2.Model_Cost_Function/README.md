@@ -13,12 +13,12 @@
 ## Model Representation
 学习算法通过对训练数据的学习来获取模型<img src="/2.Model_Cost_Function/tex/f79ff4ffc0429ece3cfe30e85017e634.svg?invert_in_darkmode&sanitize=true" align=middle width=76.84518929999999pt height=22.831056599999986pt/>, 也称作hypothesis.
 在预测阶段, 将<img src="/2.Model_Cost_Function/tex/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode&sanitize=true" align=middle width=9.39498779999999pt height=14.15524440000002pt/>输入模型<img src="/2.Model_Cost_Function/tex/2ad9d098b937e46f9f58968551adac57.svg?invert_in_darkmode&sanitize=true" align=middle width=9.47111549999999pt height=22.831056599999986pt/>得到预测的<img src="/2.Model_Cost_Function/tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode&sanitize=true" align=middle width=8.649225749999989pt height=14.15524440000002pt/>.
-<div align=center><img width="150" height="150" src="1.png"/></div>
+<div align=center><img width="250" height="250" src="1.png"/></div>
 
 ## Cost Function
 代价函数指导了模型拟合的方向.
 
-假设模型为: <br/>
+假设模型为:
 <div align=center><p align="center"><img src="/2.Model_Cost_Function/tex/ab3fbf9c981f774b779b68f7d1a26f87.svg?invert_in_darkmode&sanitize=true" align=middle width=120.67521674999999pt height=16.438356pt/></p></div>
 其中, <img src="/2.Model_Cost_Function/tex/1a3151e36f9f52b61f5bf76c08bdae2b.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>和<img src="/2.Model_Cost_Function/tex/edcbf8dd6dd9743cceeee21183bbc3b6.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>是待定参数, 不同的参数得到的模型也不同.
 
