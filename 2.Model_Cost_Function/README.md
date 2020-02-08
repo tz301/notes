@@ -8,7 +8,7 @@
 <img src="/2.Model_Cost_Function/tex/eb498af51d4103488bf6cb749bdce12e.svg?invert_in_darkmode&sanitize=true" align=middle width=15.599359049999991pt height=14.15524440000002pt/> - 输入变量/特征 <br/>
 <img src="/2.Model_Cost_Function/tex/dd7f27a66a7dfa15c57c2fc06b8d49c4.svg?invert_in_darkmode&sanitize=true" align=middle width=14.26380119999999pt height=14.15524440000002pt/> - 输出变量/目标变量 <br/>
 <img src="/2.Model_Cost_Function/tex/81277d3368f07d957253e7c28a3e5774.svg?invert_in_darkmode&sanitize=true" align=middle width=38.135511149999985pt height=24.65753399999998pt/> - 一个样本对 <br/>
-<img src="/2.Model_Cost_Function/tex/9a9ed1968ddefaa8d6f1635e03f6c72b.svg?invert_in_darkmode&sanitize=true" align=middle width=69.62915025pt height=29.190975000000005pt/> - 第i个样本对 <br/>
+<img src="/2.Model_Cost_Function/tex/9a9ed1968ddefaa8d6f1635e03f6c72b.svg?invert_in_darkmode&sanitize=true" align=middle width=69.62915025pt height=29.190975000000005pt/> - 第<img src="/2.Model_Cost_Function/tex/77a3b857d53fb44e33b53e4c8b68351a.svg?invert_in_darkmode&sanitize=true" align=middle width=5.663225699999989pt height=21.68300969999999pt/>个样本对 <br/>
 
 ## Model Representation
 学习算法通过对训练数据的学习来获取模型<img src="/2.Model_Cost_Function/tex/f79ff4ffc0429ece3cfe30e85017e634.svg?invert_in_darkmode&sanitize=true" align=middle width=76.84518929999999pt height=22.831056599999986pt/>, 也称作hypothesis.
