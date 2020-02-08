@@ -19,13 +19,13 @@
 我们可以采用代价函数来评估模型的准确性.
 
 假设模型为:
-<p align="center"><img src="/2.Linear_Regression/tex/ab3fbf9c981f774b779b68f7d1a26f87.svg?invert_in_darkmode&sanitize=true" align=middle width=120.67521674999999pt height=16.438356pt/></p>
+<p align="center"><img src="/2.Linear_Regression/tex/e33503194166872d1917d512b6a503ed.svg?invert_in_darkmode&sanitize=true" align=middle width=120.67521674999999pt height=16.438356pt/></p>
 
 其中, <img src="/2.Linear_Regression/tex/1a3151e36f9f52b61f5bf76c08bdae2b.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>和<img src="/2.Linear_Regression/tex/edcbf8dd6dd9743cceeee21183bbc3b6.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>是待定参数, 不同的参数得到的模型也不同.
 
 目标是选取最好的<img src="/2.Linear_Regression/tex/1a3151e36f9f52b61f5bf76c08bdae2b.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>和<img src="/2.Linear_Regression/tex/edcbf8dd6dd9743cceeee21183bbc3b6.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>, 使得模型对训练集的拟合程度较好,
 即<img src="/2.Linear_Regression/tex/b687e9cb7f5356da0e24f1b1cac73585.svg?invert_in_darkmode&sanitize=true" align=middle width=39.088702949999984pt height=24.65753399999998pt/>尽可能与<img src="/2.Linear_Regression/tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode&sanitize=true" align=middle width=8.649225749999989pt height=14.15524440000002pt/>接近, 那么可以将代价函数写成:
-<p align="center"><img src="/2.Linear_Regression/tex/de24dc32227abc0f328a46919746502f.svg?invert_in_darkmode&sanitize=true" align=middle width=254.63021925pt height=44.89738935pt/></p>
+<p align="center"><img src="/2.Linear_Regression/tex/12ef58af70bc9706323e22259bae3ab3.svg?invert_in_darkmode&sanitize=true" align=middle width=254.63021925pt height=44.89738935pt/></p>
 
 因此, 目标就转化为最小化代价函数:
 <p align="center"><img src="/2.Linear_Regression/tex/c64a73c550872589c715e7dcfa181e52.svg?invert_in_darkmode&sanitize=true" align=middle width=93.67323404999999pt height=25.2967704pt/></p>
@@ -41,7 +41,7 @@
 <div align=center><img width="400" src="2.png" alt=" "/></div>
 
 梯度下降算法:
-<p align="center"><img src="/2.Linear_Regression/tex/f5661ce40a5e880ca6d224c617618ebc.svg?invert_in_darkmode&sanitize=true" align=middle width=241.79507715pt height=38.5152603pt/></p>
+<p align="center"><img src="/2.Linear_Regression/tex/06aadd9fa723f94f19e6606049467ef5.svg?invert_in_darkmode&sanitize=true" align=middle width=241.79507715pt height=38.5152603pt/></p>
 
 上式中, <img src="/2.Linear_Regression/tex/c745b9b57c145ec5577b82542b2df546.svg?invert_in_darkmode&sanitize=true" align=middle width=10.57650494999999pt height=14.15524440000002pt/>称作学习率. 如果学习率较大, 梯度下降就会采用较大的步长下降;
 如果学习率较小, 梯度下降就会采用较小的步长下降.
@@ -58,5 +58,12 @@
 <div align=center><img width="300" src="4.png" alt=" "/></div>
 
 由于梯度下降过程中, 梯度项会不断减小, 因此, 即时学习率固定, 也可以收敛到局部最优.
+
+## Gradient Descent For Linear Regression
+将线性回归的模型代入梯度下降的公式, 偏导项变为:
+<p align="center"><img src="/2.Linear_Regression/tex/a9ed249a58bd6e0d4579744c74cba174.svg?invert_in_darkmode&sanitize=true" align=middle width=606.1199165999999pt height=44.89738935pt/></p>
+
+可以求出<img src="/2.Linear_Regression/tex/2d72a911a19b952b476268360c3d83be.svg?invert_in_darkmode&sanitize=true" align=middle width=37.84725779999999pt height=21.68300969999999pt/>和<img src="/2.Linear_Regression/tex/808d7610d22dae56fe8166a58e9f8c92.svg?invert_in_darkmode&sanitize=true" align=middle width=37.84725779999999pt height=21.68300969999999pt/>时的偏导项为:
+<p align="center"><img src="/2.Linear_Regression/tex/ace93c5216ff9294cf6ae5e6d658b9ae.svg?invert_in_darkmode&sanitize=true" align=middle width=574.46626875pt height=80.0153376pt/></p>
 
 ## Quiz
