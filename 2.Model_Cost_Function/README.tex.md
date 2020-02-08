@@ -20,6 +20,7 @@
 
 假设模型为:
 $$h_\theta(x)=\theta_0+\theta_1x$$
+
 其中, $\theta_0$和$\theta_1$是待定参数, 不同的参数得到的模型也不同.
 
 目标是选取最好的$\theta_0$和$\theta_1$, 使得模型对训练集的拟合程度较好, 即
@@ -29,6 +30,7 @@ $$J(\theta_0, \theta_1)=\frac {1} {2m}\sum_{i=1}^{m}
 
 因此, 目标就转化为最小化代价函数
 $$\mathop{minimize}\limits_{\theta_0, \theta_1}J(\theta_0, \theta_1)$$
+
 可以将代价函数对$\theta_0$和$\theta_1$求偏导并等于0, 从而得到最优的参数.
 
 ## Quiz
