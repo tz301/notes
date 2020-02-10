@@ -92,8 +92,7 @@
 <p align="center"><img src="/2.Linear_Regression/tex/6fd0b86e597971a3528fcbd6a1d09305.svg?invert_in_darkmode&sanitize=true" align=middle width=273.54788175pt height=16.438356pt/></p>
 
 将上式向量化, 记:
-<p align="center"><img src="/2.Linear_Regression/tex/01ec2910a1593c392d8f7ae6389f3fec.svg?invert_in_darkmode&sanitize=true" align=middle width=68.67386625pt height=88.76800184999999pt/></p>
-<p align="center"><img src="/2.Linear_Regression/tex/09bbfe1ba71781afe66fc116d44af70a.svg?invert_in_darkmode&sanitize=true" align=middle width=72.15552794999999pt height=88.76800184999999pt/></p>
+<img src="/2.Linear_Regression/tex/0a4ce344df6cead5e60550980669b35f.svg?invert_in_darkmode&sanitize=true" align=middle width=68.67386624999999pt height=96.98719139999999pt/>, <img src="/2.Linear_Regression/tex/6fc546ae376be7216667971db85c9f56.svg?invert_in_darkmode&sanitize=true" align=middle width=72.15552794999999pt height=96.98719139999999pt/>
 
 ## Quiz
 1. Consider the problem of predicting how well a student does in her
