@@ -106,7 +106,7 @@ $$ h_\theta(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \cdots +
                  \theta_n x_n $$
 
 将上式向量化, 记:
-$$
+$
 \bold{\theta}=
 \left[
 \begin{matrix}
@@ -116,18 +116,17 @@ $$
   \theta_n
 \end{matrix}
 \right]
-$$
-$$
+$, $
 \bold{x}=
 \left[
 \begin{matrix}
-  x_0 \\
+  1 \\
   x_1 \\
   \vdots \\
   x_n
 \end{matrix}
 \right]
-$$
+$
 
 ## Quiz
 1. Consider the problem of predicting how well a student does in her
