@@ -132,7 +132,7 @@ $
 </div>
 
 将样就可以将模型写成:
-$$ h_\theta(x) = \bold{\theta}^T \bold(x) $$
+$$ h_\theta(x) = \bold{\theta}^T \bold{x} $$
 
 ## Quiz
 1. Consider the problem of predicting how well a student does in her
