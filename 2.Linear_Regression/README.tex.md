@@ -106,6 +106,8 @@ $$ h_\theta(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \cdots +
                  \theta_n x_n $$
 
 将上式向量化, 记:
+
+<div align=center>
 $
 \bold{\theta}=
 \left[
@@ -127,6 +129,10 @@ $, $
 \end{matrix}
 \right]
 $
+</div>
+
+将样就可以将模型写成:
+$$ h_\theta(x) = \bold{\theta}^T \bold(x) $$
 
 ## Quiz
 1. Consider the problem of predicting how well a student does in her
