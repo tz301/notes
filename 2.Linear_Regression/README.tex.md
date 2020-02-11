@@ -65,6 +65,8 @@ J(\theta_0, \theta_1), \  j = 0,1 $$
 
 由于梯度下降过程中, 梯度项会不断减小, 因此, 即时学习率固定, 也可以收敛到局部最优.
 
+如果代价函数降低较慢, 或者梯度下降不工作, 使用更小的学习率.
+
 ## Gradient Descent For Linear Regression
 将线性回归的模型代入梯度下降的公式, 偏导项变为:
 $$ \frac {\partial} {\partial {\theta_j}} J(\theta_0, \theta_1) =
