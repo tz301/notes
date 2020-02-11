@@ -99,7 +99,7 @@
 <img src="/2.Linear_Regression/tex/0a4ce344df6cead5e60550980669b35f.svg?invert_in_darkmode&sanitize=true" align=middle width=68.67386624999999pt height=96.98719139999999pt/>, <img src="/2.Linear_Regression/tex/6fc546ae376be7216667971db85c9f56.svg?invert_in_darkmode&sanitize=true" align=middle width=72.15552794999999pt height=96.98719139999999pt/>
 </div>
 
-将样就可以将模型写成:
+这样就可以将模型写成:
 <p align="center"><img src="/2.Linear_Regression/tex/67bf6821f850a2b5aca64400688c8b6d.svg?invert_in_darkmode&sanitize=true" align=middle width=89.5125693pt height=18.7598829pt/></p>
 
 代价函数为:
@@ -112,16 +112,23 @@
 <p align="center"><img src="/2.Linear_Regression/tex/0d77b0dedeb41885a428df97a67013f4.svg?invert_in_darkmode&sanitize=true" align=middle width=383.84403749999996pt height=44.89738935pt/></p>
 
 ## Speech Up Gradient Descent
-1. Feature scaling: 将特征除以特征值的范围(最大值 - 最小值), 保证所有特征在近似
-的尺度.
-2. Mean normalization: 将特征减去特征的平均值, 使得特征近似0均值.
+Feature scaling: 将特征除以特征值的范围(最大值 - 最小值),
+保证所有特征在近似的尺度.
+
+Mean normalization: 将特征减去特征的平均值, 使得特征近似0均值.
 
 结合feature scaling和mean normalization, 将特征写成:
 <p align="center"><img src="/2.Linear_Regression/tex/e8f178004bd95bcc30e88764a5af861e.svg?invert_in_darkmode&sanitize=true" align=middle width=93.6608838pt height=34.45133834999999pt/></p>
 
-其中, <img src="/2.Linear_Regression/tex/688dbd12716c0eaca6462457c9a17196.svg?invert_in_darkmode&sanitize=true" align=middle width=14.555823149999991pt height=14.15524440000002pt/>为所有特征的平均值, <img src="/2.Linear_Regression/tex/400f4e35cd6f84ba45f7b829a2df1668.svg?invert_in_darkmode&sanitize=true" align=middle width=12.35637809999999pt height=14.15524440000002pt/>为特征的最大值 - 最小值, 或者是特征的
-标准差.
+其中, <img src="/2.Linear_Regression/tex/688dbd12716c0eaca6462457c9a17196.svg?invert_in_darkmode&sanitize=true" align=middle width=14.555823149999991pt height=14.15524440000002pt/>为所有特征的平均值, <img src="/2.Linear_Regression/tex/400f4e35cd6f84ba45f7b829a2df1668.svg?invert_in_darkmode&sanitize=true" align=middle width=12.35637809999999pt height=14.15524440000002pt/>为特征的最大值 - 最小值,
+或者是特征的标准差.
 
+## Normal Equation
+线性回归也可以采用下式来直接计算(代价函数求导为0直接推导):
+
+<p align="center"><img src="/2.Linear_Regression/tex/b5051d1f3821056ae4900c05ef2bc58f.svg?invert_in_darkmode&sanitize=true" align=middle width=134.3524182pt height=18.7598829pt/></p>.
+
+如果特征数<img src="/2.Linear_Regression/tex/1921941e267a38d161d9fcc7b3df9a61.svg?invert_in_darkmode&sanitize=true" align=middle width=9.86687624999999pt height=14.15524440000002pt/>比较大, 采用上式会导致计算速度太慢.
 
 ## Quiz
 1. Consider the problem of predicting how well a student does in her
@@ -201,3 +208,67 @@ C. For this to be true, we must have <img src="/2.Linear_Regression/tex/499d6af6
 <img src="/2.Linear_Regression/tex/bb59f5a1494e2d65f0800ff2d5aba6c3.svg?invert_in_darkmode&sanitize=true" align=middle width=105.0273345pt height=21.68300969999999pt/>. <br/>
 D. Our training set can be fit perfectly by a straight line, i.e., all
 of our training examples lie perfectly on some straight line.
+
+6. Suppose <img src="/2.Linear_Regression/tex/20f63355b5530f35928590c69beae88a.svg?invert_in_darkmode&sanitize=true" align=middle width=44.56994024999999pt height=21.18721440000001pt/> students have taken some class, and the class had a
+midterm exam and a final exam. You have collected a dataset of their
+scores on the two exams, which is as follows. <br/>
+You'd like to use polynomial regression to predict a student's final
+exam score from their midterm exam score. Concretely, suppose you want
+to fit a model of the form
+<img src="/2.Linear_Regression/tex/d3c647562d2261be75017ae936ebbc9e.svg?invert_in_darkmode&sanitize=true" align=middle width=179.17975514999998pt height=24.65753399999998pt/>,
+where <img src="/2.Linear_Regression/tex/6bd71d4c07531ce53dc5d08d0d7e1524.svg?invert_in_darkmode&sanitize=true" align=middle width=15.94753544999999pt height=14.15524440000002pt/> is the midterm score and <img src="/2.Linear_Regression/tex/aa0968eba9d0dd34149c2ae25c317f26.svg?invert_in_darkmode&sanitize=true" align=middle width=15.94753544999999pt height=14.15524440000002pt/> is (midterm score)^2.
+Further, you plan to use both feature scaling (dividing by the
+"max-min", or range, of a feature) and mean normalization. <br/>
+What is the normalized feature x_1^{(1)}? (Please round off your answer
+to two decimal places. <br/>
+(-0.32)
+
+<div align=center><img width="400", src="figure/8.png" alt=" "/></div>
+
+7. You run gradient descent for 15 iterations with <img src="/2.Linear_Regression/tex/42fc5e9c1d9d12cecde3ea447dbd61f2.svg?invert_in_darkmode&sanitize=true" align=middle width=53.49877169999999pt height=21.18721440000001pt/> and
+compute <img src="/2.Linear_Regression/tex/da87e8d6186f7c20976773c00d9edbef.svg?invert_in_darkmode&sanitize=true" align=middle width=31.655311049999987pt height=24.65753399999998pt/> after each iteration. You find that the value of
+<img src="/2.Linear_Regression/tex/da87e8d6186f7c20976773c00d9edbef.svg?invert_in_darkmode&sanitize=true" align=middle width=31.655311049999987pt height=24.65753399999998pt/> decreases quickly then levels off. Based on this, which of
+the following conclusions seems most plausible? <br/>
+(B) <br/>
+A. Rather than use the current value of <img src="/2.Linear_Regression/tex/ebb66f0e96fcb4a8d842166969b28831.svg?invert_in_darkmode&sanitize=true" align=middle width=10.57650494999999pt height=14.15524440000002pt/>, it'd be more
+promising to try a smaller value of <img src="/2.Linear_Regression/tex/ebb66f0e96fcb4a8d842166969b28831.svg?invert_in_darkmode&sanitize=true" align=middle width=10.57650494999999pt height=14.15524440000002pt/> (say <img src="/2.Linear_Regression/tex/d87748c51ececf03145ce8b069615c5b.svg?invert_in_darkmode&sanitize=true" align=middle width=53.49877169999999pt height=21.18721440000001pt/>). <br/>
+B. <img src="/2.Linear_Regression/tex/0269883810d93e33db190eb6532d9ab2.svg?invert_in_darkmode&sanitize=true" align=middle width=53.49877169999999pt height=21.18721440000001pt/> is an effective choice of learning rate. <br/>
+C. Rather than use the current value of <img src="/2.Linear_Regression/tex/ebb66f0e96fcb4a8d842166969b28831.svg?invert_in_darkmode&sanitize=true" align=middle width=10.57650494999999pt height=14.15524440000002pt/>, it'd be more
+promising to try a larger value of <img src="/2.Linear_Regression/tex/ebb66f0e96fcb4a8d842166969b28831.svg?invert_in_darkmode&sanitize=true" align=middle width=10.57650494999999pt height=14.15524440000002pt/> (say <img src="/2.Linear_Regression/tex/1240c3a779f22c634b158ca1f22f7f31.svg?invert_in_darkmode&sanitize=true" align=middle width=53.49877169999999pt height=21.18721440000001pt/>).
+
+8. Suppose you have <img src="/2.Linear_Regression/tex/c2dd86acd048b6c7aafb9bf63fe0b162.svg?invert_in_darkmode&sanitize=true" align=middle width=52.789149599999995pt height=21.18721440000001pt/> training examples with <img src="/2.Linear_Regression/tex/2f3dcf27c85416c8521667d801620034.svg?invert_in_darkmode&sanitize=true" align=middle width=40.00371704999999pt height=21.18721440000001pt/> features
+(excluding the additional all-ones feature for the intercept term, which
+you should add). The normal equation is
+<img src="/2.Linear_Regression/tex/2ccc4fa3697e1abfc7c62fad863a49e5.svg?invert_in_darkmode&sanitize=true" align=middle width=134.3524182pt height=27.6567522pt/>.
+For the given values of <img src="/2.Linear_Regression/tex/7371e4a1b4ff766095a123b7f0023f5c.svg?invert_in_darkmode&sanitize=true" align=middle width=14.433101099999991pt height=14.15524440000002pt/> and <img src="/2.Linear_Regression/tex/1921941e267a38d161d9fcc7b3df9a61.svg?invert_in_darkmode&sanitize=true" align=middle width=9.86687624999999pt height=14.15524440000002pt/>, what are the dimensions of
+<img src="/2.Linear_Regression/tex/6dc297c35dfa9049f077582466f9b777.svg?invert_in_darkmode&sanitize=true" align=middle width=8.17352744999999pt height=22.831056599999986pt/>, <img src="/2.Linear_Regression/tex/fe254f895b9dd3786499573e2ce0f57c.svg?invert_in_darkmode&sanitize=true" align=middle width=14.908688849999992pt height=22.465723500000017pt/>, and <img src="/2.Linear_Regression/tex/a3bd584dc0ef15b1884333c4d22133cf.svg?invert_in_darkmode&sanitize=true" align=middle width=8.649225749999989pt height=14.15524440000002pt/> in this equation? <br/>
+(D) <br/>
+A. <img src="/2.Linear_Regression/tex/fe254f895b9dd3786499573e2ce0f57c.svg?invert_in_darkmode&sanitize=true" align=middle width=14.908688849999992pt height=22.465723500000017pt/> is <img src="/2.Linear_Regression/tex/650972038a67ae0b43460b804ea7ba4a.svg?invert_in_darkmode&sanitize=true" align=middle width=44.748820049999985pt height=21.18721440000001pt/>, <img src="/2.Linear_Regression/tex/a3bd584dc0ef15b1884333c4d22133cf.svg?invert_in_darkmode&sanitize=true" align=middle width=8.649225749999989pt height=14.15524440000002pt/> is <img src="/2.Linear_Regression/tex/ceef8262bbf56d3d104ba9ff4a176bb5.svg?invert_in_darkmode&sanitize=true" align=middle width=44.748820049999985pt height=21.18721440000001pt/>,
+<img src="/2.Linear_Regression/tex/6dc297c35dfa9049f077582466f9b777.svg?invert_in_darkmode&sanitize=true" align=middle width=8.17352744999999pt height=22.831056599999986pt/> is 3 \times 3 <img src="/2.Linear_Regression/tex/784e7a07542f4c2c50330d2dec9bdc56.svg?invert_in_darkmode&sanitize=true" align=middle width=89.40807479999998pt height=24.65753399999998pt/> X <img src="/2.Linear_Regression/tex/253d3d381ac81d846b9a66f189190e3d.svg?invert_in_darkmode&sanitize=true" align=middle width=13.36870589999999pt height=21.68300969999999pt/> 14 \times 4 <img src="/2.Linear_Regression/tex/24ee684c2922b0d32c54a34089c92ec0.svg?invert_in_darkmode&sanitize=true" align=middle width=4.5662248499999905pt height=14.15524440000002pt/> y <img src="/2.Linear_Regression/tex/253d3d381ac81d846b9a66f189190e3d.svg?invert_in_darkmode&sanitize=true" align=middle width=13.36870589999999pt height=21.68300969999999pt/> 14 \times 4 <img src="/2.Linear_Regression/tex/f12919543ba3498cef5089f49fc0a706.svg?invert_in_darkmode&sanitize=true" align=middle width=4.5662248499999905pt height=14.15524440000002pt/> \theta <img src="/2.Linear_Regression/tex/e261869dd2ea2223d131d27e6655d6e0.svg?invert_in_darkmode&sanitize=true" align=middle width=49.89831659999999pt height=21.68300969999999pt/>. <br/>
+C. <img src="/2.Linear_Regression/tex/fe254f895b9dd3786499573e2ce0f57c.svg?invert_in_darkmode&sanitize=true" align=middle width=14.908688849999992pt height=22.465723500000017pt/> is <img src="/2.Linear_Regression/tex/650972038a67ae0b43460b804ea7ba4a.svg?invert_in_darkmode&sanitize=true" align=middle width=44.748820049999985pt height=21.18721440000001pt/>, <img src="/2.Linear_Regression/tex/a3bd584dc0ef15b1884333c4d22133cf.svg?invert_in_darkmode&sanitize=true" align=middle width=8.649225749999989pt height=14.15524440000002pt/> is <img src="/2.Linear_Regression/tex/ceef8262bbf56d3d104ba9ff4a176bb5.svg?invert_in_darkmode&sanitize=true" align=middle width=44.748820049999985pt height=21.18721440000001pt/>,
+<img src="/2.Linear_Regression/tex/6dc297c35dfa9049f077582466f9b777.svg?invert_in_darkmode&sanitize=true" align=middle width=8.17352744999999pt height=22.831056599999986pt/> is 3 \times 1 <img src="/2.Linear_Regression/tex/a300e13602620fc5adb23e7e5ac70341.svg?invert_in_darkmode&sanitize=true" align=middle width=90.18090179999999pt height=24.65753399999998pt/> X <img src="/2.Linear_Regression/tex/253d3d381ac81d846b9a66f189190e3d.svg?invert_in_darkmode&sanitize=true" align=middle width=13.36870589999999pt height=21.68300969999999pt/> 14 \times 4 <img src="/2.Linear_Regression/tex/24ee684c2922b0d32c54a34089c92ec0.svg?invert_in_darkmode&sanitize=true" align=middle width=4.5662248499999905pt height=14.15524440000002pt/> y <img src="/2.Linear_Regression/tex/253d3d381ac81d846b9a66f189190e3d.svg?invert_in_darkmode&sanitize=true" align=middle width=13.36870589999999pt height=21.68300969999999pt/> 14 \times 1 <img src="/2.Linear_Regression/tex/f12919543ba3498cef5089f49fc0a706.svg?invert_in_darkmode&sanitize=true" align=middle width=4.5662248499999905pt height=14.15524440000002pt/> \theta <img src="/2.Linear_Regression/tex/c8119a26ed2ebf7028d51315a51f495a.svg?invert_in_darkmode&sanitize=true" align=middle width=49.89831659999999pt height=21.68300969999999pt/>.
+
+9. Suppose you have a dataset with <img src="/2.Linear_Regression/tex/8b181d3ba71967dc4065a5bf96c37ef0.svg?invert_in_darkmode&sanitize=true" align=middle width=52.789149599999995pt height=21.18721440000001pt/> examples and
+<img src="/2.Linear_Regression/tex/f017d6848491ee5892643356f5921695.svg?invert_in_darkmode&sanitize=true" align=middle width=81.09976379999999pt height=21.18721440000001pt/> features for each example. You want to use multivariate
+linear regression to fit the parameters <img src="/2.Linear_Regression/tex/6dc297c35dfa9049f077582466f9b777.svg?invert_in_darkmode&sanitize=true" align=middle width=8.17352744999999pt height=22.831056599999986pt/> to our data. Should
+you prefer gradient descent or the normal equation? <br/>
+(D) <br/>
+A. The normal equation, since it provides an efficient way to directly
+find the solution. <br/>
+B. The normal equation, since gradient descent might be unable to find
+the optimal <img src="/2.Linear_Regression/tex/6dc297c35dfa9049f077582466f9b777.svg?invert_in_darkmode&sanitize=true" align=middle width=8.17352744999999pt height=22.831056599999986pt/>. <br/>
+C. Gradient descent, since it will always converge to the optimal
+<img src="/2.Linear_Regression/tex/6dc297c35dfa9049f077582466f9b777.svg?invert_in_darkmode&sanitize=true" align=middle width=8.17352744999999pt height=22.831056599999986pt/>. <br/>
+D. Gradient descent, since <img src="/2.Linear_Regression/tex/c4251b2a98a8ad72a96f0aa5495c9697.svg?invert_in_darkmode&sanitize=true" align=middle width=68.55192464999999pt height=27.6567522pt/> will be very
+slow to compute in the normal equation.
+
+10. Which of the following are reasons for using feature scaling? <br/>
+(B) <br/>
+A. It speeds up gradient descent by making each iteration of gradient
+descent less expensive to compute. <br/>
+B. It speeds up gradient descent by making it require fewer iterations
+to get to a good solution. <br/>
+C. It is necessary to prevent the normal equation from getting stuck
+in local optima. <br/>
+D. It prevents the matrix <img src="/2.Linear_Regression/tex/c4251b2a98a8ad72a96f0aa5495c9697.svg?invert_in_darkmode&sanitize=true" align=middle width=68.55192464999999pt height=27.6567522pt/> (used in the
+normal equation) from being non-invertable (singular/degenerate).
