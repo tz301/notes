@@ -63,6 +63,8 @@
 
 由于梯度下降过程中, 梯度项会不断减小, 因此, 即时学习率固定, 也可以收敛到局部最优.
 
+如果代价函数降低较慢, 或者梯度下降不工作, 使用更小的学习率.
+
 ## Gradient Descent For Linear Regression
 将线性回归的模型代入梯度下降的公式, 偏导项变为:
 <p align="center"><img src="/2.Linear_Regression/tex/787b76333e5ed8804ba48c82600edd03.svg?invert_in_darkmode&sanitize=true" align=middle width=552.40624395pt height=44.89738935pt/></p>
@@ -108,6 +110,18 @@
 
 将线性回归模型代入代价函数可以推导出梯度下降为:
 <p align="center"><img src="/2.Linear_Regression/tex/0d77b0dedeb41885a428df97a67013f4.svg?invert_in_darkmode&sanitize=true" align=middle width=383.84403749999996pt height=44.89738935pt/></p>
+
+## Speech Up Gradient Descent
+1. Feature scaling: 将特征除以特征值的范围(最大值 - 最小值), 保证所有特征在近似
+的尺度.
+2. Mean normalization: 将特征减去特征的平均值, 使得特征近似0均值.
+
+结合feature scaling和mean normalization, 将特征写成:
+<p align="center"><img src="/2.Linear_Regression/tex/e8f178004bd95bcc30e88764a5af861e.svg?invert_in_darkmode&sanitize=true" align=middle width=93.6608838pt height=34.45133834999999pt/></p>
+
+其中, <img src="/2.Linear_Regression/tex/688dbd12716c0eaca6462457c9a17196.svg?invert_in_darkmode&sanitize=true" align=middle width=14.555823149999991pt height=14.15524440000002pt/>为所有特征的平均值, <img src="/2.Linear_Regression/tex/400f4e35cd6f84ba45f7b829a2df1668.svg?invert_in_darkmode&sanitize=true" align=middle width=12.35637809999999pt height=14.15524440000002pt/>为特征的最大值 - 最小值, 或者是特征的
+标准差.
+
 
 ## Quiz
 1. Consider the problem of predicting how well a student does in her
