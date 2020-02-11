@@ -133,7 +133,7 @@ $, $
 $
 </div>
 
-将样就可以将模型写成:
+这样就可以将模型写成:
 $$ h_\theta(x) = \bold{\theta}^T \bold{x} $$
 
 代价函数为:
@@ -149,16 +149,16 @@ $$ \theta_j := \theta_j - \alpha \frac {1} {m} \sum_{i=1}^m
 (h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)}, \ j = 0, 1, \cdots, n $$
 
 ## Speech Up Gradient Descent
-1. Feature scaling: 将特征除以特征值的范围(最大值 - 最小值), 保证所有特征在近似
-的尺度.
-2. Mean normalization: 将特征减去特征的平均值, 使得特征近似0均值.
+Feature scaling: 将特征除以特征值的范围(最大值 - 最小值),
+保证所有特征在近似的尺度.
+
+Mean normalization: 将特征减去特征的平均值, 使得特征近似0均值.
 
 结合feature scaling和mean normalization, 将特征写成:
 $$ x_i := \frac {x_i - \mu_i} {s_i} $$
 
-其中, $ \mu_i $为所有特征的平均值, $ s_i $为特征的最大值 - 最小值, 或者是特征的
-标准差.
-
+其中, $ \mu_i $为所有特征的平均值, $ s_i $为特征的最大值 - 最小值,
+或者是特征的标准差.
 
 ## Quiz
 1. Consider the problem of predicting how well a student does in her
