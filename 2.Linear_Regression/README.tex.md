@@ -42,7 +42,7 @@ $$ \mathop{min}\limits_{\theta_0, \theta_1} J(\theta_0, \theta_1) $$
 <div align=center><img width="400" src="figure/2.png" alt=" "/></div>
 
 梯度下降算法:
-$$ \theta_j := \theta_j - \alpha \frac {\partial} {\partial{\theta_j}}
+$$ \theta_j := \theta_j - \alpha \frac {\partial} {\partial {\theta_j}}
 J(\theta_0, \theta_1), \  j = 0,1 $$
 
 上式中, $ \alpha $称作学习率. 如果学习率较大, 梯度下降就会采用较大的步长下降;
@@ -67,18 +67,18 @@ J(\theta_0, \theta_1), \  j = 0,1 $$
 
 ## Gradient Descent For Linear Regression
 将线性回归的模型代入梯度下降的公式, 偏导项变为:
-$$ \frac {\partial} {\partial{\theta_j}} J(\theta_0, \theta_1) =
-\frac {\partial} {\partial{\theta_j}} \frac {1} {2m}
+$$ \frac {\partial} {\partial {\theta_j}} J(\theta_0, \theta_1) =
+\frac {\partial} {\partial {\theta_j}} \frac {1} {2m}
 \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) ^2 =
-\frac {\partial} {\partial{\theta_j}} \frac {1} {2m}
+\frac {\partial} {\partial {\theta_j}} \frac {1} {2m}
 \sum_{i=1}^m (\theta_0 + \theta_1 x^{(i)} - y^{(i)}) ^2 $$
 
 可以求出$ j=0 $和$ j=1 $时的偏导项为:
-$$ \frac {\partial} {\partial{\theta_0}} J(\theta_0, \theta_1) =
+$$ \frac {\partial} {\partial {\theta_0}} J(\theta_0, \theta_1) =
 \frac {1} {m} \sum_{i=1}^m (\theta_0 + \theta_1 x^{(i)} - y^{(i)}) =
 \frac {1} {m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) $$
 
-$$ \frac {\partial} {\partial{\theta_1}} J(\theta_0, \theta_1) =
+$$ \frac {\partial} {\partial {\theta_1}} J(\theta_0, \theta_1) =
 \frac {1} {m}\sum_{i=1}^m (\theta_0 + \theta_1 x^{(i)} - y^{(i)})
 \cdot x^{(i)} =
 \frac {1} {m}\sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) \cdot x^{(i)} $$
@@ -133,6 +133,18 @@ $
 
 将样就可以将模型写成:
 $$ h_\theta(x) = \bold{\theta}^T \bold{x} $$
+
+代价函数为:
+$$ J(\bold{\theta}) = \frac {1} {2m}
+\sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) ^2 $$
+
+梯度下降为:
+$$ \theta_j := \theta_j - \alpha \frac {\partial} {\partial \theta_j}
+J(\bold{\theta}), \ j = 0, 1, \cdots, n $$
+
+将线性回归模型代入代价函数可以推导出梯度下降为:
+$$ \theta_j := \theta_j - \alpha \frac {1} {m} \sum_{i=1}^m
+(h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)}, \ j = 0, 1, \cdots, n $$
 
 ## Quiz
 1. Consider the problem of predicting how well a student does in her
