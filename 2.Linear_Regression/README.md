@@ -41,7 +41,7 @@
 <div align=center><img width="400" src="figure/2.png" alt=" "/></div>
 
 梯度下降算法:
-<p align="center"><img src="/2.Linear_Regression/tex/39c46e7dfd0bca6e8b8f6589eec74429.svg?invert_in_darkmode&sanitize=true" align=middle width=241.79507715pt height=38.5152603pt/></p>
+<p align="center"><img src="/2.Linear_Regression/tex/c0776618afba758698a62edd45b1b658.svg?invert_in_darkmode&sanitize=true" align=middle width=241.79507715pt height=38.5152603pt/></p>
 
 上式中, <img src="/2.Linear_Regression/tex/ebb66f0e96fcb4a8d842166969b28831.svg?invert_in_darkmode&sanitize=true" align=middle width=10.57650494999999pt height=14.15524440000002pt/>称作学习率. 如果学习率较大, 梯度下降就会采用较大的步长下降;
 如果学习率较小, 梯度下降就会采用较小的步长下降.
@@ -65,12 +65,12 @@
 
 ## Gradient Descent For Linear Regression
 将线性回归的模型代入梯度下降的公式, 偏导项变为:
-<p align="center"><img src="/2.Linear_Regression/tex/673428d02306e0ac69fa3cebc50a9d25.svg?invert_in_darkmode&sanitize=true" align=middle width=552.40624395pt height=44.89738935pt/></p>
+<p align="center"><img src="/2.Linear_Regression/tex/787b76333e5ed8804ba48c82600edd03.svg?invert_in_darkmode&sanitize=true" align=middle width=552.40624395pt height=44.89738935pt/></p>
 
 可以求出<img src="/2.Linear_Regression/tex/28be737271b93c0d86f3eb9e163fce80.svg?invert_in_darkmode&sanitize=true" align=middle width=37.84725779999999pt height=21.68300969999999pt/>和<img src="/2.Linear_Regression/tex/74ee9da34024f67e90043f20c0d73ad1.svg?invert_in_darkmode&sanitize=true" align=middle width=37.84725779999999pt height=21.68300969999999pt/>时的偏导项为:
-<p align="center"><img src="/2.Linear_Regression/tex/cf053056635fe30cd3cd38c977b5caad.svg?invert_in_darkmode&sanitize=true" align=middle width=466.03110014999993pt height=44.89738935pt/></p>
+<p align="center"><img src="/2.Linear_Regression/tex/7022b9c6441ec39eb5e46a1e20e3dd44.svg?invert_in_darkmode&sanitize=true" align=middle width=466.03110014999993pt height=44.89738935pt/></p>
 
-<p align="center"><img src="/2.Linear_Regression/tex/81200621254be39ce203242fb5f8e611.svg?invert_in_darkmode&sanitize=true" align=middle width=539.2367904pt height=44.89738935pt/></p>
+<p align="center"><img src="/2.Linear_Regression/tex/2eb1da774f78ba5377f51a0e2434b430.svg?invert_in_darkmode&sanitize=true" align=middle width=539.2367904pt height=44.89738935pt/></p>
 
 那么梯度下降算法变为:
 
@@ -99,6 +99,15 @@
 
 将样就可以将模型写成:
 <p align="center"><img src="/2.Linear_Regression/tex/67bf6821f850a2b5aca64400688c8b6d.svg?invert_in_darkmode&sanitize=true" align=middle width=89.5125693pt height=18.7598829pt/></p>
+
+代价函数为:
+<p align="center"><img src="/2.Linear_Regression/tex/20639f1bfa6c7db123ddad8a0821a0f4.svg?invert_in_darkmode&sanitize=true" align=middle width=225.31515929999998pt height=44.89738935pt/></p>
+
+梯度下降为:
+<p align="center"><img src="/2.Linear_Regression/tex/7b5a86291511bb54b96c86f3516d5d48.svg?invert_in_darkmode&sanitize=true" align=middle width=261.61596779999996pt height=38.5152603pt/></p>
+
+将线性回归模型代入代价函数可以推导出梯度下降为:
+<p align="center"><img src="/2.Linear_Regression/tex/0d77b0dedeb41885a428df97a67013f4.svg?invert_in_darkmode&sanitize=true" align=middle width=383.84403749999996pt height=44.89738935pt/></p>
 
 ## Quiz
 1. Consider the problem of predicting how well a student does in her
