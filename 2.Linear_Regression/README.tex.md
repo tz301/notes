@@ -282,13 +282,13 @@ For the given values of $ m $ and $ n $, what are the dimensions of
 $ \theta $, $ \bold{X} $, and $ \bold{y} $ in this equation? <br/>
 (D) <br/>
 A. $ \bold{X} $ is $ 14 \times 3 $, $ \bold{y} $ is $ 14 \times 1 $,
-$ \theta $ is 3 $ \times 3 $. <br/>
+$ \theta $ is $ 3 \times 3 $. <br/>
 B. $ \bold{X} $ is $ 14 \times 4 $, $ \bold{y} $ is $ 14 \times 4 $,
-$ \theta $ is 4 $ \times 4 $. <br/>
+$ \theta $ is $ 4 \times 4 $. <br/>
 C. $ \bold{X} $ is $ 14 \times 3 $, $ \bold{y} $ is $ 14 \times 1 $,
-$ \theta $ is 3 $ \times 1 $. <br/>
+$ \theta $ is $ 3 \times 1 $. <br/>
 D. $ \bold{X} $ is $ 14 \times 4 $, $ \bold{y} $ is $ 14 \times 1 $,
-$ \theta $ is 4 $ \times 1 $.
+$ \theta $ is $ 4 \times 1 $.
 
 9. Suppose you have a dataset with $ m = 50 $ examples and
 $ n = 200000 $ features for each example. You want to use multivariate
