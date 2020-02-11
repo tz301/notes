@@ -160,6 +160,13 @@ $$ x_i := \frac {x_i - \mu_i} {s_i} $$
 其中, $ \mu_i $为所有特征的平均值, $ s_i $为特征的最大值 - 最小值,
 或者是特征的标准差.
 
+## Normal Equation
+线性回归也可以采用下式来直接计算(代价函数求导为0直接推导):
+
+$$ \theta = (\bold{X}^T \bold{X})^{-1} \bold{X}^T \bold{y} $$.
+
+如果特征数$ n $比较大, 采用上式会导致计算速度太慢.
+
 ## Quiz
 1. Consider the problem of predicting how well a student does in her
 second year of college/university, given how well she did in her first
@@ -239,3 +246,71 @@ C. For this to be true, we must have $ y^{(i)} = 0 $ for every value of
 $ i = 1, 2, \cdots, m $. <br/>
 D. Our training set can be fit perfectly by a straight line, i.e., all
 of our training examples lie perfectly on some straight line.
+
+6. Suppose $ m=4 $ students have taken some class, and the class had a
+midterm exam and a final exam. You have collected a dataset of their
+scores on the two exams, which is as follows. <br/>
+You'd like to use polynomial regression to predict a student's final
+exam score from their midterm exam score. Concretely, suppose you want
+to fit a model of the form
+$ h_\theta(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 $,
+where $ x_1 $ is the midterm score and $ x_2 $ is (midterm score)^2.
+Further, you plan to use both feature scaling (dividing by the
+"max-min", or range, of a feature) and mean normalization. <br/>
+What is the normalized feature x_1^{(1)}? (Please round off your answer
+to two decimal places. <br/>
+(-0.32)
+
+<div align=center><img width="400", src="figure/8.png" alt=" "/></div>
+
+7. You run gradient descent for 15 iterations with $ \alpha = 0.3$ and
+compute $ J(\theta) $ after each iteration. You find that the value of
+$ J(\theta) $ decreases quickly then levels off. Based on this, which of
+the following conclusions seems most plausible? <br/>
+(B) <br/>
+A. Rather than use the current value of $ \alpha $, it'd be more
+promising to try a smaller value of $ \alpha $ (say $ \alpha = 0.1 $). <br/>
+B. $ \alpha = 0.3 $ is an effective choice of learning rate. <br/>
+C. Rather than use the current value of $ \alpha $, it'd be more
+promising to try a larger value of $ \alpha $ (say $ \alpha = 1.0 $).
+
+8. Suppose you have $ m = 14 $ training examples with $ n = 3 $ features
+(excluding the additional all-ones feature for the intercept term, which
+you should add). The normal equation is
+$ \theta = (\bold{X}^T \bold{X})^{-1} \bold{X}^T \bold{y} $.
+For the given values of $ m $ and $ n $, what are the dimensions of
+$ \theta $, $ X $, and $ y $ in this equation? <br/>
+(D) <br/>
+A. $ X $ is $ 14 \times 3 $, $ y $ is $ 14 \times 1 $,
+$ \theta $ is 3 \times 3 $. <br/>
+B. $ X $ is $ 14 \times 4 $, $ y $ is $ 14 \times 4 $,
+$ \theta $ is 4 \times 4 $. <br/>
+C. $ X $ is $ 14 \times 3 $, $ y $ is $ 14 \times 1 $,
+$ \theta $ is 3 \times 1 $. <br/>
+D. $ X $ is $ 14 \times 4 $, $ y $ is $ 14 \times 1 $,
+$ \theta $ is 4 \times 1 $.
+
+9. Suppose you have a dataset with $ m = 50 $ examples and
+$ n = 200000 $ features for each example. You want to use multivariate
+linear regression to fit the parameters $ \theta $ to our data. Should
+you prefer gradient descent or the normal equation? <br/>
+(D) <br/>
+A. The normal equation, since it provides an efficient way to directly
+find the solution. <br/>
+B. The normal equation, since gradient descent might be unable to find
+the optimal $ \theta $. <br/>
+C. Gradient descent, since it will always converge to the optimal
+$ \theta $. <br/>
+D. Gradient descent, since $ (\bold{X}^T \bold{X})^{-1} $ will be very
+slow to compute in the normal equation.
+
+10. Which of the following are reasons for using feature scaling? <br/>
+(B) <br/>
+A. It speeds up gradient descent by making each iteration of gradient
+descent less expensive to compute. <br/>
+B. It speeds up gradient descent by making it require fewer iterations
+to get to a good solution. <br/>
+C. It is necessary to prevent the normal equation from getting stuck
+in local optima. <br/>
+D. It prevents the matrix $ (\bold{X}^T \bold{X})^{-1} $ (used in the
+normal equation) from being non-invertable (singular/degenerate).
