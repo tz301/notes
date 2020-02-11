@@ -98,7 +98,7 @@
 </div>
 
 将样就可以将模型写成:
-<p align="center"><img src="/2.Linear_Regression/tex/a9fee870efc907706b370c234caa1114.svg?invert_in_darkmode&sanitize=true" align=middle width=101.71587195pt height=18.7598829pt/></p>
+<p align="center"><img src="/2.Linear_Regression/tex/67bf6821f850a2b5aca64400688c8b6d.svg?invert_in_darkmode&sanitize=true" align=middle width=89.5125693pt height=18.7598829pt/></p>
 
 ## Quiz
 1. Consider the problem of predicting how well a student does in her
