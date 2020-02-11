@@ -163,7 +163,7 @@ $$ x_i := \frac {x_i - \mu_i} {s_i} $$
 ## Normal Equation
 线性回归也可以采用下式来直接计算(代价函数求导为0直接推导):
 
-$$ \theta = (\bold{X}^T \bold{X})^{-1} \bold{X}^T \bold{y} $$.
+$$ \theta = (\bold{X}^T \bold{X})^{-1} \bold{X}^T \bold{y} $$
 
 如果特征数$ n $比较大, 采用上式会导致计算速度太慢.
 
@@ -258,10 +258,10 @@ where $ x_1 $ is the midterm score and $ x_2 $ is (midterm score)^2.
 Further, you plan to use both feature scaling (dividing by the
 "max-min", or range, of a feature) and mean normalization. <br/>
 What is the normalized feature x_1^{(1)}? (Please round off your answer
-to two decimal places. <br/>
+to two decimal places). <br/>
 (-0.32)
 
-<div align=center><img width="400", src="figure/8.png" alt=" "/></div>
+<div align=center><img width="600", src="figure/8.png" alt=" "/></div>
 
 7. You run gradient descent for 15 iterations with $ \alpha = 0.3$ and
 compute $ J(\theta) $ after each iteration. You find that the value of
@@ -279,16 +279,16 @@ promising to try a larger value of $ \alpha $ (say $ \alpha = 1.0 $).
 you should add). The normal equation is
 $ \theta = (\bold{X}^T \bold{X})^{-1} \bold{X}^T \bold{y} $.
 For the given values of $ m $ and $ n $, what are the dimensions of
-$ \theta $, $ X $, and $ y $ in this equation? <br/>
+$ \theta $, $ \bold{X} $, and $ \bold{y} $ in this equation? <br/>
 (D) <br/>
-A. $ X $ is $ 14 \times 3 $, $ y $ is $ 14 \times 1 $,
-$ \theta $ is 3 \times 3 $. <br/>
-B. $ X $ is $ 14 \times 4 $, $ y $ is $ 14 \times 4 $,
-$ \theta $ is 4 \times 4 $. <br/>
-C. $ X $ is $ 14 \times 3 $, $ y $ is $ 14 \times 1 $,
-$ \theta $ is 3 \times 1 $. <br/>
-D. $ X $ is $ 14 \times 4 $, $ y $ is $ 14 \times 1 $,
-$ \theta $ is 4 \times 1 $.
+A. $ \bold{X} $ is $ 14 \times 3 $, $ \bold{y} $ is $ 14 \times 1 $,
+$ \theta $ is 3 $ \times 3 $. <br/>
+B. $ \bold{X} $ is $ 14 \times 4 $, $ \bold{y} $ is $ 14 \times 4 $,
+$ \theta $ is 4 $ \times 4 $. <br/>
+C. $ \bold{X} $ is $ 14 \times 3 $, $ \bold{y} $ is $ 14 \times 1 $,
+$ \theta $ is 3 $ \times 1 $. <br/>
+D. $ \bold{X} $ is $ 14 \times 4 $, $ \bold{y} $ is $ 14 \times 1 $,
+$ \theta $ is 4 $ \times 1 $.
 
 9. Suppose you have a dataset with $ m = 50 $ examples and
 $ n = 200000 $ features for each example. You want to use multivariate
