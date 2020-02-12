@@ -130,6 +130,35 @@ Mean normalization: 将特征减去特征的平均值, 使得特征近似0均值
 
 如果特征数<img src="/2.Linear_Regression/tex/1921941e267a38d161d9fcc7b3df9a61.svg?invert_in_darkmode&sanitize=true" align=middle width=9.86687624999999pt height=14.15524440000002pt/>比较大, 采用上式会导致计算速度太慢.
 
+## Exercise1
+根据城市的人口来预测利润, 代码见[exercise1.py](exercise1.py).
+
+[data1.txt](data1.txt)包含不同城市的数据, 第一列为城市的人口, 第二列为利润.
+如下图.
+
+<div align=center><img width="400", src="figure/ex1.png" alt=" "/></div>
+
+采用梯度下降得到最优参数为: <img src="/2.Linear_Regression/tex/82424ad76c5d68f989889193f95ba4c2.svg?invert_in_darkmode&sanitize=true" align=middle width=159.77199975pt height=24.65753399999998pt/>,
+利用该参数可以预测得到人口为35000时, 利润为40819.05.
+
+将最优参数代入训练集进行拟合, 得到下图:
+
+<div align=center><img width="400", src="figure/ex2.png" alt=" "/></div>
+
+绘制代价函数随着参数<img src="/2.Linear_Regression/tex/2236187420fb2bfcf28d7dfd16ed31e1.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>和<img src="/2.Linear_Regression/tex/233284b1a493a6306b3660ec1885a6f2.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>变化的surface图和contour图如下.
+
+<div align=center><img width="400", src="figure/ex3.png" alt=" "/></div>
+
+<div align=center><img width="400", src="figure/ex4.png" alt=" "/></div>
+
+## Exercise2
+预测房屋售价.
+
+[data2.txt](data2.txt)包含不同房屋的售价, 第一列为房子的大小(平方米),
+第二列为卧室的数量, 第三列为房屋的售价.
+
+
+
 ## Quiz
 1. Consider the problem of predicting how well a student does in her
 second year of college/university, given how well she did in her first
