@@ -103,8 +103,8 @@ def __cmd():
 
   """
   data = np.loadtxt(Path(__file__).parent / "data1.txt",  delimiter=",")
-  x = np.expand_dims(data[:, 0].T, 1)
-  y = np.expand_dims(data[:, 1].T, 1)
+  x = np.expand_dims(data[:, 0], 1)
+  y = np.expand_dims(data[:, 1], 1)
   m = len(x)  # 样本数
 
   # 绘图显示数据.
