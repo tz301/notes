@@ -21,7 +21,7 @@ def __normalize_feature(feature):
   """
   mu = np.mean(feature, axis=0)
   sigma = np.std(feature, axis=0)
-  return (feature - mu) / sigma, mu, sigma
+  return (feature - mu) / np.tile(sigma, (len(feature), 1)), mu, sigma
 
 
 def __gradient_descent_multi_lr(feature, label, init_theta, lr_list, iteration):
@@ -50,6 +50,7 @@ def __gradient_descent_multi_lr(feature, label, init_theta, lr_list, iteration):
   plt.xlabel("iteration")
   plt.ylabel("cost")
   plt.legend()
+  plt.show()
 
   return res[2][1]
 
@@ -60,20 +61,37 @@ def __cmd():
   """
   data = np.loadtxt(Path(__file__).parent / "data2.txt",  delimiter=",")
   feature = data[:, 0:2]
-  label = np.expand_dims(data[:, 1], 1)
+  label = np.expand_dims(data[:, -1], 1)
   num = len(label)  # 样本数
 
-  feature, mu, sigma = __normalize_feature(feature)
-  feature = np.concatenate([np.ones((num, 1)), feature], axis=-1)  # 增加全为1的第0列.
+  feature_norm, mu, sigma = __normalize_feature(feature)
+  # 增加全为1的第0列.
+  feature_norm = np.concatenate([np.ones((num, 1)), feature_norm], axis=-1)
 
   # 梯度下降, 不同学习率.
   lr_list = [0.3, 0.1, 0.03, 0.01, 0.003, 0.001]
   iteration = 400
   init_theta = np.zeros((3, 1))
-  best_theta = __gradient_descent_multi_lr(feature, label, init_theta, lr_list,
-                                           iteration)
+  best_theta = __gradient_descent_multi_lr(feature_norm, label, init_theta,
+                                           lr_list, iteration)
+  logging.info(f"梯度下降得到的最优参数: [{best_theta[0, 0]:.5f} "
+               f"{best_theta[1, 0]:.5f} {best_theta[2, 0]:.5f}]")
 
-  plt.show()
+  # 梯度下降预测
+  feat1 = np.array([1650, 3])
+  pred1 = np.squeeze(np.dot(np.insert((feat1 - mu) / sigma, 0, 1), best_theta))
+  logging.info(f"房屋尺寸为1650, 卧室数量为3时, 梯度下降预测得到的房价: {pred1:.2f}")
+
+  # Normal Equation
+  feature = np.concatenate([np.ones((num, 1)), feature], axis=-1)
+  inv_item = np.linalg.pinv(np.dot(feature.T, feature))
+  theta_equation = np.dot(np.dot(inv_item, feature.T), label)
+  logging.info(f"Normal Equation得到的最优参数: [{theta_equation[0, 0]:.5f} "
+               f"{theta_equation[1, 0]:.5f} {theta_equation[2, 0]:.5f}]")
+
+  feat2 = np.array([1, 1650, 3])
+  pred2 = np.squeeze(np.dot(feat2, theta_equation))
+  logging.info(f"房屋尺寸为1650, 卧室数量为3时, Normal Equation预测得到的房价: {pred2:.2f}")
 
 
 if __name__ == '__main__':
