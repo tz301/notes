@@ -19,16 +19,16 @@
 我们可以采用代价函数来评估模型的准确性.
 
 假设模型为:
-<p align="center"><img src="/2.Linear_Regression/tex/7bb87a4078c12651492879bc55608d83.svg?invert_in_darkmode&sanitize=true" align=middle width=120.67521674999999pt height=16.438356pt/></p>
+<p align="center"><img src="/2-Linear_Regression/tex/7bb87a4078c12651492879bc55608d83.svg?invert_in_darkmode&sanitize=true" align=middle width=120.67521674999999pt height=16.438356pt/></p>
 
 其中, <img src="/2.Linear_Regression/tex/2236187420fb2bfcf28d7dfd16ed31e1.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>和<img src="/2.Linear_Regression/tex/233284b1a493a6306b3660ec1885a6f2.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>是待定参数, 不同的参数得到的模型也不同.
 
 目标是选取最好的<img src="/2.Linear_Regression/tex/2236187420fb2bfcf28d7dfd16ed31e1.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>和<img src="/2.Linear_Regression/tex/233284b1a493a6306b3660ec1885a6f2.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>, 使得模型对训练集的拟合程度较好,
 即<img src="/2.Linear_Regression/tex/55eb17f084103c0188d2bfd4176e6f99.svg?invert_in_darkmode&sanitize=true" align=middle width=39.088702949999984pt height=24.65753399999998pt/>尽可能与<img src="/2.Linear_Regression/tex/a3bd584dc0ef15b1884333c4d22133cf.svg?invert_in_darkmode&sanitize=true" align=middle width=8.649225749999989pt height=14.15524440000002pt/>接近, 那么可以将代价函数写成:
-<p align="center"><img src="/2.Linear_Regression/tex/7040a6ef593e40044bc5f22fe1612b2a.svg?invert_in_darkmode&sanitize=true" align=middle width=254.63021925pt height=44.89738935pt/></p>
+<p align="center"><img src="/2-Linear_Regression/tex/7040a6ef593e40044bc5f22fe1612b2a.svg?invert_in_darkmode&sanitize=true" align=middle width=254.63021925pt height=44.89738935pt/></p>
 
 因此, 目标就转化为最小化代价函数:
-<p align="center"><img src="/2.Linear_Regression/tex/53075bce8556edd7a9e85ba2d373dce5.svg?invert_in_darkmode&sanitize=true" align=middle width=93.67323404999999pt height=25.2967704pt/></p>
+<p align="center"><img src="/2-Linear_Regression/tex/53075bce8556edd7a9e85ba2d373dce5.svg?invert_in_darkmode&sanitize=true" align=middle width=93.67323404999999pt height=25.2967704pt/></p>
 
 可以将代价函数对<img src="/2.Linear_Regression/tex/2236187420fb2bfcf28d7dfd16ed31e1.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>和<img src="/2.Linear_Regression/tex/233284b1a493a6306b3660ec1885a6f2.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>求偏导并等于0, 从而得到最优的参数.
 
@@ -41,7 +41,7 @@
 <div align=center><img width="400" src="figure/2.png" alt=" "/></div>
 
 梯度下降算法:
-<p align="center"><img src="/2.Linear_Regression/tex/c0776618afba758698a62edd45b1b658.svg?invert_in_darkmode&sanitize=true" align=middle width=241.79507715pt height=38.5152603pt/></p>
+<p align="center"><img src="/2-Linear_Regression/tex/c0776618afba758698a62edd45b1b658.svg?invert_in_darkmode&sanitize=true" align=middle width=241.79507715pt height=38.5152603pt/></p>
 
 上式中, <img src="/2.Linear_Regression/tex/ebb66f0e96fcb4a8d842166969b28831.svg?invert_in_darkmode&sanitize=true" align=middle width=10.57650494999999pt height=14.15524440000002pt/>称作学习率. 如果学习率较大, 梯度下降就会采用较大的步长下降;
 如果学习率较小, 梯度下降就会采用较小的步长下降.
@@ -67,18 +67,18 @@
 
 ## Gradient Descent For Linear Regression
 将线性回归的模型代入梯度下降的公式, 偏导项变为:
-<p align="center"><img src="/2.Linear_Regression/tex/787b76333e5ed8804ba48c82600edd03.svg?invert_in_darkmode&sanitize=true" align=middle width=552.40624395pt height=44.89738935pt/></p>
+<p align="center"><img src="/2-Linear_Regression/tex/787b76333e5ed8804ba48c82600edd03.svg?invert_in_darkmode&sanitize=true" align=middle width=552.40624395pt height=44.89738935pt/></p>
 
 可以求出<img src="/2.Linear_Regression/tex/28be737271b93c0d86f3eb9e163fce80.svg?invert_in_darkmode&sanitize=true" align=middle width=37.84725779999999pt height=21.68300969999999pt/>和<img src="/2.Linear_Regression/tex/74ee9da34024f67e90043f20c0d73ad1.svg?invert_in_darkmode&sanitize=true" align=middle width=37.84725779999999pt height=21.68300969999999pt/>时的偏导项为:
-<p align="center"><img src="/2.Linear_Regression/tex/7022b9c6441ec39eb5e46a1e20e3dd44.svg?invert_in_darkmode&sanitize=true" align=middle width=466.03110014999993pt height=44.89738935pt/></p>
+<p align="center"><img src="/2-Linear_Regression/tex/7022b9c6441ec39eb5e46a1e20e3dd44.svg?invert_in_darkmode&sanitize=true" align=middle width=466.03110014999993pt height=44.89738935pt/></p>
 
-<p align="center"><img src="/2.Linear_Regression/tex/2eb1da774f78ba5377f51a0e2434b430.svg?invert_in_darkmode&sanitize=true" align=middle width=539.2367904pt height=44.89738935pt/></p>
+<p align="center"><img src="/2-Linear_Regression/tex/2eb1da774f78ba5377f51a0e2434b430.svg?invert_in_darkmode&sanitize=true" align=middle width=539.2367904pt height=44.89738935pt/></p>
 
 那么梯度下降算法变为:
 
-<p align="center"><img src="/2.Linear_Regression/tex/faf137dd895970c5d7ce2e170b35be10.svg?invert_in_darkmode&sanitize=true" align=middle width=244.3047156pt height=44.89738935pt/></p>
+<p align="center"><img src="/2-Linear_Regression/tex/faf137dd895970c5d7ce2e170b35be10.svg?invert_in_darkmode&sanitize=true" align=middle width=244.3047156pt height=44.89738935pt/></p>
 
-<p align="center"><img src="/2.Linear_Regression/tex/dde3241b2aef27cfae1113f7365976de.svg?invert_in_darkmode&sanitize=true" align=middle width=280.49661585pt height=44.89738935pt/></p>
+<p align="center"><img src="/2-Linear_Regression/tex/dde3241b2aef27cfae1113f7365976de.svg?invert_in_darkmode&sanitize=true" align=middle width=280.49661585pt height=44.89738935pt/></p>
 
 <div align=center><img src="figure/5.png" alt=" "/></div>
 
@@ -91,25 +91,25 @@
 * <img src="/2.Linear_Regression/tex/6f28515b640e9a0c84da5afe21e3ce1b.svg?invert_in_darkmode&sanitize=true" align=middle width=24.319919249999987pt height=34.337843099999986pt/> - 第<img src="/2.Linear_Regression/tex/8fceb32bd3f6803b77bbe1b1758a60b6.svg?invert_in_darkmode&sanitize=true" align=middle width=5.663225699999989pt height=21.68300969999999pt/>个样本的第<img src="/2.Linear_Regression/tex/e62c4c55196ed02fd2fa7c51b8c03611.svg?invert_in_darkmode&sanitize=true" align=middle width=7.710416999999989pt height=21.68300969999999pt/>个特征.
 
 将模型写成:
-<p align="center"><img src="/2.Linear_Regression/tex/6fd0b86e597971a3528fcbd6a1d09305.svg?invert_in_darkmode&sanitize=true" align=middle width=273.54788175pt height=16.438356pt/></p>
+<p align="center"><img src="/2-Linear_Regression/tex/6fd0b86e597971a3528fcbd6a1d09305.svg?invert_in_darkmode&sanitize=true" align=middle width=273.54788175pt height=16.438356pt/></p>
 
 将上式向量化, 记:
 
 <div align=center>
-<img src="/2.Linear_Regression/tex/0a4ce344df6cead5e60550980669b35f.svg?invert_in_darkmode&sanitize=true" align=middle width=68.67386624999999pt height=96.98719139999999pt/>, <img src="/2.Linear_Regression/tex/6fc546ae376be7216667971db85c9f56.svg?invert_in_darkmode&sanitize=true" align=middle width=72.15552794999999pt height=96.98719139999999pt/>
+<img src="/2-Linear_Regression/tex/0a4ce344df6cead5e60550980669b35f.svg?invert_in_darkmode&sanitize=true" align=middle width=68.67386624999999pt height=96.98719139999999pt/>, <img src="/2-Linear_Regression/tex/6fc546ae376be7216667971db85c9f56.svg?invert_in_darkmode&sanitize=true" align=middle width=72.15552794999999pt height=96.98719139999999pt/>
 </div>
 
 这样就可以将模型写成:
-<p align="center"><img src="/2.Linear_Regression/tex/67bf6821f850a2b5aca64400688c8b6d.svg?invert_in_darkmode&sanitize=true" align=middle width=89.5125693pt height=18.7598829pt/></p>
+<p align="center"><img src="/2-Linear_Regression/tex/67bf6821f850a2b5aca64400688c8b6d.svg?invert_in_darkmode&sanitize=true" align=middle width=89.5125693pt height=18.7598829pt/></p>
 
 代价函数为:
-<p align="center"><img src="/2.Linear_Regression/tex/20639f1bfa6c7db123ddad8a0821a0f4.svg?invert_in_darkmode&sanitize=true" align=middle width=225.31515929999998pt height=44.89738935pt/></p>
+<p align="center"><img src="/2-Linear_Regression/tex/20639f1bfa6c7db123ddad8a0821a0f4.svg?invert_in_darkmode&sanitize=true" align=middle width=225.31515929999998pt height=44.89738935pt/></p>
 
 梯度下降为:
-<p align="center"><img src="/2.Linear_Regression/tex/7b5a86291511bb54b96c86f3516d5d48.svg?invert_in_darkmode&sanitize=true" align=middle width=261.61596779999996pt height=38.5152603pt/></p>
+<p align="center"><img src="/2-Linear_Regression/tex/7b5a86291511bb54b96c86f3516d5d48.svg?invert_in_darkmode&sanitize=true" align=middle width=261.61596779999996pt height=38.5152603pt/></p>
 
 将线性回归模型代入代价函数可以推导出梯度下降为:
-<p align="center"><img src="/2.Linear_Regression/tex/0d77b0dedeb41885a428df97a67013f4.svg?invert_in_darkmode&sanitize=true" align=middle width=383.84403749999996pt height=44.89738935pt/></p>
+<p align="center"><img src="/2-Linear_Regression/tex/0d77b0dedeb41885a428df97a67013f4.svg?invert_in_darkmode&sanitize=true" align=middle width=383.84403749999996pt height=44.89738935pt/></p>
 
 ## Speech Up Gradient Descent
 Feature scaling: 将特征除以特征值的范围(最大值 - 最小值),
@@ -118,7 +118,7 @@ Feature scaling: 将特征除以特征值的范围(最大值 - 最小值),
 Mean normalization: 将特征减去特征的平均值, 使得特征近似0均值.
 
 结合feature scaling和mean normalization, 将特征写成:
-<p align="center"><img src="/2.Linear_Regression/tex/e8f178004bd95bcc30e88764a5af861e.svg?invert_in_darkmode&sanitize=true" align=middle width=93.6608838pt height=34.45133834999999pt/></p>
+<p align="center"><img src="/2-Linear_Regression/tex/e8f178004bd95bcc30e88764a5af861e.svg?invert_in_darkmode&sanitize=true" align=middle width=93.6608838pt height=34.45133834999999pt/></p>
 
 其中, <img src="/2.Linear_Regression/tex/688dbd12716c0eaca6462457c9a17196.svg?invert_in_darkmode&sanitize=true" align=middle width=14.555823149999991pt height=14.15524440000002pt/>为所有特征的平均值, <img src="/2.Linear_Regression/tex/400f4e35cd6f84ba45f7b829a2df1668.svg?invert_in_darkmode&sanitize=true" align=middle width=12.35637809999999pt height=14.15524440000002pt/>为特征的最大值 - 最小值,
 或者是特征的标准差.
@@ -126,7 +126,7 @@ Mean normalization: 将特征减去特征的平均值, 使得特征近似0均值
 ## Normal Equation
 线性回归也可以采用下式来直接计算(代价函数求导为0直接推导):
 
-<p align="center"><img src="/2.Linear_Regression/tex/b5051d1f3821056ae4900c05ef2bc58f.svg?invert_in_darkmode&sanitize=true" align=middle width=134.3524182pt height=18.7598829pt/></p>
+<p align="center"><img src="/2-Linear_Regression/tex/b5051d1f3821056ae4900c05ef2bc58f.svg?invert_in_darkmode&sanitize=true" align=middle width=134.3524182pt height=18.7598829pt/></p>
 
 如果特征数<img src="/2.Linear_Regression/tex/1921941e267a38d161d9fcc7b3df9a61.svg?invert_in_darkmode&sanitize=true" align=middle width=9.86687624999999pt height=14.15524440000002pt/>比较大, 采用上式会导致计算速度太慢.
 
