@@ -79,7 +79,7 @@ def __cmd():
   init_theta = np.zeros((2, 1))
   feature = np.concatenate([np.ones((num, 1)), feature], axis=-1)  # 增加全为1的第0列.
   best_theta, _ = gradient_descent(feature, label, init_theta, lr, iteration)
-  logging.info(f"梯度下降得到的参数为: [{best_theta[0, 0]:.5f} "
+  logging.info(f"梯度下降得到的最优参数: [{best_theta[0, 0]:.5f} "
                f"{best_theta[1, 0]:.5f}]")
 
   plt.plot(feature[:, 1], np.dot(feature, best_theta), "-",
