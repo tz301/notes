@@ -9,64 +9,64 @@ import numpy as np
 from mpl_toolkits import mplot3d
 
 
-def __plot(x, y):
+def __plot(feature, label):
   """绘图.
 
   Args:
-    x: x, 维度为(m, 1).
-    y: y, 维度为(m, 1).
+    feature: 特征, 维度为(样本数, 1).
+    label: 标签, 维度为(样本数, 1).
   """
   plt.figure()
-  plt.plot(x, y, "rx", label="Training Data")
+  plt.plot(feature, label, "rx", label="Training Data")
   plt.xlabel("Population of City in 10,000s")
   plt.ylabel("Profit in $10,000s")
 
 
-def __compute_cost(x, y, theta):
+def __compute_cost(feature, label, theta):
   """计算代价函数.
 
   Args:
-    x: 维度为(m, n).
-    y: 维度为(m, 1)
-    theta: 参数, 维度为(n, 1).
+    feature: 特征, 维度为(样本数, 特征数).
+    label: 维度为(样本数, 1).
+    theta: 参数, 维度为(特征数, 1).
 
   Returns:
     代价函数.
   """
-  err = np.dot(x, theta) - y
-  return np.dot(err.T, err) / (2 * len(y))
+  err = np.dot(feature, theta) - label
+  return np.dot(err.T, err) / (2 * len(label))
 
 
-def __gradient_descent(x, y, theta, lr, iteration):
+def __gradient_descent(feature, label, theta, lr, iteration):
   """梯度下降.
 
   Args:
-    x: 维度为(m, n).
-    y: 维度为(m, 1)
-    theta: 参数, 维度为(n, 1).
+    feature: 特征, 维度为(样本数, 特征数).
+    label: 维度为(样本数, 1).
+    theta: 参数, 维度为(特征数, 1).
     lr: 学习率.
     iteration: 迭代次数.
 
   Returns:
     更新后的参数和每次迭代得到的代价函数构成的矩阵.
   """
-  m = len(y)
-  n = len(theta)
+  num_samples = len(label)
+  num_feats = len(theta)
   costs = np.zeros(iteration)
   for i in range(iteration):
-    err = np.dot(x, theta) - y
-    grad = np.sum(np.multiply(np.tile(err, n), x), axis=0)
-    theta = (theta.T - lr / m * grad).T
-    costs[i] = __compute_cost(x, y, theta)
+    err = np.dot(feature, theta) - label
+    grad = np.sum(np.multiply(np.tile(err, num_feats), feature), axis=0)
+    theta = (theta.T - lr / num_samples * grad).T
+    costs[i] = __compute_cost(feature, label, theta)
   return theta, costs
 
 
-def __cost_visualizing(x, y, best_theta):
+def __cost_visualizing(feature, label, best_theta):
   """代价函数可视化.
 
   Args:
-    x: 维度为(m, n).
-    y: 维度为(m, 1)
+    feature: 特征, 维度为(样本数, 特征数).
+    label: 维度为(样本数, 1).
     best_theta: 最优参数, 维度为(n, 1).
   """
   num = 100
@@ -79,7 +79,7 @@ def __cost_visualizing(x, y, best_theta):
   for i in range(num):
     for j in range(num):
       theta = [[grid1[i, j]], [grid2[i, j]]]
-      costs[i, j] = __compute_cost(x, y, theta)
+      costs[i, j] = __compute_cost(feature, label, theta)
 
   plt.figure()
   ax = plt.axes(projection='3d')
@@ -103,20 +103,24 @@ def __cmd():
 
   """
   data = np.loadtxt(Path(__file__).parent / "data1.txt",  delimiter=",")
-  x = np.expand_dims(data[:, 0], 1)
-  y = np.expand_dims(data[:, 1], 1)
-  m = len(x)  # 样本数
+  feature = np.expand_dims(data[:, 0], 1)
+  label = np.expand_dims(data[:, 1], 1)
+  num = len(feature)  # 样本数
 
   # 绘图显示数据.
-  __plot(x, y)
+  __plot(feature, label)
 
   # 梯度下降.
-  x = np.concatenate([np.ones((m, 1)), x], axis=-1)  # 增加x0列.
-  best_theta, _ = __gradient_descent(x, y, np.zeros((2, 1)), 0.01, 1500)
+  lr = 0.01
+  iteration = 1500
+  init_theta = np.zeros((2, 1))
+  feature = np.concatenate([np.ones((num, 1)), feature], axis=-1)  # 增加x0列.
+  best_theta, _ = __gradient_descent(feature, label, init_theta, lr, iteration)
   logging.info(f"梯度下降得到的参数为: [{best_theta[0, 0]:.5f} "
                f"{best_theta[1, 0]:.5f}]")
 
-  plt.plot(x[:, 1], np.dot(x, best_theta), "-", label="Linear Regression")
+  plt.plot(feature[:, 1], np.dot(feature, best_theta), "-",
+           label="Linear Regression")
   plt.legend()
 
   # 预测.
@@ -124,7 +128,7 @@ def __cmd():
   logging.info(f"人口为35000时, 预测得到的利润为: {pred:.2f}")
 
   # 代价函数可视化.
-  __cost_visualizing(x, y, best_theta)
+  __cost_visualizing(feature, label, best_theta)
   plt.show()
 
 
