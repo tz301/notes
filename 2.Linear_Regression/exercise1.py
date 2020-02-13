@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from mpl_toolkits import mplot3d
 
+from .utils import compute_cost, gradient_descent
+
 
 def __plot(feature, label):
   """绘图.
@@ -20,45 +22,6 @@ def __plot(feature, label):
   plt.plot(feature, label, "rx", label="Training Data")
   plt.xlabel("Population of City in 10,000s")
   plt.ylabel("Profit in $10,000s")
-
-
-def __compute_cost(feature, label, theta):
-  """计算代价函数.
-
-  Args:
-    feature: 特征, 维度为(样本数, 特征数).
-    label: 维度为(样本数, 1).
-    theta: 参数, 维度为(特征数, 1).
-
-  Returns:
-    代价函数.
-  """
-  err = np.dot(feature, theta) - label
-  return np.dot(err.T, err) / (2 * len(label))
-
-
-def __gradient_descent(feature, label, theta, lr, iteration):
-  """梯度下降.
-
-  Args:
-    feature: 特征, 维度为(样本数, 特征数).
-    label: 维度为(样本数, 1).
-    theta: 参数, 维度为(特征数, 1).
-    lr: 学习率.
-    iteration: 迭代次数.
-
-  Returns:
-    更新后的参数和每次迭代得到的代价函数构成的矩阵.
-  """
-  num_samples = len(label)
-  num_feats = len(theta)
-  costs = np.zeros(iteration)
-  for i in range(iteration):
-    err = np.dot(feature, theta) - label
-    grad = np.sum(np.multiply(np.tile(err, num_feats), feature), axis=0)
-    theta = (theta.T - lr / num_samples * grad).T
-    costs[i] = __compute_cost(feature, label, theta)
-  return theta, costs
 
 
 def __cost_visualizing(feature, label, best_theta):
@@ -79,7 +42,7 @@ def __cost_visualizing(feature, label, best_theta):
   for i in range(num):
     for j in range(num):
       theta = [[grid1[i, j]], [grid2[i, j]]]
-      costs[i, j] = __compute_cost(feature, label, theta)
+      costs[i, j] = compute_cost(feature, label, theta)
 
   plt.figure()
   ax = plt.axes(projection='3d')
@@ -115,7 +78,7 @@ def __cmd():
   iteration = 1500
   init_theta = np.zeros((2, 1))
   feature = np.concatenate([np.ones((num, 1)), feature], axis=-1)  # 增加全为1的第0列.
-  best_theta, _ = __gradient_descent(feature, label, init_theta, lr, iteration)
+  best_theta, _ = gradient_descent(feature, label, init_theta, lr, iteration)
   logging.info(f"梯度下降得到的参数为: [{best_theta[0, 0]:.5f} "
                f"{best_theta[1, 0]:.5f}]")
 
