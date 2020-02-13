@@ -7,7 +7,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 
-from .utils import gradient_descent
+from LinearRegression.utils import gradient_descent
 
 
 def __normalize_feature(feature):

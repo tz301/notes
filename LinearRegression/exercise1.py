@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from mpl_toolkits import mplot3d
 
-from .utils import compute_cost, gradient_descent
+from LinearRegression.utils import compute_cost, gradient_descent
 
 
 def __plot(feature, label):
