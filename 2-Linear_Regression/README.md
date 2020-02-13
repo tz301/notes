@@ -138,7 +138,7 @@ Mean normalization: 将特征减去特征的平均值, 使得特征近似0均值
 
 <div align=center><img width="400", src="figure/ex1.png" alt=" "/></div>
 
-采用梯度下降得到最优参数为: <img src="/2.Linear_Regression/tex/82424ad76c5d68f989889193f95ba4c2.svg?invert_in_darkmode&sanitize=true" align=middle width=159.77199975pt height=24.65753399999998pt/>,
+采用梯度下降得到最优参数为: <img src="/2.Linear_Regression/tex/ddfad4d971eeabdf6c15ee44673604c3.svg?invert_in_darkmode&sanitize=true" align=middle width=167.07788294999997pt height=24.65753399999998pt/>.
 利用该参数可以预测得到人口为35000时, 利润为40819.05.
 
 将最优参数代入训练集进行拟合, 得到下图:
