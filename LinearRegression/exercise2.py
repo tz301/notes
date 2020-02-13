@@ -44,11 +44,12 @@ def __gradient_descent_multi_lr(feature, label, init_theta, lr_list, iteration):
 
   plt.figure()
   iterations = range(iteration)
-  colors = ["b", "k", "g", "r", "m", "p"]
+  colors = ["b", "k", "g", "r", "m", "c"]
   for (lr, _, costs), color in zip(res, colors):
     plt.plot(iterations, costs, color, label=f"lr={lr}")
   plt.xlabel("iteration")
   plt.ylabel("cost")
+  plt.legend()
 
   return res[2][1]
 
