@@ -51,4 +51,22 @@
 这个代价函数的优点在于它是凸函数, 也可以用最大似然法求解得到.
 
 ## Gradient Descent
+梯度下降算法为:
 
+<p align="center"><img src="/LogisticRegression/tex/58bcfa503ce25ceca8074da708edaaf3.svg?invert_in_darkmode&sanitize=true" align=middle width=146.3223399pt height=38.5152603pt/></p>
+
+由于:
+
+<p align="center"><img src="/LogisticRegression/tex/1a75c0151a6fcc2a2bb4e4a316aeb58a.svg?invert_in_darkmode&sanitize=true" align=middle width=133.19870024999997pt height=34.9287444pt/></p>
+
+可得:
+
+<p align="center"><img src="/LogisticRegression/tex/374236b429e83fc7c313d7dab9619498.svg?invert_in_darkmode&sanitize=true" align=middle width=282.92986095pt height=157.33944764999998pt/></p>
+
+可得:
+
+<p align="center"><img src="/LogisticRegression/tex/7fb8337eae64a4b47520164145f8c857.svg?invert_in_darkmode&sanitize=true" align=middle width=308.51063595pt height=258.2016657pt/></p>
+
+通过上式可以得到梯度下降为:
+
+<p align="center"><img src="/LogisticRegression/tex/de33fbbe963b830b0bcacc0af5b8a6bd.svg?invert_in_darkmode&sanitize=true" align=middle width=267.7285215pt height=44.89738935pt/></p>
