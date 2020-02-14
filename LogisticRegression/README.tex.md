@@ -91,18 +91,18 @@ $$
 $$
 \begin{aligned}
 & \ \ \ \ \frac {\partial} {\partial \theta_j}
-  [y log(h_\theta(x)) + (1 - y) log(1 - h_\theta(x))] \\
-& = \frac {y} {h_\theta(x)} \frac {\partial} {\partial \theta_j}
-    h_\theta(x) - \frac {1 - y} {1 - h_\theta(x)}
+  [- y log(h_\theta(x)) - (1 - y) log(1 - h_\theta(x))] \\
+& = - \frac {y} {h_\theta(x)} \frac {\partial} {\partial \theta_j}
+    h_\theta(x) + \frac {1 - y} {1 - h_\theta(x)}
     \frac {\partial} {\partial \theta_j} h_\theta(x) \\
-& = \frac {y - h_\theta(x)} {h_\theta(x) (1 - h_\theta(x))}
+& = \frac {h_\theta(x) - y} {h_\theta(x) (1 - h_\theta(x))}
     \frac {\partial} {\partial \theta_j} h_\theta(x) \\
-& = \frac {h_\theta(x) (y - h_\theta(x))} {1 - h_\theta(x)}
+& = \frac {h_\theta(x) (h_\theta(x) - y)} {1 - h_\theta(x)}
     e^{- \theta^T x} \cdot x_j \\
 & = \frac {\frac {1} {1 + e^{- \theta^T x}}}
     {1 - \frac {1} {1 + e^{- \theta^T x}}} e^{- \theta^T x}
-    (y - h_\theta(x)) \cdot x_j \\
-& = (y - h_\theta(x)) \cdot x_j
+    (h_\theta(x) - y) x_j \\
+& = (h_\theta(x) - y) x_j
 \end{aligned}
 $$
 
