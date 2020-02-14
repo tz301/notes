@@ -5,11 +5,11 @@
 ## Hypothesis Representation
 对于二分类问题, 可以采用逻辑回归模型. 逻辑回归模型的输出满足:
 
-$$ 0 \leq h_\theta(x) \lep 1 $$
+$$ 0 \leq h_\theta(x) \leq 1 $$
 
 这样, 可以设定一个阈值来进行二分类.
 
-逻辑回归模型表示为:
+逻辑回归模型为:
 
 $$ h_\theta(x) = g(\theta^T x) $$
 
@@ -23,7 +23,7 @@ $$ g(z) = \frac {1} {1 + e^{-z}} $$
 
 逻辑回归模型也看作对于输入$ x $, 预测得到输入为$ y $的概率, 即:
 
-$$ h_theta(x) = P(y = 1 | x; \theta) $$
+$$ h_\theta(x) = P(y = 1 | x; \theta) $$
 
 由于二分类问题的输出只是为0和1, 因此满足:
 
