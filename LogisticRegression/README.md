@@ -5,11 +5,11 @@
 ## Hypothesis Representation
 对于二分类问题, 可以采用逻辑回归模型. 逻辑回归模型的输出满足:
 
-<p align="center"><img src="/LogisticRegression/tex/15e2ffed319134ffd832927b556f1915.svg?invert_in_darkmode&sanitize=true" align=middle width=77.4447531pt height=16.438356pt/></p>
+<p align="center"><img src="/LogisticRegression/tex/1868613cf21b409b5be556cf4035300c.svg?invert_in_darkmode&sanitize=true" align=middle width=99.36238289999999pt height=16.438356pt/></p>
 
 这样, 可以设定一个阈值来进行二分类.
 
-逻辑回归模型表示为:
+逻辑回归模型为:
 
 <p align="center"><img src="/LogisticRegression/tex/2d7a274decefe3aeeb9e5d33df752126.svg?invert_in_darkmode&sanitize=true" align=middle width=110.1462318pt height=18.7598829pt/></p>
 
@@ -23,7 +23,7 @@
 
 逻辑回归模型也看作对于输入<img src="/LogisticRegression/tex/e4fd027188c5ecbf6abde58e5b94bcd5.svg?invert_in_darkmode&sanitize=true" align=middle width=9.39498779999999pt height=14.15524440000002pt/>, 预测得到输入为<img src="/LogisticRegression/tex/a3bd584dc0ef15b1884333c4d22133cf.svg?invert_in_darkmode&sanitize=true" align=middle width=8.649225749999989pt height=14.15524440000002pt/>的概率, 即:
 
-<p align="center"><img src="/LogisticRegression/tex/48867f0d5eff5bbcbb528c12f32fd2f6.svg?invert_in_darkmode&sanitize=true" align=middle width=184.95623189999998pt height=16.438356pt/></p>
+<p align="center"><img src="/LogisticRegression/tex/6b3e5fc10bca4afd446e93248eb21882.svg?invert_in_darkmode&sanitize=true" align=middle width=154.85520764999998pt height=16.438356pt/></p>
 
 由于二分类问题的输出只是为0和1, 因此满足:
 
