@@ -9,14 +9,14 @@ def compute_cost(feature, label, theta):
 
   Args:
     feature: 特征, 维度为(样本数, 特征数).
-    label: 维度为(样本数, 1).
+    label: 维度为(样本数).
     theta: 参数, 维度为(特征数, 1).
 
   Returns:
     代价函数.
   """
   err = np.dot(feature, theta) - label
-  return np.dot(err.T, err) / (2 * len(label))
+  return np.sum(err ** 2) / (2 * len(label))
 
 
 def gradient_descent(feature, label, theta, lr, iteration):
@@ -24,8 +24,8 @@ def gradient_descent(feature, label, theta, lr, iteration):
 
   Args:
     feature: 特征, 维度为(样本数, 特征数).
-    label: 维度为(样本数, 1).
-    theta: 参数, 维度为(特征数, 1).
+    label: 维度为(样本数).
+    theta: 参数, 维度为(特征数).
     lr: 学习率.
     iteration: 迭代次数.
 
@@ -37,7 +37,7 @@ def gradient_descent(feature, label, theta, lr, iteration):
   costs = np.zeros(iteration)
   for i in range(iteration):
     err = np.dot(feature, theta) - label
-    grad = np.sum(np.multiply(np.tile(err, num_feats), feature), axis=0)
-    theta = (theta.T - lr / num_samples * grad).T
+    grad = np.sum(np.multiply(np.tile(err, (num_feats, 1)).T, feature), axis=0)
+    theta = theta - lr / num_samples * grad
     costs[i] = compute_cost(feature, label, theta)
   return theta, costs

@@ -90,7 +90,7 @@ def __cmd():
   pred = np.squeeze(np.dot(np.array([[1, 35000]]), best_theta))
   logging.info(f"人口为35000时, 预测得到的利润为: {pred:.2f}")
 
-  # # 代价函数可视化.
+  # 代价函数可视化.
   __cost_visualizing(feature, label, best_theta)
   plt.show()
 
