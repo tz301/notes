@@ -111,6 +111,47 @@ $$
 $$ \theta_j := \theta_j - \alpha \frac {1} {m} \sum_{i = 1}^m
 (h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)} $$
 
+## Regularization
+当模型参数较少时, 对训练集数据拟合不好, 称作欠拟合(Underfitting)或者high bias,
+如下图左.
+
+当模型参数过多时, 模型可能过度拟合训练集, 称作过拟合(Overfitting)或者high
+variance, 此时模型对实际数据的泛化能力可能不好, 如下图右.
+
+<div align=center><img width="250" src="figure/7.png" alt=" "/></div>
+
+过拟合的处理策略:
+* 减少使用的特征数量.
+* 正则化.
+
+正则化的思想, 是在代价函数中增加一项关于参数的惩罚项:
+
+$$ J(\theta) := - \frac {1} {m} \sum_{i = 1}^m
+[ - y^{(i)} log(h_\theta(x^{(i)}))
+  - (1 - y^{(i)}) log(1 - h_\theta(x^{(i)}))]
++ \frac {\lambda} {2m} \sum_{j = 1}^n \theta_j^2 $$
+
+注意, 上式不增加$ \theta_0 $项, $ \lambda $成为正则化因子.
+这样, 目标中包含两项, 一项是尽可能好地拟合训练数据, 另一项是让参数尽可能小,
+这样该参数的拟合能力会变弱.
+
+正则化下的梯度下降算法如下:
+
+$$ \theta_0 := \theta_0 - \alpha \frac {1} {m} \sum_{i = 1}^m
+(h_\theta(x^{(i)}) - y^{(i)}) x_0^{(i)} $$
+
+$$
+\begin{aligned}
+\theta_j
+& := \theta_j - \alpha \begin[ \frac {1} {m} \sum_{i = 1}^m
+     (h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)} +
+     \frac {\lambda} {m} \theta_j \end[ \\
+& := (1 - \alpha \frac {\lambda} {m}) \theta_j - \alpha \frac {1} {m}
+     \sum_{i = 1}^m (h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)},
+     j = 1, 2, \cdots, n \\
+\end{aligned}
+$$
+
 ## Quiz
 1. Suppose that you have trained a logistic regression classifier, and
 it outputs on a new example $ x $ a prediction $ h_\theta(x) = 0.7 $.
