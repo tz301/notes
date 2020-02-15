@@ -167,49 +167,6 @@ $$ \theta = (\bold{X}^T \bold{X})^{-1} \bold{X}^T \bold{y} $$
 
 如果特征数$ n $比较大, 采用上式会导致计算速度太慢.
 
-## Exercise1
-根据城市的人口来预测利润, 代码见[exercise1.py](exercise1.py).
-
-[data1.txt](data1.txt)包含不同城市的数据, 第一列为城市的人口, 第二列为利润.
-如下图.
-
-<div align=center><img width="400", src="figure/ex1.png" alt=" "/></div>
-
-采用梯度下降得到最优参数为: $ \bold{\theta} = [-3.63029, 1.16636] $.
-利用该参数可以预测得到人口为35000时, 利润为40819.05.
-
-将最优参数代入训练集进行拟合, 得到下图:
-
-<div align=center><img width="400", src="figure/ex2.png" alt=" "/></div>
-
-绘制代价函数随着参数$ \theta_0 $和$ \theta_1 $变化的surface图和contour图如下.
-
-<div align=center><img width="400", src="figure/ex3.png" alt=" "/></div>
-
-<div align=center><img width="400", src="figure/ex4.png" alt=" "/></div>
-
-## Exercise2
-预测房屋售价.
-
-[data2.txt](data2.txt)包含不同房屋的售价, 第一列为房子的大小(平方米),
-第二列为卧室的数量, 第三列为房屋的售价.
-
-由于存在多个特征, 需要先对特征进行归一化. 注意需要保存归一化的均值和标准差参数,
-在预测时也要使用相同的参数对特征进行归一化.
-
-不同学习率代价函数曲线如下. 可以看出, 学习率较小时, 收敛速度较慢.
-
-<div align=center><img width="400", src="figure/ex5.png" alt=" "/></div>
-
-梯度下降得到的最优参数为: [340410.91897 109162.68848 -6293.24735].
-房屋尺寸为1650, 卧室数量为3时, 梯度下降预测得到的房价: 293142.43.
-
-采用Normal Equation得到的最优参数为: [89597.90954 139.21067 -8738.01911].
-房屋尺寸为1650, 卧室数量为3时, 梯度下降预测得到的房价: 293081.46.
-
-可以看出, 虽然梯度下降得到的参数与Normal Equation相差较大, 但是预测值十分接近.
-
-
 ## Quiz
 1. Consider the problem of predicting how well a student does in her
 second year of college/university, given how well she did in her first
@@ -357,3 +314,45 @@ C. It is necessary to prevent the normal equation from getting stuck
 in local optima. <br/>
 D. It prevents the matrix $ (\bold{X}^T \bold{X})^{-1} $ (used in the
 normal equation) from being non-invertable (singular/degenerate).
+
+## Exercise1
+根据城市的人口来预测利润, 代码见[exercise1.py](exercise1.py).
+
+[data1.txt](data1.txt)包含不同城市的数据, 第一列为城市的人口, 第二列为利润.
+如下图.
+
+<div align=center><img width="400", src="figure/ex1.png" alt=" "/></div>
+
+采用梯度下降得到最优参数为: $ \bold{\theta} = [-3.63029, 1.16636] $.
+利用该参数可以预测得到人口为35000时, 利润为40819.05.
+
+将最优参数代入训练集进行拟合, 得到下图:
+
+<div align=center><img width="400", src="figure/ex2.png" alt=" "/></div>
+
+绘制代价函数随着参数$ \theta_0 $和$ \theta_1 $变化的surface图和contour图如下.
+
+<div align=center><img width="400", src="figure/ex3.png" alt=" "/></div>
+
+<div align=center><img width="400", src="figure/ex4.png" alt=" "/></div>
+
+## Exercise2
+预测房屋售价.
+
+[data2.txt](data2.txt)包含不同房屋的售价, 第一列为房子的大小(平方米),
+第二列为卧室的数量, 第三列为房屋的售价.
+
+由于存在多个特征, 需要先对特征进行归一化. 注意需要保存归一化的均值和标准差参数,
+在预测时也要使用相同的参数对特征进行归一化.
+
+不同学习率代价函数曲线如下. 可以看出, 学习率较小时, 收敛速度较慢.
+
+<div align=center><img width="400", src="figure/ex5.png" alt=" "/></div>
+
+梯度下降得到的最优参数为: [340410.91897 109162.68848 -6293.24735].
+房屋尺寸为1650, 卧室数量为3时, 梯度下降预测得到的房价: 293142.43.
+
+采用Normal Equation得到的最优参数为: [89597.90954 139.21067 -8738.01911].
+房屋尺寸为1650, 卧室数量为3时, 梯度下降预测得到的房价: 293081.46.
+
+可以看出, 虽然梯度下降得到的参数与Normal Equation相差较大, 但是预测值十分接近.
