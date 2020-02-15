@@ -118,7 +118,7 @@ $$ \theta_j := \theta_j - \alpha \frac {1} {m} \sum_{i = 1}^m
 当模型参数过多时, 模型可能过度拟合训练集, 称作过拟合(Overfitting)或者high
 variance, 此时模型对实际数据的泛化能力可能不好, 如下图右.
 
-<div align=center><img width="450" src="figure/7.png" alt=" "/></div>
+<div align=center><img width="450" src="figure/2.png" alt=" "/></div>
 
 过拟合的处理策略:
 * 减少使用的特征数量.
@@ -162,7 +162,7 @@ B. Our estimate for $ P(y = 0| x; \theta) $ is 0.7. <br/>
 C. Our estimate for $ P(y = 1| x; \theta) $ is 0.3. <br/>
 D. Our estimate for $ P(y = 1| x; \theta) $ is 0.7. <br/>
 
-<div align=center><img width="350" src="figure/2.png" alt=" "/></div>
+<div align=center><img width="350" src="figure/3.png" alt=" "/></div>
 
 2. Suppose you have the following training set, and fit a logistic
 regression classifier
@@ -222,13 +222,13 @@ Which of the following figures represents the decision boundary found
 by your classifier? <br/>
 (C) <br/>
 A. <br/>
-  <img width="150" src="figure/3.png" alt=" "/> <br/>
-B. <br/>
   <img width="150" src="figure/4.png" alt=" "/> <br/>
-C. <br/>
+B. <br/>
   <img width="150" src="figure/5.png" alt=" "/> <br/>
-D. <br/>
+C. <br/>
   <img width="150" src="figure/6.png" alt=" "/> <br/>
+D. <br/>
+  <img width="150" src="figure/7.png" alt=" "/> <br/>
 
 6. You are training a classification model with logistic regression.
 Which of the following statements are true? Check all that apply. <br/>
