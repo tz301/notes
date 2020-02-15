@@ -109,7 +109,7 @@ A. <img src="/LogisticRegression/tex/3b600bed441cb024b866370402ef69ac.svg?invert
 (simultaneously update for all <img src="/LogisticRegression/tex/e62c4c55196ed02fd2fa7c51b8c03611.svg?invert_in_darkmode&sanitize=true" align=middle width=7.710416999999989pt height=21.68300969999999pt/>). <br/>
 B. <img src="/LogisticRegression/tex/d30f43f8435333e9d5257b96a216eb3d.svg?invert_in_darkmode&sanitize=true" align=middle width=310.28823374999996pt height=37.80850590000001pt/>
 (simultaneously update for all <img src="/LogisticRegression/tex/e62c4c55196ed02fd2fa7c51b8c03611.svg?invert_in_darkmode&sanitize=true" align=middle width=7.710416999999989pt height=21.68300969999999pt/>). <br/>
-C. <img src="/LogisticRegression/tex/789d97e8e97c37cbfcdfb47efb62a493.svg?invert_in_darkmode&sanitize=true" align=middle width=248.59576169999994pt height=29.190975000000005pt/> <br/>.
+C. <img src="/LogisticRegression/tex/789d97e8e97c37cbfcdfb47efb62a493.svg?invert_in_darkmode&sanitize=true" align=middle width=248.59576169999994pt height=29.190975000000005pt/> <br/>
 D. <img src="/LogisticRegression/tex/609648d710498e265fff9d03bbc721f3.svg?invert_in_darkmode&sanitize=true" align=middle width=280.68428685pt height=34.337843099999986pt/>
 (simultaneously update for all <img src="/LogisticRegression/tex/e62c4c55196ed02fd2fa7c51b8c03611.svg?invert_in_darkmode&sanitize=true" align=middle width=7.710416999999989pt height=21.68300969999999pt/>).
 
