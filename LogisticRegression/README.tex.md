@@ -118,7 +118,7 @@ $$ \theta_j := \theta_j - \alpha \frac {1} {m} \sum_{i = 1}^m
 当模型参数过多时, 模型可能过度拟合训练集, 称作过拟合(Overfitting)或者high
 variance, 此时模型对实际数据的泛化能力可能不好, 如下图右.
 
-<div align=center><img width="540" src="figure/7.png" alt=" "/></div>
+<div align=center><img width="450" src="figure/7.png" alt=" "/></div>
 
 过拟合的处理策略:
 * 减少使用的特征数量.
@@ -143,12 +143,12 @@ $$
 & := \theta_0 - \alpha \frac {1} {m} \sum_{i = 1}^m
 (h_\theta(x^{(i)}) - y^{(i)}) x_0^{(i)} \\
 \theta_j
-& := \theta_j - \alpha \begin[{ \frac {1} {m} \sum_{i = 1}^m
+& := \theta_j - \alpha \left[ \frac {1} {m} \sum_{i = 1}^m
      (h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)} +
-     \frac {\lambda} {m} \theta_j }\end[ \\
+     \frac {\lambda} {m} \theta_j \right] \\
 & := (1 - \alpha \frac {\lambda} {m}) \theta_j - \alpha \frac {1} {m}
      \sum_{i = 1}^m (h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)},
-     j = 1, 2, \cdots, n \\
+     \ j = 1, 2, \cdots, n \\
 \end{aligned}
 $$
 
