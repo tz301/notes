@@ -71,6 +71,33 @@
 
 <p align="center"><img src="/LogisticRegression/tex/de33fbbe963b830b0bcacc0af5b8a6bd.svg?invert_in_darkmode&sanitize=true" align=middle width=267.7285215pt height=44.89738935pt/></p>
 
+## Regularization
+当模型参数较少时, 对训练集数据拟合不好, 称作欠拟合(Underfitting)或者high bias,
+如下图左.
+
+当模型参数过多时, 模型可能过度拟合训练集, 称作过拟合(Overfitting)或者high
+variance, 此时模型对实际数据的泛化能力可能不好, 如下图右.
+
+<div align=center><img width="250" src="figure/7.png" alt=" "/></div>
+
+过拟合的处理策略:
+* 减少使用的特征数量.
+* 正则化.
+
+正则化的思想, 是在代价函数中增加一项关于参数的惩罚项:
+
+<p align="center"><img src="/LogisticRegression/tex/20b9cdbeadbd474ee9fc5baedb741a83.svg?invert_in_darkmode&sanitize=true" align=middle width=545.1280922999999pt height=47.1348339pt/></p>
+
+注意, 上式不增加<img src="/LogisticRegression/tex/2236187420fb2bfcf28d7dfd16ed31e1.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>项, <img src="/LogisticRegression/tex/0ae3f8e52e8833a55be05df21031a4fc.svg?invert_in_darkmode&sanitize=true" align=middle width=9.58908224999999pt height=22.831056599999986pt/>成为正则化因子.
+这样, 目标中包含两项, 一项是尽可能好地拟合训练数据, 另一项是让参数尽可能小,
+这样该参数的拟合能力会变弱.
+
+正则化下的梯度下降算法如下:
+
+<p align="center"><img src="/LogisticRegression/tex/abb8dc414f66df66182c659b82024cbe.svg?invert_in_darkmode&sanitize=true" align=middle width=268.62463485pt height=44.89738935pt/></p>
+
+<p align="center"><img src="/LogisticRegression/tex/efed5fa37905d40b1de055513b8fe539.svg?invert_in_darkmode&sanitize=true" align=middle width=448.41522165pt height=99.657789pt/></p>
+
 ## Quiz
 1. Suppose that you have trained a logistic regression classifier, and
 it outputs on a new example <img src="/LogisticRegression/tex/e4fd027188c5ecbf6abde58e5b94bcd5.svg?invert_in_darkmode&sanitize=true" align=middle width=9.39498779999999pt height=14.15524440000002pt/> a prediction <img src="/LogisticRegression/tex/18702c15739a48c1ef1a292928623f60.svg?invert_in_darkmode&sanitize=true" align=middle width=82.01097629999998pt height=24.65753399999998pt/>.
