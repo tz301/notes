@@ -29,8 +29,8 @@ def __gradient_descent_multi_lr(feature, label, init_theta, lr_list, iteration):
 
   Args:
     feature: 特征, 维度为(样本数, 特征数).
-    label: 维度为(样本数, 1).
-    init_theta: 初始参数, 维度为(特征数, 1).
+    label: 维度为(样本数).
+    init_theta: 初始参数, 维度为(特征数).
     lr_list: 学习率列表.
     iteration: 迭代次数.
 
@@ -60,8 +60,8 @@ def __cmd():
 
   """
   data = np.loadtxt(Path(__file__).parent / "data2.txt",  delimiter=",")
-  feature = data[:, 0:2]
-  label = np.expand_dims(data[:, -1], 1)
+  feature = data[:, :-1]
+  label = data[:, -1]
   num = len(label)  # 样本数
 
   feature_norm, mu, sigma = __normalize_feature(feature)
@@ -71,11 +71,11 @@ def __cmd():
   # 梯度下降, 不同学习率.
   lr_list = [0.3, 0.1, 0.03, 0.01, 0.003, 0.001]
   iteration = 400
-  init_theta = np.zeros((3, 1))
+  init_theta = np.zeros(3)
   best_theta = __gradient_descent_multi_lr(feature_norm, label, init_theta,
                                            lr_list, iteration)
-  logging.info(f"梯度下降得到的最优参数: [{best_theta[0, 0]:.5f} "
-               f"{best_theta[1, 0]:.5f} {best_theta[2, 0]:.5f}]")
+  logging.info(f"梯度下降得到的最优参数: [{best_theta[0]:.5f} "
+               f"{best_theta[1]:.5f} {best_theta[2]:.5f}]")
 
   # 梯度下降预测
   feat1 = np.array([1650, 3])
@@ -86,8 +86,8 @@ def __cmd():
   feature = np.concatenate([np.ones((num, 1)), feature], axis=-1)
   inv_item = np.linalg.pinv(np.dot(feature.T, feature))
   theta_equation = np.dot(np.dot(inv_item, feature.T), label)
-  logging.info(f"Normal Equation得到的最优参数: [{theta_equation[0, 0]:.5f} "
-               f"{theta_equation[1, 0]:.5f} {theta_equation[2, 0]:.5f}]")
+  logging.info(f"Normal Equation得到的最优参数: [{theta_equation[0]:.5f} "
+               f"{theta_equation[1]:.5f} {theta_equation[2]:.5f}]")
 
   feat2 = np.array([1, 1650, 3])
   pred2 = np.squeeze(np.dot(feat2, theta_equation))
