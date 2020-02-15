@@ -106,7 +106,7 @@ This means (check all that apply): <br/>
 A. Our estimate for <img src="/LogisticRegression/tex/27c8204f097f03a8afc60276a129bc17.svg?invert_in_darkmode&sanitize=true" align=middle width=93.84887325pt height=24.65753399999998pt/> is 0.3. <br/>
 B. Our estimate for <img src="/LogisticRegression/tex/27c8204f097f03a8afc60276a129bc17.svg?invert_in_darkmode&sanitize=true" align=middle width=93.84887325pt height=24.65753399999998pt/> is 0.7. <br/>
 C. Our estimate for <img src="/LogisticRegression/tex/019601d6da24e719033b1a49a5460507.svg?invert_in_darkmode&sanitize=true" align=middle width=93.84887325pt height=24.65753399999998pt/> is 0.3. <br/>
-D. Our estimate for <img src="/LogisticRegression/tex/019601d6da24e719033b1a49a5460507.svg?invert_in_darkmode&sanitize=true" align=middle width=93.84887325pt height=24.65753399999998pt/> is 0.7.
+D. Our estimate for <img src="/LogisticRegression/tex/019601d6da24e719033b1a49a5460507.svg?invert_in_darkmode&sanitize=true" align=middle width=93.84887325pt height=24.65753399999998pt/> is 0.7. <br/>
 
 <div align=center><img width="250" src="figure/2.png" alt=" "/></div>
 
@@ -125,7 +125,7 @@ C. Adding polynomial features (e.g. instead using
 would increase <img src="/LogisticRegression/tex/da87e8d6186f7c20976773c00d9edbef.svg?invert_in_darkmode&sanitize=true" align=middle width=31.655311049999987pt height=24.65753399999998pt/> because we are now summing over more terms. <br/>
 D. If we train gradient descent for enough iterations, for some examples
 <img src="/LogisticRegression/tex/84e0bf804573400bad7f9d5c5633506d.svg?invert_in_darkmode&sanitize=true" align=middle width=24.319919249999987pt height=29.190975000000005pt/> in the training set it is possible to obtain
-<img src="/LogisticRegression/tex/93240de66cf53a69baaceddbfe59c8e2.svg?invert_in_darkmode&sanitize=true" align=middle width=84.97236329999998pt height=29.190975000000005pt/>.
+<img src="/LogisticRegression/tex/93240de66cf53a69baaceddbfe59c8e2.svg?invert_in_darkmode&sanitize=true" align=middle width=84.97236329999998pt height=29.190975000000005pt/>. <br/>
 
 3. For logistic regression, the gradient is given by
 <img src="/LogisticRegression/tex/ea1794ed8ab29576c07813bfca18393c.svg?invert_in_darkmode&sanitize=true" align=middle width=269.92193085pt height=34.337843099999986pt/>.
@@ -138,7 +138,7 @@ B. <img src="/LogisticRegression/tex/d30f43f8435333e9d5257b96a216eb3d.svg?invert
 (simultaneously update for all <img src="/LogisticRegression/tex/e62c4c55196ed02fd2fa7c51b8c03611.svg?invert_in_darkmode&sanitize=true" align=middle width=7.710416999999989pt height=21.68300969999999pt/>). <br/>
 C. <img src="/LogisticRegression/tex/789d97e8e97c37cbfcdfb47efb62a493.svg?invert_in_darkmode&sanitize=true" align=middle width=248.59576169999994pt height=29.190975000000005pt/> <br/>
 D. <img src="/LogisticRegression/tex/609648d710498e265fff9d03bbc721f3.svg?invert_in_darkmode&sanitize=true" align=middle width=280.68428685pt height=34.337843099999986pt/>
-(simultaneously update for all <img src="/LogisticRegression/tex/e62c4c55196ed02fd2fa7c51b8c03611.svg?invert_in_darkmode&sanitize=true" align=middle width=7.710416999999989pt height=21.68300969999999pt/>).
+(simultaneously update for all <img src="/LogisticRegression/tex/e62c4c55196ed02fd2fa7c51b8c03611.svg?invert_in_darkmode&sanitize=true" align=middle width=7.710416999999989pt height=21.68300969999999pt/>). <br/>
 
 4. Which of the following statements are true? Check all that apply. <br/>
 (AB) <br/>
@@ -152,7 +152,7 @@ regression. <br/>
 D. For logistic regression, sometimes gradient descent will converge to
 a local minimum (and fail to find the global minimum). This is the
 reason we prefer more advanced optimization algorithms such as fminunc
-(conjugate gradient/BFGS/L-BFGS/etc).
+(conjugate gradient/BFGS/L-BFGS/etc). <br/>
 
 5. Suppose you train a logistic classifier
 <img src="/LogisticRegression/tex/b13f10a75ac9f00a30a45da83c57e609.svg?invert_in_darkmode&sanitize=true" align=middle width=201.21745875pt height=24.65753399999998pt/>.
@@ -168,3 +168,67 @@ C. <br/>
   <img width="150" src="figure/5.png" alt=" "/> <br/>
 D. <br/>
   <img width="150" src="figure/6.png" alt=" "/> <br/>
+
+6. You are training a classification model with logistic regression.
+Which of the following statements are true? Check all that apply. <br/>
+(A) <br/>
+A. Adding a new feature to the model always results in equal or better
+performance on the training set. <br/>
+B. Introducing regularization to the model always results in equal or
+better performance on examples not in the training set. <br/>
+C. Introducing regularization to the model always results in equal or
+better performance on the training set. <br/>
+D. Adding many new features to the model helps prevent overfitting on
+the training set. <br/>
+
+7. Suppose you ran logistic regression twice, once with <img src="/LogisticRegression/tex/e94c284ad5402cdf30d6f9c7b5a6c7b5.svg?invert_in_darkmode&sanitize=true" align=middle width=39.72592304999999pt height=22.831056599999986pt/>,
+and once with <img src="/LogisticRegression/tex/0593da247127ad662bc9512698b14112.svg?invert_in_darkmode&sanitize=true" align=middle width=39.72592304999999pt height=22.831056599999986pt/>. One of the times, you got parameters
+<img src="/LogisticRegression/tex/ac761c17f9aa62d9b9a69d1755dc05c5.svg?invert_in_darkmode&sanitize=true" align=middle width=84.88587689999999pt height=47.6716218pt/>,
+and the other time you got
+<img src="/LogisticRegression/tex/02dc02c4e1c5b96cc62b7396257ca05d.svg?invert_in_darkmode&sanitize=true" align=middle width=76.66667414999999pt height=47.6716218pt/>.
+However, you forgot which value of <img src="/LogisticRegression/tex/e96ebaee57238323c17a21210024dcd2.svg?invert_in_darkmode&sanitize=true" align=middle width=9.58908224999999pt height=22.831056599999986pt/> corresponds to which value
+of <img src="/LogisticRegression/tex/6dc297c35dfa9049f077582466f9b777.svg?invert_in_darkmode&sanitize=true" align=middle width=8.17352744999999pt height=22.831056599999986pt/>. Which one do you think corresponds to <img src="/LogisticRegression/tex/0593da247127ad662bc9512698b14112.svg?invert_in_darkmode&sanitize=true" align=middle width=39.72592304999999pt height=22.831056599999986pt/>? <br/>
+(B) <br/>
+A. <img src="/LogisticRegression/tex/ac761c17f9aa62d9b9a69d1755dc05c5.svg?invert_in_darkmode&sanitize=true" align=middle width=84.88587689999999pt height=47.6716218pt/> <br/>
+B. <img src="/LogisticRegression/tex/02dc02c4e1c5b96cc62b7396257ca05d.svg?invert_in_darkmode&sanitize=true" align=middle width=76.66667414999999pt height=47.6716218pt/> <br/>
+
+8. Which of the following statements about regularization are true?
+Check all that apply. <br/>
+() <br/>
+A. Using too large a value of <img src="/LogisticRegression/tex/0ae3f8e52e8833a55be05df21031a4fc.svg?invert_in_darkmode&sanitize=true" align=middle width=9.58908224999999pt height=22.831056599999986pt/> can cause your hypothesis to
+overfit the data; this can be avoided by reducing <img src="/LogisticRegression/tex/0ae3f8e52e8833a55be05df21031a4fc.svg?invert_in_darkmode&sanitize=true" align=middle width=9.58908224999999pt height=22.831056599999986pt/>. <br/>
+B. Because logistic regression outputs values
+<img src="/LogisticRegression/tex/9e510e1fb8229bb9b752bf58ba248da4.svg?invert_in_darkmode&sanitize=true" align=middle width=99.36238289999999pt height=24.65753399999998pt/>, its range of output values can only be
+"shrunk" slightly by regularization anyway, so regularization is
+generally not helpful for it. <br/>
+C. Consider a classification problem. Adding regularization may cause
+your classifier to incorrectly classify some training examples (which it
+had correctly classified when not using regularization, i.e. when
+<img src="/LogisticRegression/tex/577a61edf10faa64e5c170eb5e86348c.svg?invert_in_darkmode&sanitize=true" align=middle width=39.72592304999999pt height=22.831056599999986pt/>). <br/>
+D. Using a very large value of <img src="/LogisticRegression/tex/0ae3f8e52e8833a55be05df21031a4fc.svg?invert_in_darkmode&sanitize=true" align=middle width=9.58908224999999pt height=22.831056599999986pt/> cannot hurt the performance
+of your hypothesis; the only reason we do not set <img src="/LogisticRegression/tex/0ae3f8e52e8833a55be05df21031a4fc.svg?invert_in_darkmode&sanitize=true" align=middle width=9.58908224999999pt height=22.831056599999986pt/> to be too
+large is to avoid numerical problems. <br/>
+
+9. In which one of the following figures do you think the hypothesis
+has overfit the training set? <br/>
+(A) <br/>
+A. <br/>
+  <img width="150" src="figure/8.png" alt=" "/> <br/>
+B. <br/>
+  <img width="150" src="figure/9.png" alt=" "/> <br/>
+C. <br/>
+  <img width="150" src="figure/10.png" alt=" "/> <br/>
+D. <br/>
+  <img width="150" src="figure/11.png" alt=" "/> <br/>
+
+10. In which one of the following figures do you think the hypothesis
+has underfit the training set? <br/>
+(A) <br/>
+A. <br/>
+  <img width="150" src="figure/12.png" alt=" "/> <br/>
+B. <br/>
+  <img width="150" src="figure/13.png" alt=" "/> <br/>
+C. <br/>
+  <img width="150" src="figure/14.png" alt=" "/> <br/>
+D. <br/>
+  <img width="150" src="figure/15.png" alt=" "/> <br/>
