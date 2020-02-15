@@ -337,7 +337,7 @@ normal equation) from being non-invertable (singular/degenerate).
 <div align=center><img width="400", src="figure/ex4.png" alt=" "/></div>
 
 ## Exercise2
-预测房屋售价.
+预测房屋售价, 代码见[exercise2.py](exercise2.py).
 
 [data2.txt](data2.txt)包含不同房屋的售价, 第一列为房子的大小(平方米),
 第二列为卧室的数量, 第三列为房屋的售价.
