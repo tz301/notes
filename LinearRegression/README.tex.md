@@ -261,7 +261,7 @@ What is the normalized feature x_1^{(1)}? (Please round off your answer
 to two decimal places). <br/>
 (-0.32)
 
-<div align=center><img width="600", src="figure/8.png" alt=" "/></div>
+<div align=center><img width="600" src="figure/8.png" alt=" "/></div>
 
 7. You run gradient descent for 15 iterations with $ \alpha = 0.3$ and
 compute $ J(\theta) $ after each iteration. You find that the value of
@@ -321,20 +321,20 @@ normal equation) from being non-invertable (singular/degenerate).
 [data1.txt](data1.txt)包含不同城市的数据, 第一列为城市的人口, 第二列为利润.
 如下图.
 
-<div align=center><img width="400", src="figure/ex1.png" alt=" "/></div>
+<div align=center><img width="400" src="figure/ex1.png" alt=" "/></div>
 
 采用梯度下降得到最优参数为: $ \bold{\theta} = [-3.63029, 1.16636] $.
 利用该参数可以预测得到人口为35000时, 利润为40819.05.
 
 将最优参数代入训练集进行拟合, 得到下图:
 
-<div align=center><img width="400", src="figure/ex2.png" alt=" "/></div>
+<div align=center><img width="400" src="figure/ex2.png" alt=" "/></div>
 
 绘制代价函数随着参数$ \theta_0 $和$ \theta_1 $变化的surface图和contour图如下.
 
-<div align=center><img width="400", src="figure/ex3.png" alt=" "/></div>
+<div align=center><img width="400" src="figure/ex3.png" alt=" "/></div>
 
-<div align=center><img width="400", src="figure/ex4.png" alt=" "/></div>
+<div align=center><img width="400" src="figure/ex4.png" alt=" "/></div>
 
 ## Exercise2
 预测房屋售价, 代码见[exercise2.py](exercise2.py).
@@ -347,7 +347,7 @@ normal equation) from being non-invertable (singular/degenerate).
 
 不同学习率代价函数曲线如下. 可以看出, 学习率较小时, 收敛速度较慢.
 
-<div align=center><img width="400", src="figure/ex5.png" alt=" "/></div>
+<div align=center><img width="400" src="figure/ex5.png" alt=" "/></div>
 
 梯度下降得到的最优参数为: [340410.91897 109162.68848 -6293.24735].
 房屋尺寸为1650, 卧室数量为3时, 梯度下降预测得到的房价: 293142.43.
