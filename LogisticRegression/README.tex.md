@@ -155,7 +155,7 @@ B. $ \theta_j := \theta_j - \alpha \frac {1} {m} \sum_{i=1}^m
 \left(\frac {1} {1 + e^{-\theta^T x^{(i)}}} - y^{(i)}\right) x_j^{(i)} $
 (simultaneously update for all $ j $). <br/>
 C. $ \theta := \theta - \alpha \frac {1} {m} \sum_{i=1}^m
-\left(\theta^T x - y^{(i)}\right) x^{(i)} $ <br/>.
+\left(\theta^T x - y^{(i)}\right) x^{(i)} $ <br/>
 D. $ \theta_j := \theta_j - \alpha \frac {1} {m} \sum_{i=1}^m
 (h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)} $
 (simultaneously update for all $ j $).
