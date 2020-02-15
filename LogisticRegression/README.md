@@ -70,3 +70,55 @@
 通过上式可以得到梯度下降为:
 
 <p align="center"><img src="/LogisticRegression/tex/de33fbbe963b830b0bcacc0af5b8a6bd.svg?invert_in_darkmode&sanitize=true" align=middle width=267.7285215pt height=44.89738935pt/></p>
+
+## Quiz
+1. Suppose that you have trained a logistic regression classifier, and
+it outputs on a new example <img src="/LogisticRegression/tex/e4fd027188c5ecbf6abde58e5b94bcd5.svg?invert_in_darkmode&sanitize=true" align=middle width=9.39498779999999pt height=14.15524440000002pt/> a prediction <img src="/LogisticRegression/tex/18702c15739a48c1ef1a292928623f60.svg?invert_in_darkmode&sanitize=true" align=middle width=82.01097629999998pt height=24.65753399999998pt/>.
+This means (check all that apply): <br/>
+(AD) <br/>
+A. Our estimate for <img src="/LogisticRegression/tex/3b2323922a052ee184472248f4460a81.svg?invert_in_darkmode&sanitize=true" align=middle width=85.67534744999999pt height=24.65753399999998pt/> is 0.3. <br/>
+B. Our estimate for <img src="/LogisticRegression/tex/3b2323922a052ee184472248f4460a81.svg?invert_in_darkmode&sanitize=true" align=middle width=85.67534744999999pt height=24.65753399999998pt/> is 0.7. <br/>
+C. Our estimate for <img src="/LogisticRegression/tex/1737ce19c93158520b77048cd248ebf5.svg?invert_in_darkmode&sanitize=true" align=middle width=85.67534744999999pt height=24.65753399999998pt/> is 0.3. <br/>
+D. Our estimate for <img src="/LogisticRegression/tex/1737ce19c93158520b77048cd248ebf5.svg?invert_in_darkmode&sanitize=true" align=middle width=85.67534744999999pt height=24.65753399999998pt/> is 0.7.
+
+<div align=center><img width="250" src="figure/2.png" alt=" "/></div>
+
+2. Suppose you have the following training set, and fit a logistic
+regression classifier
+<img src="/LogisticRegression/tex/b13f10a75ac9f00a30a45da83c57e609.svg?invert_in_darkmode&sanitize=true" align=middle width=201.21745875pt height=24.65753399999998pt/>. <br/>
+Which of the following are true? Check all that apply. <br/>
+(AB) <br/>
+A. Adding polynomial features (e.g., instead using
+<img src="/LogisticRegression/tex/80f85be22de20b312a36e8178f04749b.svg?invert_in_darkmode&sanitize=true" align=middle width=373.84288094999994pt height=26.76175259999998pt/>)
+could increase how well we can fit the training data. <br/>
+B. At the optimal value of <img src="/LogisticRegression/tex/6dc297c35dfa9049f077582466f9b777.svg?invert_in_darkmode&sanitize=true" align=middle width=8.17352744999999pt height=22.831056599999986pt/>, we will have
+<img src="/LogisticRegression/tex/728c1ea4d9acf3d148edb25fb6a4bb61.svg?invert_in_darkmode&sanitize=true" align=middle width=61.79215184999999pt height=24.65753399999998pt/>. <br/>
+C. Adding polynomial features (e.g., instead using
+<img src="/LogisticRegression/tex/80f85be22de20b312a36e8178f04749b.svg?invert_in_darkmode&sanitize=true" align=middle width=373.84288094999994pt height=26.76175259999998pt/>)
+would increase <img src="/LogisticRegression/tex/da87e8d6186f7c20976773c00d9edbef.svg?invert_in_darkmode&sanitize=true" align=middle width=31.655311049999987pt height=24.65753399999998pt/> because we are now summing over more terms. <br/>
+D. If we train gradient descent for enough iterations, for some examples
+<img src="/LogisticRegression/tex/84e0bf804573400bad7f9d5c5633506d.svg?invert_in_darkmode&sanitize=true" align=middle width=24.319919249999987pt height=29.190975000000005pt/> in the training set it is possible to obtain
+<img src="/LogisticRegression/tex/93240de66cf53a69baaceddbfe59c8e2.svg?invert_in_darkmode&sanitize=true" align=middle width=84.97236329999998pt height=29.190975000000005pt/>.
+
+3. For logistic regression, the gradient is given by
+<img src="/LogisticRegression/tex/493e2217e94ec888748531dbe8c5ef46.svg?invert_in_darkmode&sanitize=true" align=middle width=300.0229551pt height=34.337843099999986pt/>.
+Which of these is a correct gradient descent update for logistic
+regression with a learning rate of <img src="/LogisticRegression/tex/ebb66f0e96fcb4a8d842166969b28831.svg?invert_in_darkmode&sanitize=true" align=middle width=10.57650494999999pt height=14.15524440000002pt/>? Check all that apply. <br/>
+(BD) <br/>
+A. <img src="/LogisticRegression/tex/3b600bed441cb024b866370402ef69ac.svg?invert_in_darkmode&sanitize=true" align=middle width=280.68428685pt height=29.190975000000005pt/>
+(simultaneously update for all jj). <br/>
+B. <img src="/LogisticRegression/tex/d30f43f8435333e9d5257b96a216eb3d.svg?invert_in_darkmode&sanitize=true" align=middle width=310.28823374999996pt height=37.80850590000001pt/>
+(simultaneously update for all jj). <br/>
+C. <img src="/LogisticRegression/tex/fad5ed690a92b4a5d56fe6809f655171.svg?invert_in_darkmode&sanitize=true" align=middle width=307.0276175999999pt height=29.190975000000005pt/> \theta_j := \theta_j - \alpha \frac {1} {m} \sum_{i=1}^m
+(h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)} <img src="/LogisticRegression/tex/5b132f13df72d7757f3930066a5ffba6.svg?invert_in_darkmode&sanitize=true" align=middle width=700.2745497pt height=85.29680940000001pt/> g(z) = \frac {1} {1 + e^{-z}} <img src="/LogisticRegression/tex/4ef87cb749fc2512620659c5e815bd2f.svg?invert_in_darkmode&sanitize=true" align=middle width=381.3254445pt height=24.65753399999998pt/> J(\theta) <img src="/LogisticRegression/tex/a427170846f486fb8d42d8a7492a0b3e.svg?invert_in_darkmode&sanitize=true" align=middle width=245.2803573pt height=22.831056599999986pt/> m \geq 1 <img src="/LogisticRegression/tex/c5bee62261d36c672201728c05ef0ae1.svg?invert_in_darkmode&sanitize=true" align=middle width=1729.8360222pt height=124.74886710000001pt/> h_\theta(x) = g(\theta_0 + \theta_1 x_1 + \theta_2 x_2) <img src="/LogisticRegression/tex/8485bf2a4cc63deaaaf8eb0266c87f1f.svg?invert_in_darkmode&sanitize=true" align=middle width=64.8726804pt height=22.465723500000017pt/> \theta_0 = 6, \theta_1 = 0, \theta_2 = -1θ $.
+Which of the following figures represents the decision boundary found
+by your classifier? <br/>
+(C) <br/>
+A. <br/>
+  <img width="150" src="figure/3.png" alt=" "/> <br/>
+B. <br/>
+  <img width="150" src="figure/4.png" alt=" "/> <br/>
+C. <br/>
+  <img width="150" src="figure/5.png" alt=" "/> <br/>
+D. <br/>
+  <img width="150" src="figure/6.png" alt=" "/> <br/>
