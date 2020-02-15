@@ -78,7 +78,7 @@
 当模型参数过多时, 模型可能过度拟合训练集, 称作过拟合(Overfitting)或者high
 variance, 此时模型对实际数据的泛化能力可能不好, 如下图右.
 
-<div align=center><img width="250" src="figure/7.png" alt=" "/></div>
+<div align=center><img width="540" src="figure/7.png" alt=" "/></div>
 
 过拟合的处理策略:
 * 减少使用的特征数量.
@@ -88,15 +88,13 @@ variance, 此时模型对实际数据的泛化能力可能不好, 如下图右.
 
 <p align="center"><img src="/LogisticRegression/tex/20b9cdbeadbd474ee9fc5baedb741a83.svg?invert_in_darkmode&sanitize=true" align=middle width=545.1280922999999pt height=47.1348339pt/></p>
 
-注意, 上式不增加<img src="/LogisticRegression/tex/2236187420fb2bfcf28d7dfd16ed31e1.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>项, <img src="/LogisticRegression/tex/0ae3f8e52e8833a55be05df21031a4fc.svg?invert_in_darkmode&sanitize=true" align=middle width=9.58908224999999pt height=22.831056599999986pt/>成为正则化因子.
+注意, 上式不增加<img src="/LogisticRegression/tex/2236187420fb2bfcf28d7dfd16ed31e1.svg?invert_in_darkmode&sanitize=true" align=middle width=14.269439249999989pt height=22.831056599999986pt/>项, <img src="/LogisticRegression/tex/0ae3f8e52e8833a55be05df21031a4fc.svg?invert_in_darkmode&sanitize=true" align=middle width=9.58908224999999pt height=22.831056599999986pt/>称作正则化因子.
 这样, 目标中包含两项, 一项是尽可能好地拟合训练数据, 另一项是让参数尽可能小,
 这样该参数的拟合能力会变弱.
 
 正则化下的梯度下降算法如下:
 
-<p align="center"><img src="/LogisticRegression/tex/abb8dc414f66df66182c659b82024cbe.svg?invert_in_darkmode&sanitize=true" align=middle width=268.62463485pt height=44.89738935pt/></p>
-
-<p align="center"><img src="/LogisticRegression/tex/efed5fa37905d40b1de055513b8fe539.svg?invert_in_darkmode&sanitize=true" align=middle width=448.41522165pt height=99.657789pt/></p>
+<p align="center"><img src="/LogisticRegression/tex/f24c5efd709b427577be1bc626ba919d.svg?invert_in_darkmode&sanitize=true" align=middle width=448.8632791499999pt height=154.418187pt/></p>
 
 ## Quiz
 1. Suppose that you have trained a logistic regression classifier, and
@@ -108,7 +106,7 @@ B. Our estimate for <img src="/LogisticRegression/tex/27c8204f097f03a8afc60276a1
 C. Our estimate for <img src="/LogisticRegression/tex/019601d6da24e719033b1a49a5460507.svg?invert_in_darkmode&sanitize=true" align=middle width=93.84887325pt height=24.65753399999998pt/> is 0.3. <br/>
 D. Our estimate for <img src="/LogisticRegression/tex/019601d6da24e719033b1a49a5460507.svg?invert_in_darkmode&sanitize=true" align=middle width=93.84887325pt height=24.65753399999998pt/> is 0.7. <br/>
 
-<div align=center><img width="250" src="figure/2.png" alt=" "/></div>
+<div align=center><img width="350" src="figure/2.png" alt=" "/></div>
 
 2. Suppose you have the following training set, and fit a logistic
 regression classifier
@@ -194,7 +192,7 @@ B. <img src="/LogisticRegression/tex/02dc02c4e1c5b96cc62b7396257ca05d.svg?invert
 
 8. Which of the following statements about regularization are true?
 Check all that apply. <br/>
-() <br/>
+(C) <br/>
 A. Using too large a value of <img src="/LogisticRegression/tex/0ae3f8e52e8833a55be05df21031a4fc.svg?invert_in_darkmode&sanitize=true" align=middle width=9.58908224999999pt height=22.831056599999986pt/> can cause your hypothesis to
 overfit the data; this can be avoided by reducing <img src="/LogisticRegression/tex/0ae3f8e52e8833a55be05df21031a4fc.svg?invert_in_darkmode&sanitize=true" align=middle width=9.58908224999999pt height=22.831056599999986pt/>. <br/>
 B. Because logistic regression outputs values
