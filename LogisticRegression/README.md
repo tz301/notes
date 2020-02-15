@@ -78,7 +78,7 @@
 当模型参数过多时, 模型可能过度拟合训练集, 称作过拟合(Overfitting)或者high
 variance, 此时模型对实际数据的泛化能力可能不好, 如下图右.
 
-<div align=center><img width="540" src="figure/7.png" alt=" "/></div>
+<div align=center><img width="450" src="figure/7.png" alt=" "/></div>
 
 过拟合的处理策略:
 * 减少使用的特征数量.
@@ -94,7 +94,7 @@ variance, 此时模型对实际数据的泛化能力可能不好, 如下图右.
 
 正则化下的梯度下降算法如下:
 
-<p align="center"><img src="/LogisticRegression/tex/f24c5efd709b427577be1bc626ba919d.svg?invert_in_darkmode&sanitize=true" align=middle width=448.8632791499999pt height=154.418187pt/></p>
+<p align="center"><img src="/LogisticRegression/tex/301027b352ddd727a0c828809f0b21ce.svg?invert_in_darkmode&sanitize=true" align=middle width=454.34272289999996pt height=156.03934829999997pt/></p>
 
 ## Quiz
 1. Suppose that you have trained a logistic regression classifier, and
