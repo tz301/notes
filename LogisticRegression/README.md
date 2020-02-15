@@ -65,7 +65,7 @@
 
 可得:
 
-<p align="center"><img src="/LogisticRegression/tex/7fb8337eae64a4b47520164145f8c857.svg?invert_in_darkmode&sanitize=true" align=middle width=308.51063595pt height=258.2016657pt/></p>
+<p align="center"><img src="/LogisticRegression/tex/a45a2c3afd74a24fe3ecdcc5b96f5b32.svg?invert_in_darkmode&sanitize=true" align=middle width=321.2960685pt height=258.2016657pt/></p>
 
 通过上式可以得到梯度下降为:
 
