@@ -118,7 +118,7 @@ $$ \theta_j := \theta_j - \alpha \frac {1} {m} \sum_{i = 1}^m
 当模型参数过多时, 模型可能过度拟合训练集, 称作过拟合(Overfitting)或者high
 variance, 此时模型对实际数据的泛化能力可能不好, 如下图右.
 
-<div align=center><img width="250" src="figure/7.png" alt=" "/></div>
+<div align=center><img width="540" src="figure/7.png" alt=" "/></div>
 
 过拟合的处理策略:
 * 减少使用的特征数量.
@@ -131,21 +131,21 @@ $$ J(\theta) := - \frac {1} {m} \sum_{i = 1}^m
   - (1 - y^{(i)}) log(1 - h_\theta(x^{(i)}))]
 + \frac {\lambda} {2m} \sum_{j = 1}^n \theta_j^2 $$
 
-注意, 上式不增加$ \theta_0 $项, $ \lambda $成为正则化因子.
+注意, 上式不增加$ \theta_0 $项, $ \lambda $称作正则化因子.
 这样, 目标中包含两项, 一项是尽可能好地拟合训练数据, 另一项是让参数尽可能小,
 这样该参数的拟合能力会变弱.
 
 正则化下的梯度下降算法如下:
 
-$$ \theta_0 := \theta_0 - \alpha \frac {1} {m} \sum_{i = 1}^m
-(h_\theta(x^{(i)}) - y^{(i)}) x_0^{(i)} $$
-
 $$
 \begin{aligned}
+\theta_0
+& := \theta_0 - \alpha \frac {1} {m} \sum_{i = 1}^m
+(h_\theta(x^{(i)}) - y^{(i)}) x_0^{(i)} \\
 \theta_j
-& := \theta_j - \alpha \begin[ \frac {1} {m} \sum_{i = 1}^m
+& := \theta_j - \alpha \begin[{ \frac {1} {m} \sum_{i = 1}^m
      (h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)} +
-     \frac {\lambda} {m} \theta_j \end[ \\
+     \frac {\lambda} {m} \theta_j }\end[ \\
 & := (1 - \alpha \frac {\lambda} {m}) \theta_j - \alpha \frac {1} {m}
      \sum_{i = 1}^m (h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)},
      j = 1, 2, \cdots, n \\
@@ -162,7 +162,7 @@ B. Our estimate for $ P(y = 0| x; \theta) $ is 0.7. <br/>
 C. Our estimate for $ P(y = 1| x; \theta) $ is 0.3. <br/>
 D. Our estimate for $ P(y = 1| x; \theta) $ is 0.7. <br/>
 
-<div align=center><img width="250" src="figure/2.png" alt=" "/></div>
+<div align=center><img width="350" src="figure/2.png" alt=" "/></div>
 
 2. Suppose you have the following training set, and fit a logistic
 regression classifier
@@ -255,7 +255,7 @@ B. $ \theta = \left[ \begin{matrix} 2.75 \\ 1.32 \end{matrix} \right] $ <br/>
 
 8. Which of the following statements about regularization are true?
 Check all that apply. <br/>
-() <br/>
+(C) <br/>
 A. Using too large a value of $ \lambda $ can cause your hypothesis to
 overfit the data; this can be avoided by reducing $ \lambda $. <br/>
 B. Because logistic regression outputs values
