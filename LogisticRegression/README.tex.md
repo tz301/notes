@@ -160,7 +160,7 @@ This means (check all that apply): <br/>
 A. Our estimate for $ P(y = 0| x; \theta) $ is 0.3. <br/>
 B. Our estimate for $ P(y = 0| x; \theta) $ is 0.7. <br/>
 C. Our estimate for $ P(y = 1| x; \theta) $ is 0.3. <br/>
-D. Our estimate for $ P(y = 1| x; \theta) $ is 0.7.
+D. Our estimate for $ P(y = 1| x; \theta) $ is 0.7. <br/>
 
 <div align=center><img width="250" src="figure/2.png" alt=" "/></div>
 
@@ -181,7 +181,7 @@ $ h_\theta(x) = g(\theta_0 + \theta_1 x_1 + \theta_2 x_2 +
 would increase $ J(\theta) $ because we are now summing over more terms. <br/>
 D. If we train gradient descent for enough iterations, for some examples
 $ x^{(i)} $ in the training set it is possible to obtain
-$ h_\theta(x^{(i)}) > 1 $.
+$ h_\theta(x^{(i)}) > 1 $. <br/>
 
 3. For logistic regression, the gradient is given by
 $ \frac {\partial} {\partial \theta_j} J(\theta) = \frac {1} {m}
@@ -199,7 +199,7 @@ C. $ \theta := \theta - \alpha \frac {1} {m} \sum_{i=1}^m
 \left(\theta^T x - y^{(i)}\right) x^{(i)} $ <br/>
 D. $ \theta_j := \theta_j - \alpha \frac {1} {m} \sum_{i=1}^m
 (h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)} $
-(simultaneously update for all $ j $).
+(simultaneously update for all $ j $). <br/>
 
 4. Which of the following statements are true? Check all that apply. <br/>
 (AB) <br/>
@@ -213,7 +213,7 @@ regression. <br/>
 D. For logistic regression, sometimes gradient descent will converge to
 a local minimum (and fail to find the global minimum). This is the
 reason we prefer more advanced optimization algorithms such as fminunc
-(conjugate gradient/BFGS/L-BFGS/etc).
+(conjugate gradient/BFGS/L-BFGS/etc). <br/>
 
 5. Suppose you train a logistic classifier
 $ h_\theta(x) = g(\theta_0 + \theta_1 x_1 + \theta_2 x_2) $.
@@ -229,3 +229,67 @@ C. <br/>
   <img width="150" src="figure/5.png" alt=" "/> <br/>
 D. <br/>
   <img width="150" src="figure/6.png" alt=" "/> <br/>
+
+6. You are training a classification model with logistic regression.
+Which of the following statements are true? Check all that apply. <br/>
+(A) <br/>
+A. Adding a new feature to the model always results in equal or better
+performance on the training set. <br/>
+B. Introducing regularization to the model always results in equal or
+better performance on examples not in the training set. <br/>
+C. Introducing regularization to the model always results in equal or
+better performance on the training set. <br/>
+D. Adding many new features to the model helps prevent overfitting on
+the training set. <br/>
+
+7. Suppose you ran logistic regression twice, once with $ \lambda = 0 $,
+and once with $ \lambda = 1 $. One of the times, you got parameters
+$ \theta = \left[ \begin{matrix} 26.29 \\ 65.41 \end{matrix} \right] $,
+and the other time you got
+$ \theta = \left[ \begin{matrix} 2.75 \\ 1.32 \end{matrix} \right] $.
+However, you forgot which value of $\lambda $ corresponds to which value
+of $ \theta $. Which one do you think corresponds to $ \lambda = 1 $? <br/>
+(B) <br/>
+A. $ \theta = \left[ \begin{matrix} 26.29 \\ 65.41 \end{matrix} \right] $ <br/>
+B. $ \theta = \left[ \begin{matrix} 2.75 \\ 1.32 \end{matrix} \right] $ <br/>
+
+8. Which of the following statements about regularization are true?
+Check all that apply. <br/>
+() <br/>
+A. Using too large a value of $ \lambda $ can cause your hypothesis to
+overfit the data; this can be avoided by reducing $ \lambda $. <br/>
+B. Because logistic regression outputs values
+$ 0 \leq h_\theta(x) \leq 1 $, its range of output values can only be
+"shrunk" slightly by regularization anyway, so regularization is
+generally not helpful for it. <br/>
+C. Consider a classification problem. Adding regularization may cause
+your classifier to incorrectly classify some training examples (which it
+had correctly classified when not using regularization, i.e. when
+$ \lambda = 0$). <br/>
+D. Using a very large value of $ \lambda $ cannot hurt the performance
+of your hypothesis; the only reason we do not set $ \lambda $ to be too
+large is to avoid numerical problems. <br/>
+
+9. In which one of the following figures do you think the hypothesis
+has overfit the training set? <br/>
+(A) <br/>
+A. <br/>
+  <img width="150" src="figure/8.png" alt=" "/> <br/>
+B. <br/>
+  <img width="150" src="figure/9.png" alt=" "/> <br/>
+C. <br/>
+  <img width="150" src="figure/10.png" alt=" "/> <br/>
+D. <br/>
+  <img width="150" src="figure/11.png" alt=" "/> <br/>
+
+10. In which one of the following figures do you think the hypothesis
+has underfit the training set? <br/>
+(A) <br/>
+A. <br/>
+  <img width="150" src="figure/12.png" alt=" "/> <br/>
+B. <br/>
+  <img width="150" src="figure/13.png" alt=" "/> <br/>
+C. <br/>
+  <img width="150" src="figure/14.png" alt=" "/> <br/>
+D. <br/>
+  <img width="150" src="figure/15.png" alt=" "/> <br/>
