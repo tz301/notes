@@ -7,6 +7,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 
+from base.utils import load_txt
 from LinearRegression.utils import gradient_descent
 
 
@@ -59,9 +60,7 @@ def __cmd():
   """命令行函数.
 
   """
-  data = np.loadtxt(Path(__file__).parent / "data2.txt",  delimiter=",")
-  feature = data[:, :-1]
-  label = data[:, -1]
+  feature, label = load_txt(Path(__file__).parent / "data2.txt")
   num = len(label)  # 样本数
 
   feature_norm, mu, sigma = __normalize_feature(feature)

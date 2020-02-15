@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from mpl_toolkits import mplot3d
 
+from base.utils import load_txt
 from LinearRegression.utils import compute_cost, gradient_descent
 
 
@@ -65,9 +66,7 @@ def __cmd():
   """命令行函数.
 
   """
-  data = np.loadtxt(Path(__file__).parent / "data1.txt",  delimiter=",")
-  feature = np.expand_dims(data[:, 0], 1)
-  label = data[:, -1]
+  feature, label = load_txt(Path(__file__).parent / "data1.txt")
   num = len(feature)  # 样本数
 
   # 绘图显示数据.
