@@ -10,7 +10,7 @@ def compute_cost(feature, label, theta):
   Args:
     feature: 特征, 维度为(样本数, 特征数).
     label: 维度为(样本数).
-    theta: 参数, 维度为(特征数, 1).
+    theta: 参数, 维度为(特征数).
 
   Returns:
     代价函数.
