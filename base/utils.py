@@ -16,8 +16,8 @@ def load_txt(file_path):
     特征和标签, 特征维度(样本数, 特征数), 标签维度(样本数).
   """
   data = np.loadtxt(file_path, delimiter=",")
-  feature = data[:, :-1]
+  feat = data[:, :-1]
   label = data[:, -1]
-  if len(feature.shape) == 1:
-    feature = np.expand_dims(feature, 1)
-  return feature, label
+  if len(feat.shape) == 1:
+    feat = np.expand_dims(feat, 1)
+  return feat, label

@@ -12,24 +12,24 @@ from base.utils import load_txt
 from LinearRegression.utils import compute_cost, gradient_descent
 
 
-def __plot(feature, label):
+def __plot(feat, label):
   """绘图.
 
   Args:
-    feature: 特征, 维度为(样本数, 1).
+    feat: 特征, 维度为(样本数, 1).
     label: 标签, 维度为(样本数).
   """
   plt.figure()
-  plt.plot(feature, label, "rx", label="Training Data")
+  plt.plot(feat, label, "rx", label="Training Data")
   plt.xlabel("Population of City in 10,000s")
   plt.ylabel("Profit in $10,000s")
 
 
-def __cost_visualizing(feature, label, best_theta):
+def __cost_visualizing(feat, label, best_theta):
   """代价函数可视化.
 
   Args:
-    feature: 特征, 维度为(样本数, 特征数).
+    feat: 特征, 维度为(样本数, 特征数).
     label: 维度为(样本数).
     best_theta: 最优参数, 维度为(特征数).
   """
@@ -43,7 +43,7 @@ def __cost_visualizing(feature, label, best_theta):
   for i in range(num):
     for j in range(num):
       theta = [grid1[i, j], grid2[i, j]]
-      costs[i, j] = compute_cost(feature, label, theta)
+      costs[i, j] = compute_cost(feat, label, theta)
 
   plt.figure()
   ax = plt.axes(projection='3d')
@@ -66,22 +66,22 @@ def __cmd():
   """命令行函数.
 
   """
-  feature, label = load_txt(Path(__file__).parent / "data1.txt")
-  num = len(feature)  # 样本数
+  feat, label = load_txt(Path(__file__).parent / "data1.txt")
+  num = len(feat)  # 样本数
 
   # 绘图显示数据.
-  __plot(feature, label)
+  __plot(feat, label)
 
   # 梯度下降.
   lr = 0.01
   iteration = 1500
   init_theta = np.zeros(2)
-  feature = np.concatenate([np.ones((num, 1)), feature], axis=-1)  # 增加全为1的第0列.
-  best_theta, _ = gradient_descent(feature, label, init_theta, lr, iteration)
+  feat = np.concatenate([np.ones((num, 1)), feat], axis=-1)  # 增加全为1的第0列.
+  best_theta, _ = gradient_descent(feat, label, init_theta, lr, iteration)
   logging.info(f"梯度下降得到的最优参数: [{best_theta[0]:.5f} "
                f"{best_theta[1]:.5f}]")
 
-  plt.plot(feature[:, 1], np.dot(feature, best_theta), "-",
+  plt.plot(feat[:, 1], np.dot(feat, best_theta), "-",
            label="Linear Regression")
   plt.legend()
 
@@ -90,7 +90,7 @@ def __cmd():
   logging.info(f"人口为35000时, 预测得到的利润为: {pred:.2f}")
 
   # 代价函数可视化.
-  __cost_visualizing(feature, label, best_theta)
+  __cost_visualizing(feat, label, best_theta)
   plt.show()
 
 
