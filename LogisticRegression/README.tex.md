@@ -293,3 +293,19 @@ C. <br/>
   <img width="150" src="figure/14.png" alt=" "/> <br/>
 D. <br/>
   <img width="150" src="figure/15.png" alt=" "/> <br/>
+
+## Exercise1
+通过考试成绩来预测学生能否被录取, 代码见[exercise1.py](exercise1.py).
+
+训练数据包含科目1的考试成绩, 科目2的考试成绩和是否被录取(0表示不被录取,
+1表示被录取), 如下图.
+
+<div align=center><img width="400" src="figure/ex1.png" alt=" "/></div>
+
+通过逻辑回归得到的最优参数为: [-25.16132 0.20623 0.20147]. 可以绘出决策边界:
+
+<div align=center><img width="400" src="figure/ex2.png" alt=" "/></div>
+
+通过预测可以得到, 科目1分数为45, 科目2分数为85时, 入学概率为: 0.776.
+
+对整个训练集预测, 可以得到训练集准确率为89%.
