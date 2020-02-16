@@ -9,6 +9,7 @@ import numpy as np
 from scipy.optimize import minimize
 
 from base.utils import load_txt
+from LogisticRegression.utils import sigmoid
 
 
 def __plot(feat, label):
@@ -34,18 +35,6 @@ def __plot(feat, label):
   return ax
 
 
-def __sigmoid(input_vec):
-  """sigmoid函数.
-
-  Args:
-    input_vec: 输入向量.
-
-  Returns:
-    输出向量.
-  """
-  return 1 / (1 + np.exp(-input_vec))
-
-
 def __compute_cost(theta, feat, label):
   """计算代价函数.
 
@@ -57,7 +46,7 @@ def __compute_cost(theta, feat, label):
   Returns:
     代价函数数值.
   """
-  hypothesis = __sigmoid(np.dot(feat, theta))
+  hypothesis = sigmoid(np.dot(feat, theta))
   cost = np.sum(-np.multiply(label, np.log(hypothesis)) -
                 np.multiply(1 - label, np.log(1 - hypothesis))) / len(feat)
   return cost
@@ -74,7 +63,7 @@ def __compute_grad(theta, feat, label):
   Returns:
     梯度数值.
   """
-  hypothesis = __sigmoid(np.dot(feat, theta))
+  hypothesis = sigmoid(np.dot(feat, theta))
   grad = np.sum(np.multiply(np.tile(hypothesis - label, (feat.shape[1], 1)).T,
                             feat), axis=0) / len(feat)
   return grad
@@ -125,7 +114,7 @@ def __cmd():
   plt.show()
 
   # 预测.
-  prob = __sigmoid(np.dot(np.array([[1, 45, 85]]), best_theta))[0]
+  prob = sigmoid(np.dot(np.array([[1, 45, 85]]), best_theta))[0]
   logging.info(f"科目1分数为45, 科目2分数为85时, 入学概率为: {prob:.3f}.")
 
   # 训练集准确率.
