@@ -248,3 +248,30 @@ D. <br/>
 对整个训练集预测, 可以得到训练集准确率为89%.
 
 ## Exercise2
+芯片质检, 代码见[exercise2.py](exercise2.py).
+
+训练数据包含测试1和测试2的得分以及是否通过质检(0表示不通过, 1表示通过), 如下图.
+
+<div align=center><img width="400" src="figure/ex3.png" alt=" "/></div>
+
+可以看出, 如果仅采用线性组合的特征, 无法对数据进行较好得分类. 因此, 对特征进行拓展,
+形式如下的28维特征:
+
+<p align="center"><img src="/LogisticRegression/tex/144653f7fcda4e5cc1af0ce7f03b1f98.svg?invert_in_darkmode&sanitize=true" align=middle width=191.01828074999997pt height=207.12536955pt/></p>
+
+由于特征维度明显增加, 逻辑回归更可能出现过拟合. 因此采用的逻辑回归增加了正则化算法.
+
+可得, 正则化因子分别为0, 0.01, 1和100时, 训练集准确率分别为87.29%, 84.75%,
+79.66%和50.85%. 决策边界如下图.
+
+<div align=center><img width="400" src="figure/ex4.png" alt=" "/></div>
+
+<div align=center><img width="400" src="figure/ex5.png" alt=" "/></div>
+
+<div align=center><img width="400" src="figure/ex6.png" alt=" "/></div>
+
+<div align=center><img width="400" src="figure/ex7.png" alt=" "/></div>
+
+可以看出, 正则化因子较小时, 训练集准确率较高, 但是决策边界对训练集过拟合;
+正则化因子较大时, 训练集准确率明显降低, 属于欠拟合.
+因此, 选择合适的正则化因子非常重要.
