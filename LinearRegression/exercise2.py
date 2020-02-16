@@ -25,13 +25,13 @@ def __normalize_feat(feat):
   return (feat - mu) / np.tile(sigma, (len(feat), 1)), mu, sigma
 
 
-def __gradient_descent_multi_lr(feat, label, init_theta, lr_list, iteration):
+def __gradient_descent_multi_lr(init_theta, feat, label, lr_list, iteration):
   """多个学习率分别进行梯度下降, 汇出曲线, 选择一组合适的参数.
 
   Args:
+    init_theta: 初始参数, 维度为(特征数).
     feat: 特征, 维度为(样本数, 特征数).
     label: 维度为(样本数).
-    init_theta: 初始参数, 维度为(特征数).
     lr_list: 学习率列表.
     iteration: 迭代次数.
 
@@ -40,7 +40,7 @@ def __gradient_descent_multi_lr(feat, label, init_theta, lr_list, iteration):
   """
   res = list()
   for lr in lr_list:
-    theta, costs = gradient_descent(feat, label, init_theta, lr, iteration)
+    theta, costs = gradient_descent(init_theta, feat, label, lr, iteration)
     res.append((lr, theta, costs))
 
   plt.figure()
@@ -71,7 +71,7 @@ def __cmd():
   lr_list = [0.3, 0.1, 0.03, 0.01, 0.003, 0.001]
   iteration = 400
   init_theta = np.zeros(3)
-  best_theta = __gradient_descent_multi_lr(feat_norm, label, init_theta,
+  best_theta = __gradient_descent_multi_lr(init_theta, feat_norm, label,
                                            lr_list, iteration)
   logging.info(f"梯度下降得到的最优参数: [{best_theta[0]:.5f} "
                f"{best_theta[1]:.5f} {best_theta[2]:.5f}]")
