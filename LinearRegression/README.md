@@ -318,5 +318,3 @@ normal equation) from being non-invertable (singular/degenerate).
 房屋尺寸为1650, 卧室数量为3时, 梯度下降预测得到的房价: 293081.46.
 
 可以看出, 虽然梯度下降得到的参数与Normal Equation相差较大, 但是预测值非常接近.
-
-<img src="/LinearRegression/tex/a116daf16f220e308f5d68a0c56ac81f.svg?invert_in_darkmode&sanitize=true" align=middle width=40.53482894999999pt height=22.831056599999986pt/>
