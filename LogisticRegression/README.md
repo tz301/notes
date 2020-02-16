@@ -247,4 +247,4 @@ D. <br/>
 
 对整个训练集预测, 可以得到训练集准确率为89%.
 
-<p align="center"><img src="/LogisticRegression/tex/a0c195e83bf8b738d7e282618a5f3826.svg?invert_in_darkmode&sanitize=true" align=middle width=40.53482895pt height=14.611878599999999pt/></p>
+## Exercise2
