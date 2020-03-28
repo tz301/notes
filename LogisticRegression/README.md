@@ -254,7 +254,7 @@ D. <br/>
 
 <div align=center><img width="400" src="figure/ex3.png" alt=" "/></div>
 
-可以看出, 如果仅采用线性组合的特征, 无法对数据进行较好得分类. 因此, 对特征进行拓展,
+可以看出, 如果仅采用线性组合的特征, 无法对数据进行较好地分类. 因此, 对特征进行拓展,
 形式如下的28维特征:
 
 <p align="center"><img src="/LogisticRegression/tex/144653f7fcda4e5cc1af0ce7f03b1f98.svg?invert_in_darkmode&sanitize=true" align=middle width=191.01828074999997pt height=207.12536955pt/></p>
