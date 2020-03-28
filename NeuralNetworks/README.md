@@ -77,8 +77,7 @@ D. <img src="/NeuralNetworks/tex/8136e1e8a964443682c740580e0b678a.svg?invert_in_
 <div align=center><img width="350" src="figure/4.png" alt=" "/></div>
 
 5. You are using the neural network pictured below and have learned the
-parameters
-<img src="/NeuralNetworks/tex/50d7b5f27171646137759f0b8972cc04.svg?invert_in_darkmode&sanitize=true" align=middle width=165.59383169999998pt height=47.6716218pt/>
+parameters <img src="/NeuralNetworks/tex/3679e8bfbcca1b569c7802cff34afbd4.svg?invert_in_darkmode&sanitize=true" align=middle width=165.59383169999998pt height=47.6716218pt/>
 (used to compute <img src="/NeuralNetworks/tex/618f6ec6d89efea72cc409ccafa6182e.svg?invert_in_darkmode&sanitize=true" align=middle width=25.515733649999987pt height=29.190975000000005pt/>) and
 <img src="/NeuralNetworks/tex/85830eee07f18d8e7a5db5b0c6139596.svg?invert_in_darkmode&sanitize=true" align=middle width=161.94085049999998pt height=29.190975000000005pt/>
 (used to compute <img src="/NeuralNetworks/tex/c7bd5d177078fe65adea0eec8a40e3a5.svg?invert_in_darkmode&sanitize=true" align=middle width=25.515733649999987pt height=29.190975000000005pt/> as a function of <img src="/NeuralNetworks/tex/618f6ec6d89efea72cc409ccafa6182e.svg?invert_in_darkmode&sanitize=true" align=middle width=25.515733649999987pt height=29.190975000000005pt/>).
