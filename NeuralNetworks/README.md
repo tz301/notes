@@ -4,7 +4,7 @@
 
 ## Forward Propagation
 
-神经网络的可以表示如下:
+神经网络可以表示如下:
 
 <div align=center><img width="450" src="figure/1.png" alt=" "/></div>
 
@@ -21,6 +21,6 @@
 
 <p align="center"><img src="/NeuralNetworks/tex/c7c6fd80e824f5b5ea62a1389c66f635.svg?invert_in_darkmode&sanitize=true" align=middle width=181.392618pt height=78.9048876pt/></p>
 
-那么可以将前向计算向量化:
+那么可以将前向计算向量化为:
 
 <p align="center"><img src="/NeuralNetworks/tex/a6f7bf12b4a1ae94ac7bdc29df680db7.svg?invert_in_darkmode&sanitize=true" align=middle width=159.9695625pt height=132.92097554999998pt/></p>
