@@ -109,7 +109,7 @@ parameters $ \Theta^{(1)} = \left[ \begin{matrix} 1 & -1.5 & 3.7 \\
                 1 & 5.1 & 2.3 \end{matrix} \right] $
 (used to compute $ a^{(2)} $) and
 $ \Theta^{(2)} = \left[ \begin{matrix} 1 & 0.6 & -0.8
-    \end{matrix} \right]$
+\end{matrix} \right]$
 (used to compute $ a^{(3)} $ as a function of $ a^{(2)} $).
 Suppose you swap the parameters for the first hidden layer between its
 two units so
