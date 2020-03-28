@@ -105,9 +105,8 @@ D. $ z = sigmoid(x); a2 = \Theta_1 * x $ <br/>
 <div align=center><img width="350" src="figure/4.png" alt=" "/></div>
 
 5. You are using the neural network pictured below and have learned the
-parameters
-$ \Theta^{(1)} = \left[ \begin{matrix} 1 & -1.5 & 3.7 \\
-    1 & 5.1 & 2.3 \end{matrix} \right] $
+parameters $ \Theta^{(1)} = \left[ \begin{matrix} 1 & -1.5 & 3.7 \\
+                1 & 5.1 & 2.3 \end{matrix} \right] $
 (used to compute $ a^{(2)} $) and
 $ \Theta^{(2)} = \left[ \begin{matrix} 1 & 0.6 & -0.8
     \end{matrix} \right]$
