@@ -106,19 +106,16 @@ D. $ z = sigmoid(x); a2 = \Theta_1 * x $ <br/>
 
 5. You are using the neural network pictured below and have learned the
 parameters $ \Theta^{(1)} = \left[ \begin{matrix} 1 & -1.5 & 3.7 \\
-                1 & 5.1 & 2.3 \end{matrix} \right] $
-(used to compute $ a^{(2)} $) and
-$ \Theta^{(2)} = \left[ \begin{matrix} 1 & 0.6 & -0.8
-\end{matrix} \right]$
+1 & 5.1 & 2.3 \end{matrix} \right] $
+(used to compute $ a^{(2)} $) and $ \Theta^{(2)} = \left[
+\begin{matrix} 1 & 0.6 & -0.8 \end{matrix} \right]$
 (used to compute $ a^{(3)} $ as a function of $ a^{(2)} $).
 Suppose you swap the parameters for the first hidden layer between its
-two units so
-$ \Theta^{(1)} = \left[ \begin{matrix} 1 & 5.1 & 2.3 \\
-    1 & -1.5 & 3.7 \end{matrix} \right] $
-and also swap the output layer so
+two units so $ \Theta^{(1)} = \left[ \begin{matrix} 1 & 5.1 & 2.3 \\
+1 & -1.5 & 3.7 \end{matrix} \right] $ and also swap the output layer so
 $ \Theta^{(2)} = \left[ \begin{matrix} 1 & -0.8 & 0.6
-    \end{matrix} \right] $.
-How will this change the value of the output $ h_{\Theta}(x) $? <br/>
+\end{matrix} \right] $. How will this change the value of the output
+$ h_{\Theta}(x) $? <br/>
 (A) <br/>
 A. It will stay the same. <br/>
 B. It will increase. <br/>
