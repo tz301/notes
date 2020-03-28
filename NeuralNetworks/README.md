@@ -24,3 +24,71 @@
 那么可以将前向计算向量化为:
 
 <p align="center"><img src="/NeuralNetworks/tex/a6f7bf12b4a1ae94ac7bdc29df680db7.svg?invert_in_darkmode&sanitize=true" align=middle width=159.9695625pt height=132.92097554999998pt/></p>
+
+## Quiz
+1. Which of the following statements are true? Check all that apply. <br/>
+(AC) <br/>
+A. Any logical function over binary-valued (0 or 1) inputs <img src="/NeuralNetworks/tex/6bd71d4c07531ce53dc5d08d0d7e1524.svg?invert_in_darkmode&sanitize=true" align=middle width=15.94753544999999pt height=14.15524440000002pt/> and
+<img src="/NeuralNetworks/tex/aa0968eba9d0dd34149c2ae25c317f26.svg?invert_in_darkmode&sanitize=true" align=middle width=15.94753544999999pt height=14.15524440000002pt/> can be (approximately) represented using some neural network. <br/>
+B. Suppose you have a multi-class classification problem with three
+classes, trained with a 3 layer network.
+Let <img src="/NeuralNetworks/tex/bed7262bf28ca97804e5a063e597fe04.svg?invert_in_darkmode&sanitize=true" align=middle width=110.15807054999999pt height=34.337843099999986pt/> be the activation of the first
+output unit, and similarly <img src="/NeuralNetworks/tex/797dc3c3796c9230d69fa7c6cd6a32ff.svg?invert_in_darkmode&sanitize=true" align=middle width=110.15807054999999pt height=34.337843099999986pt/> and
+<img src="/NeuralNetworks/tex/a3ff59afd26cb2ca1239b9aec6c73584.svg?invert_in_darkmode&sanitize=true" align=middle width=110.15807054999999pt height=34.337843099999986pt/> . Then for any input <img src="/NeuralNetworks/tex/e4fd027188c5ecbf6abde58e5b94bcd5.svg?invert_in_darkmode&sanitize=true" align=middle width=9.39498779999999pt height=14.15524440000002pt/>, it must be
+the case that <img src="/NeuralNetworks/tex/613274a2c63e1bce8514c4dc3cf8dfb3.svg?invert_in_darkmode&sanitize=true" align=middle width=149.33213295pt height=34.337843099999986pt/>. <br/>
+C. The activation values of the hidden units in a neural network, with
+the sigmoid activation function applied at every layer, are always in
+the range (0, 1). <br/>
+D. A two layer (one input layer, one output layer; no hidden layer)
+neural network can represent the XOR function. <br/>
+
+2. Consider the following neural network which takes two binary-valued
+inputs <img src="/NeuralNetworks/tex/56313c99a66117c49a9c15bb59805962.svg?invert_in_darkmode&sanitize=true" align=middle width=90.15966299999998pt height=21.18721440000001pt/> and outputs <img src="/NeuralNetworks/tex/dd02063f2b3c169f4438637a75f2a4b4.svg?invert_in_darkmode&sanitize=true" align=middle width=42.56482229999999pt height=24.65753399999998pt/>. Which of
+the following logical functions does it (approximately) compute? <br/>
+(A) <br/>
+A. OR <br/>
+B. AND <br/>
+C. NOT AND <br/>
+D. XOR <br/>
+
+<img width="150" src="figure/2.png" alt=" "/> <br/>
+
+3. Consider the neural network given below. Which of the following
+equations correctly computes the activation <img src="/NeuralNetworks/tex/49349cfe6ea1bf346e639b6598ede31d.svg?invert_in_darkmode&sanitize=true" align=middle width=25.515733649999987pt height=34.337843099999986pt/>?
+Note: <img src="/NeuralNetworks/tex/2ece8d1b43987193f87fca2268326d8a.svg?invert_in_darkmode&sanitize=true" align=middle width=29.58340934999999pt height=24.65753399999998pt/>is the sigmoid activation function. <br/>
+(A) <br/>
+A. <img src="/NeuralNetworks/tex/ab3355c12342aa2e4d57a5e3ccc1b126.svg?invert_in_darkmode&sanitize=true" align=middle width=290.10495855pt height=37.80850590000001pt/> <br/>
+B. <img src="/NeuralNetworks/tex/fa40a5f9c5f0d2ab0f00e78d56d01ea0.svg?invert_in_darkmode&sanitize=true" align=middle width=290.10495855pt height=37.80850590000001pt/> <br/>
+C. <img src="/NeuralNetworks/tex/0b1cdaabc6d0198843f71dccb0ffe98e.svg?invert_in_darkmode&sanitize=true" align=middle width=290.10495855pt height=37.80850590000001pt/> <br/>
+D. <img src="/NeuralNetworks/tex/36eb282f78ddb86182c18f9b86cb8fdc.svg?invert_in_darkmode&sanitize=true" align=middle width=290.10495855pt height=37.80850590000001pt/> <br/>
+
+<img width="150" src="figure/3.png" alt=" "/> <br/>
+
+4. You have the following neural network. You'd like to compute the
+activations of the hidden layer <img src="/NeuralNetworks/tex/618f6ec6d89efea72cc409ccafa6182e.svg?invert_in_darkmode&sanitize=true" align=middle width=25.515733649999987pt height=29.190975000000005pt/>. You want to have a
+vectorized implementation (i.e., one that does not use for loops).
+Which of the following implementations correctly compute?
+Check all that apply. <br>
+(A) <br/>
+A. <img src="/NeuralNetworks/tex/63421037aad93d22991e72b11c2cdc78.svg?invert_in_darkmode&sanitize=true" align=middle width=154.2659316pt height=24.65753399999998pt/> <br/>
+B. <img src="/NeuralNetworks/tex/f256203daef04810706f51e1d621b67c.svg?invert_in_darkmode&sanitize=true" align=middle width=154.2659316pt height=24.65753399999998pt/> <br/>
+C. <img src="/NeuralNetworks/tex/1548fec64d4e3cf8c9bd750a31ebf599.svg?invert_in_darkmode&sanitize=true" align=middle width=154.2659316pt height=24.65753399999998pt/> <br/>
+D. <img src="/NeuralNetworks/tex/758d680f6dad762603269ffd56486eaf.svg?invert_in_darkmode&sanitize=true" align=middle width=202.94155034999997pt height=24.65753399999998pt/> <br/>
+
+<img width="150" src="figure/4.png" alt=" "/> <br/>
+
+5. You are using the neural network pictured below and have learned the
+parameters
+<img src="/NeuralNetworks/tex/50d7b5f27171646137759f0b8972cc04.svg?invert_in_darkmode&sanitize=true" align=middle width=165.59383169999998pt height=47.6716218pt/>(used to compute $ a^{(2)} $) and
+<img src="/NeuralNetworks/tex/bba418908d6bd6e8a73c630204ff3350.svg?invert_in_darkmode&sanitize=true" align=middle width=161.94085049999998pt height=29.190975000000005pt/>(used to compute <img src="/NeuralNetworks/tex/c7bd5d177078fe65adea0eec8a40e3a5.svg?invert_in_darkmode&sanitize=true" align=middle width=25.515733649999987pt height=29.190975000000005pt/> as a function of <img src="/NeuralNetworks/tex/618f6ec6d89efea72cc409ccafa6182e.svg?invert_in_darkmode&sanitize=true" align=middle width=25.515733649999987pt height=29.190975000000005pt/>.
+Suppose you swap the parameters for the first hidden layer between its
+two units so
+<img src="/NeuralNetworks/tex/6979e569e23fff4a57b4e1966d2dbc54.svg?invert_in_darkmode&sanitize=true" align=middle width=385.67259060000004pt height=47.6716218pt/> \Theta^{(2)} = \left[ <p align="center"><img src="/NeuralNetworks/tex/d2668c700a3834316d42d10ab1a111eb.svg?invert_in_darkmode&sanitize=true" align=middle width=95.89061625pt height=11.96348175pt/></p> \right].
+How will this change the value of the output <img src="/NeuralNetworks/tex/dd02063f2b3c169f4438637a75f2a4b4.svg?invert_in_darkmode&sanitize=true" align=middle width=42.56482229999999pt height=24.65753399999998pt/>? <br/>
+(A) <br/>
+A. It will stay the same. <br/>
+B. It will increase. <br/>
+C. It will decrease. <br/>
+D. Insufficient information to tell: it may increase or decrease. <br/>
+
+<img width="150" src="figure/5.png" alt=" "/> <br/>
