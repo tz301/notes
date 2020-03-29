@@ -2,30 +2,40 @@
 
 # Neural Networks
 
-## Forward Propagation
+## Model Representation
 
 神经网络可以表示如下:
 
 <div align=center><img width="450" src="figure/1.png" alt=" "/></div>
 
-其中, $ a_i^{(j)} $称作第$ j $层的第$ i $个单元的激活(activation),
-$ \Theta ^{(j)} $为权重矩阵, 表示第$ j $层到第$ j + 1 $层之间的映射关系.
+假设有$ m $个训练样本: $ \left\{ \left( x^{(1)}, y^{(1)} \right),
+\left( x^{(2)}, y^{(2)} \right), \cdots,
+\left( x^{(m)}, y^{(m)} \right) \right\} $, 定义$ L $为网络的层数,
+$ s_l $为第$ l $层的单元数(不包含偏置单元数).
 
-前向计算如下:
+对于二分类问题, $ y = 0 $ 或者 $ y = 1 $.
+
+对于多分类问题, 输出为one-hot向量,
+例如$ \left[ \begin{matrix} 1 \\ 0 \\ 0 \\ 0 \end{matrix} \right] $.
+
+## Cost Function
+
+神经网络的代价函数是逻辑回归更加一般化的表达:
 
 $$
 \begin{aligned}
-a_1^{(2)} & = g \left( \Theta_{10}^{(1)} x_0 + \Theta_{11}^{(1)} x_1 +
-              \Theta_{12}^{(1)} x_2 + \Theta_{13}^{(1)} x_3 \right) \\
-a_2^{(2)} & = g \left( \Theta_{20}^{(1)} x_0 + \Theta_{21}^{(1)} x_1 +
-              \Theta_{22}^{(1)} x_2 + \Theta_{23}^{(1)} x_3 \right) \\
-a_3^{(2)} & = g \left( \Theta_{30}^{(1)} x_0 + \Theta_{31}^{(1)} x_1 +
-              \Theta_{32}^{(1)} x_2 + \Theta_{33}^{(1)} x_3 \right) \\
-h_{\Theta}(x) & = a_1^{(3)} = g \left(\Theta_{10}^{(2)} a_0^{(2)} +
-              \Theta_{11}^{(2)} a_1^{(2)} + \Theta_{12}^{(2)} a_2^{(2)}
-              + \Theta_{13}^{(2)} a_3^{(2)} \right)
+J(\Theta) = & - \frac {1} {m} \left[ \sum_{i = 1}^m \sum_{k = 1}^K
+y_k^{(i)} log(h_\Theta(x^{(i)}))_k +
+(1 - y_k^{(i)}) log(1 - (h_\Theta(x^{(i)}))_k) \right] \\
+& + \frac {\lambda} {2m} \sum_{l = 1}^{L - 1} \sum_{i = 1}^{s_l}
+\sum_{j = 1}^{s_l + 1} \left( \Theta_{ji}^{(l)} \right) ^2
 \end{aligned}
 $$
+
+其中, $ K $为分类数, $ (h_\Theta(x^{(i)}))_k $为第$ k $类输出.
+
+其中, $ a_i^{(j)} $称作第$ j $层的第$ i $个单元的激活(activation),
+$ \Theta ^{(j)} $为权重矩阵, 表示第$ j $层到第$ j + 1 $层之间的映射关系.
 
 ## Vectorized
 
