@@ -6,7 +6,7 @@
 
 神经网络可以表示如下:
 
-<div align=center><img width="450" src="figure/1.png" alt=" "/></div>
+<div align=center><img width="350" src="figure/1.png" alt=" "/></div>
 
 假设有<img src="/NeuralNetworks/tex/7371e4a1b4ff766095a123b7f0023f5c.svg?invert_in_darkmode&sanitize=true" align=middle width=14.433101099999991pt height=14.15524440000002pt/>个训练样本: <img src="/NeuralNetworks/tex/9f82bc8a04e7c0ceb9d4239b844f3a0a.svg?invert_in_darkmode&sanitize=true" align=middle width=308.60382465pt height=29.190975000000005pt/>, 定义<img src="/NeuralNetworks/tex/6e75432f3e00dc52c8ba25566dcdf692.svg?invert_in_darkmode&sanitize=true" align=middle width=11.18724254999999pt height=22.465723500000017pt/>为网络的层数,
 <img src="/NeuralNetworks/tex/db186aadfa4df23478b898c594ff33fc.svg?invert_in_darkmode&sanitize=true" align=middle width=11.92926734999999pt height=14.15524440000002pt/>为第<img src="/NeuralNetworks/tex/6361dd721b68dd339b33b2652c0abd4b.svg?invert_in_darkmode&sanitize=true" align=middle width=5.2283516999999895pt height=22.831056599999986pt/>层的单元数(不包含偏置单元数).
