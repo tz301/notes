@@ -2,18 +2,30 @@
 
 # Neural Networks
 
-## Forward Propagation
+## Model Representation
 
 神经网络可以表示如下:
 
 <div align=center><img width="450" src="figure/1.png" alt=" "/></div>
 
+假设有<img src="/NeuralNetworks/tex/7371e4a1b4ff766095a123b7f0023f5c.svg?invert_in_darkmode&sanitize=true" align=middle width=14.433101099999991pt height=14.15524440000002pt/>个训练样本: <img src="/NeuralNetworks/tex/9f82bc8a04e7c0ceb9d4239b844f3a0a.svg?invert_in_darkmode&sanitize=true" align=middle width=308.60382465pt height=29.190975000000005pt/>, 定义<img src="/NeuralNetworks/tex/6e75432f3e00dc52c8ba25566dcdf692.svg?invert_in_darkmode&sanitize=true" align=middle width=11.18724254999999pt height=22.465723500000017pt/>为网络的层数,
+<img src="/NeuralNetworks/tex/db186aadfa4df23478b898c594ff33fc.svg?invert_in_darkmode&sanitize=true" align=middle width=11.92926734999999pt height=14.15524440000002pt/>为第<img src="/NeuralNetworks/tex/6361dd721b68dd339b33b2652c0abd4b.svg?invert_in_darkmode&sanitize=true" align=middle width=5.2283516999999895pt height=22.831056599999986pt/>层的单元数(不包含偏置单元数).
+
+对于二分类问题, <img src="/NeuralNetworks/tex/32978bfb8134984e80f7457b29f7a438.svg?invert_in_darkmode&sanitize=true" align=middle width=38.78604674999999pt height=21.18721440000001pt/> 或者 <img src="/NeuralNetworks/tex/6e801e4d7f6a417a4c8efd5be4719b22.svg?invert_in_darkmode&sanitize=true" align=middle width=38.78604674999999pt height=21.18721440000001pt/>.
+
+对于多分类问题, 输出为one-hot向量,
+例如<img src="/NeuralNetworks/tex/0a5dd30ad92975dfc165839a00b93e3c.svg?invert_in_darkmode&sanitize=true" align=middle width=30.13708169999999pt height=87.12407549999999pt/>.
+
+## Cost Function
+
+神经网络的代价函数是逻辑回归更加一般化的表达:
+
+<p align="center"><img src="/NeuralNetworks/tex/2e7416997799bc04748c5ef031a3fa9e.svg?invert_in_darkmode&sanitize=true" align=middle width=519.8380869pt height=108.4456593pt/></p>
+
+其中, <img src="/NeuralNetworks/tex/7fdca86fa5369346e24865b4b84db64a.svg?invert_in_darkmode&sanitize=true" align=middle width=15.13700594999999pt height=22.465723500000017pt/>为分类数, <img src="/NeuralNetworks/tex/e21f6629c0fd3bb7dbe387a0b7541ea8.svg?invert_in_darkmode&sanitize=true" align=middle width=78.36310515pt height=29.190975000000005pt/>为第<img src="/NeuralNetworks/tex/0513e5ea3aca37742a6d9d75796a34c9.svg?invert_in_darkmode&sanitize=true" align=middle width=9.075367949999992pt height=22.831056599999986pt/>类输出.
+
 其中, <img src="/NeuralNetworks/tex/d99cee510704244f8fcfb59040c2cc70.svg?invert_in_darkmode&sanitize=true" align=middle width=25.067672849999987pt height=34.337843099999986pt/>称作第<img src="/NeuralNetworks/tex/e62c4c55196ed02fd2fa7c51b8c03611.svg?invert_in_darkmode&sanitize=true" align=middle width=7.710416999999989pt height=21.68300969999999pt/>层的第<img src="/NeuralNetworks/tex/8fceb32bd3f6803b77bbe1b1758a60b6.svg?invert_in_darkmode&sanitize=true" align=middle width=5.663225699999989pt height=21.68300969999999pt/>个单元的激活(activation),
 <img src="/NeuralNetworks/tex/7b9cb8b4adcde0a38b29720400765de6.svg?invert_in_darkmode&sanitize=true" align=middle width=29.16395294999999pt height=29.190975000000005pt/>为权重矩阵, 表示第<img src="/NeuralNetworks/tex/e62c4c55196ed02fd2fa7c51b8c03611.svg?invert_in_darkmode&sanitize=true" align=middle width=7.710416999999989pt height=21.68300969999999pt/>层到第<img src="/NeuralNetworks/tex/edd89410e3ea1e740bc429c05aa17ec6.svg?invert_in_darkmode&sanitize=true" align=middle width=36.02081834999999pt height=21.68300969999999pt/>层之间的映射关系.
-
-前向计算如下:
-
-<p align="center"><img src="/NeuralNetworks/tex/591d252f6de4d7314d954a3331be24ac.svg?invert_in_darkmode&sanitize=true" align=middle width=430.90221899999995pt height=138.08332065pt/></p>
 
 ## Vectorized
 
