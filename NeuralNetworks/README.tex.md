@@ -123,3 +123,15 @@ C. It will decrease. <br/>
 D. Insufficient information to tell: it may increase or decrease. <br/>
 
 <div align=center><img width="350" src="figure/5.png" alt=" "/></div>
+
+## Exercise
+
+手写数字识别, 通过神经网络识别数字0 ~ 9[exercise.py](exercise.py).
+
+输入样本数量为5000, 每张数字图像的像素点数为400, 即20 × 20.
+
+随机抽取100张绘图如下:
+
+<div align=center><img width="450" src="figure/6.png" alt=" "/></div>
+
+
