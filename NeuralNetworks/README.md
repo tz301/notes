@@ -77,16 +77,13 @@ D. <img src="/NeuralNetworks/tex/8136e1e8a964443682c740580e0b678a.svg?invert_in_
 <div align=center><img width="350" src="figure/4.png" alt=" "/></div>
 
 5. You are using the neural network pictured below and have learned the
-parameters <img src="/NeuralNetworks/tex/3679e8bfbcca1b569c7802cff34afbd4.svg?invert_in_darkmode&sanitize=true" align=middle width=165.59383169999998pt height=47.6716218pt/>
-(used to compute <img src="/NeuralNetworks/tex/618f6ec6d89efea72cc409ccafa6182e.svg?invert_in_darkmode&sanitize=true" align=middle width=25.515733649999987pt height=29.190975000000005pt/>) and
-<img src="/NeuralNetworks/tex/1f2bb0616b7d9a1c47499d9f3c71b40c.svg?invert_in_darkmode&sanitize=true" align=middle width=161.94085049999998pt height=29.190975000000005pt/>
+parameters <img src="/NeuralNetworks/tex/235e70c0a8ff49e7ca1e0346e3561320.svg?invert_in_darkmode&sanitize=true" align=middle width=165.59383169999998pt height=47.6716218pt/>
+(used to compute <img src="/NeuralNetworks/tex/618f6ec6d89efea72cc409ccafa6182e.svg?invert_in_darkmode&sanitize=true" align=middle width=25.515733649999987pt height=29.190975000000005pt/>) and <img src="/NeuralNetworks/tex/66e31453699f94d503677cbaaae47036.svg?invert_in_darkmode&sanitize=true" align=middle width=161.94085049999998pt height=29.190975000000005pt/>
 (used to compute <img src="/NeuralNetworks/tex/c7bd5d177078fe65adea0eec8a40e3a5.svg?invert_in_darkmode&sanitize=true" align=middle width=25.515733649999987pt height=29.190975000000005pt/> as a function of <img src="/NeuralNetworks/tex/618f6ec6d89efea72cc409ccafa6182e.svg?invert_in_darkmode&sanitize=true" align=middle width=25.515733649999987pt height=29.190975000000005pt/>).
 Suppose you swap the parameters for the first hidden layer between its
-two units so
-<img src="/NeuralNetworks/tex/5ae2899540ac0f70cdfe178fe922dc84.svg?invert_in_darkmode&sanitize=true" align=middle width=165.59383169999998pt height=47.6716218pt/>
-and also swap the output layer so
-<img src="/NeuralNetworks/tex/f589743e7fe12acd24a065ef4df0d751.svg?invert_in_darkmode&sanitize=true" align=middle width=161.94085049999998pt height=29.190975000000005pt/>.
-How will this change the value of the output <img src="/NeuralNetworks/tex/dd02063f2b3c169f4438637a75f2a4b4.svg?invert_in_darkmode&sanitize=true" align=middle width=42.56482229999999pt height=24.65753399999998pt/>? <br/>
+two units so <img src="/NeuralNetworks/tex/b434a27dd623a77fc957b03ac151efb3.svg?invert_in_darkmode&sanitize=true" align=middle width=165.59383169999998pt height=47.6716218pt/> and also swap the output layer so
+<img src="/NeuralNetworks/tex/cc0fb2250da0ead03c70a8976dd0c5b6.svg?invert_in_darkmode&sanitize=true" align=middle width=161.94085049999998pt height=29.190975000000005pt/>. How will this change the value of the output
+<img src="/NeuralNetworks/tex/dd02063f2b3c169f4438637a75f2a4b4.svg?invert_in_darkmode&sanitize=true" align=middle width=42.56482229999999pt height=24.65753399999998pt/>? <br/>
 (A) <br/>
 A. It will stay the same. <br/>
 B. It will increase. <br/>
