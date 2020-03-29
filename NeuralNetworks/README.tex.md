@@ -6,7 +6,7 @@
 
 神经网络可以表示如下:
 
-<div align=center><img width="450" src="figure/1.png" alt=" "/></div>
+<div align=center><img width="350" src="figure/1.png" alt=" "/></div>
 
 假设有$ m $个训练样本: $ \left\{ \left( x^{(1)}, y^{(1)} \right),
 \left( x^{(2)}, y^{(2)} \right), \cdots,
