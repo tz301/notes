@@ -126,7 +126,7 @@ D. Insufficient information to tell: it may increase or decrease. <br/>
 
 ## Exercise
 
-手写数字识别, 通过神经网络识别数字0 ~ 9[exercise.py](exercise.py).
+手写数字识别, 通过神经网络识别数字0 ~ 9, 代码见[exercise.py](exercise.py).
 
 输入样本数量为5000, 每张数字图像的像素点数为400, 即20 × 20.
 
