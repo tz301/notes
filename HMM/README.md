@@ -20,7 +20,7 @@
 
 综上, 马尔科夫链主要由三个部分组成:
 
-<p align="center"><img src="/HMM/tex/26f088ffb86fed52ff8d9e8f6c354b22.svg?invert_in_darkmode&sanitize=true" align=middle width=275.97892079999997pt height=97.83352095pt/></p>
+<p align="center"><img src="/HMM/tex/bb93915952237707c08a9f722b98b3c5.svg?invert_in_darkmode&sanitize=true" align=middle width=188.4845622pt height=63.744281699999995pt/></p>
 
 <img src="/HMM/tex/bb17b0e6d694fc6d731ee88afe1bae60.svg?invert_in_darkmode&sanitize=true" align=middle width=12.99542474999999pt height=22.465723500000017pt/>为<img src="/HMM/tex/5e9c7a7d16b15ab5b947bedf5f56bd79.svg?invert_in_darkmode&sanitize=true" align=middle width=14.99998994999999pt height=22.465723500000017pt/>个节点的集合.
 
