@@ -76,3 +76,40 @@ HMM的三个问题:
 2. Decoding: 已知HMM模型 <img src="/HMM/tex/5c8f0ae74f8564dcc17feaf6c68ac190.svg?invert_in_darkmode&sanitize=true" align=middle width=77.22023264999999pt height=24.65753399999998pt/>, 给定观测序列<img src="/HMM/tex/8e54b634c62877959e17337133a188a2.svg?invert_in_darkmode&sanitize=true" align=middle width=12.99542474999999pt height=22.465723500000017pt/>,
 获取最可能的隐状态序列<img src="/HMM/tex/bb17b0e6d694fc6d731ee88afe1bae60.svg?invert_in_darkmode&sanitize=true" align=middle width=12.99542474999999pt height=22.465723500000017pt/>.
 3. Learning: 给定观测序列<img src="/HMM/tex/8e54b634c62877959e17337133a188a2.svg?invert_in_darkmode&sanitize=true" align=middle width=12.99542474999999pt height=22.465723500000017pt/>和一系列状态, 学习HMM的参数<img src="/HMM/tex/4ddffcd42610c451b271272b7ec53505.svg?invert_in_darkmode&sanitize=true" align=middle width=12.32879834999999pt height=22.465723500000017pt/>和<img src="/HMM/tex/1eb95ebf2173f6c5b3788ff373fd443e.svg?invert_in_darkmode&sanitize=true" align=middle width=13.29340979999999pt height=22.465723500000017pt/>.
+
+下面以冰淇淋-天气案例, 分别对这三个问题进行分析和求解, 代码见[exercise.py](exercise.py).
+
+## Likelihood - The Forward Algorithm
+
+假设HMM已知, 计算观测序列(冰淇淋数量)为3 1 3的概率.
+
+由于每个隐状态仅仅产生一个观测值, 隐状态序列长度与观测值序列长度相等.
+那么, 给定隐状态序列<img src="/HMM/tex/3a0af56ff3dcf7acc2f1bc48489995a2.svg?invert_in_darkmode&sanitize=true" align=middle width=117.70761749999998pt height=22.465723500000017pt/>和观测序列
+<img src="/HMM/tex/60d5e945b9cd7ade28baf8c27ff980a1.svg?invert_in_darkmode&sanitize=true" align=middle width=129.92596319999998pt height=22.465723500000017pt/>, 观测序列的似然可以表示为:
+
+<p align="center"><img src="/HMM/tex/1e059ace2b5d3733b9f49ef7bcb9f8f1.svg?invert_in_darkmode&sanitize=true" align=middle width=158.57174355pt height=47.806078649999996pt/></p>
+
+那么一条可能的隐状态hot hot cold对应的似然为:
+
+<p align="center"><img src="/HMM/tex/1eb656c6d04f5037490d07a65bff22bd.svg?invert_in_darkmode&sanitize=true" align=middle width=377.37865275pt height=16.438356pt/></p>
+
+每一条隐状态序列的产生都拥有一定的概率, 容易求出其概率, 得到加权后观测序列的似然为:
+
+<p align="center"><img src="/HMM/tex/c83fceb297b788b4dbf652ca1ffb7ea4.svg?invert_in_darkmode&sanitize=true" align=middle width=412.14030164999997pt height=47.806078649999996pt/></p>
+
+那么:
+
+<p align="center"><img src="/HMM/tex/b1983e738dbfde708d302c27d579291d.svg?invert_in_darkmode&sanitize=true" align=middle width=680.3317966499999pt height=16.438356pt/></p>
+
+最后, 将所有可能的隐状态序列对应的似然进行加权求和:
+
+<p align="center"><img src="/HMM/tex/a9616b6e9b2cc90c04b10703392aedea.svg?invert_in_darkmode&sanitize=true" align=middle width=390.81042659999997pt height=50.2924224pt/></p>
+
+那么:
+
+<p align="center"><img src="/HMM/tex/a959d88aa378fef4613ea4a8ac56e58b.svg?invert_in_darkmode&sanitize=true" align=middle width=458.25956714999995pt height=16.438356pt/></p>
+
+## Decoding - The Viterbi Algorithm
+
+
+## HMM Training - The Forward-Backward Algorithm
