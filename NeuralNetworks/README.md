@@ -24,9 +24,6 @@
 
 其中, <img src="/NeuralNetworks/tex/7fdca86fa5369346e24865b4b84db64a.svg?invert_in_darkmode&sanitize=true" align=middle width=15.13700594999999pt height=22.465723500000017pt/>为分类数, <img src="/NeuralNetworks/tex/e21f6629c0fd3bb7dbe387a0b7541ea8.svg?invert_in_darkmode&sanitize=true" align=middle width=78.36310515pt height=29.190975000000005pt/>为第<img src="/NeuralNetworks/tex/0513e5ea3aca37742a6d9d75796a34c9.svg?invert_in_darkmode&sanitize=true" align=middle width=9.075367949999992pt height=22.831056599999986pt/>类输出.
 
-其中, <img src="/NeuralNetworks/tex/d99cee510704244f8fcfb59040c2cc70.svg?invert_in_darkmode&sanitize=true" align=middle width=25.067672849999987pt height=34.337843099999986pt/>称作第<img src="/NeuralNetworks/tex/e62c4c55196ed02fd2fa7c51b8c03611.svg?invert_in_darkmode&sanitize=true" align=middle width=7.710416999999989pt height=21.68300969999999pt/>层的第<img src="/NeuralNetworks/tex/8fceb32bd3f6803b77bbe1b1758a60b6.svg?invert_in_darkmode&sanitize=true" align=middle width=5.663225699999989pt height=21.68300969999999pt/>个单元的激活(activation),
-<img src="/NeuralNetworks/tex/7b9cb8b4adcde0a38b29720400765de6.svg?invert_in_darkmode&sanitize=true" align=middle width=29.16395294999999pt height=29.190975000000005pt/>为权重矩阵, 表示第<img src="/NeuralNetworks/tex/e62c4c55196ed02fd2fa7c51b8c03611.svg?invert_in_darkmode&sanitize=true" align=middle width=7.710416999999989pt height=21.68300969999999pt/>层到第<img src="/NeuralNetworks/tex/edd89410e3ea1e740bc429c05aa17ec6.svg?invert_in_darkmode&sanitize=true" align=middle width=36.02081834999999pt height=21.68300969999999pt/>层之间的映射关系.
-
 ## Vectorized
 
 记:
