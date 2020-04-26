@@ -6,3 +6,4 @@
 2. [Linear Regression](LinearRegression/README.md)
 3. [Logistic Regression](LogisticRegression/README.md)
 4. [Neural Networks](NeuralNetworks/README.md)
+5. [Hidden Markov Models](HMM/README.md)
