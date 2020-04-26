@@ -91,3 +91,11 @@ HMM的三个问题:
 2. Decoding: 已知HMM模型 $ \lambda = (A, B) $, 给定观测序列$ O $,
 获取最可能的隐状态序列$ Q $.
 3. Learning: 给定观测序列$ O $和一系列状态, 学习HMM的参数$ A $和$ B $.
+
+## Likelihood - The Forward Algorithm
+
+
+## Decoding - The Viterbi Algorithm
+
+
+## HMM Training - The Forward-Backward Algorithm
