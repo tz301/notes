@@ -128,6 +128,38 @@ $$ P(O) = \sum_Q P(O|Q) = \sum_Q \left[ \prod_{i=1}^{T} P(o_i|q_i)
 $$ P(3\ 1\ 3) = P(3\ 1\ 3|hot\ hot\ cold) + P(3\ 1\ 3|cold\ cold\ cold)
 + \cdots $$
 
+### The Forward Algorithm
+
+对于拥有$ N $个隐状态的HMM, 如果观测序列长度为$ T $, 那么总共可能有
+$ N^T $个隐序列. 对于一般的任务, $ N $和$ T $可能很大, 导致计算代价太大.
+
+因此采用动态的前向算法, 对每一条可能的路径进行概率求和, 复杂度为$ O(N^2 T) $.
+
+<div align=center><img width="450" src="figure/3.png" alt=" "/></div>
+
+如上图, 网格的节点$ \alpha_t(j) $表示经历过前$ t $个观测后状态$ j $的总概率:
+
+$$ \alpha_t(j) = P(o_1, o_2, \cdots, o_t, q_t = j|\lambda) $$
+
+可以得到$ \alpha_t(j) $的递归表达:
+
+$$ \alpha_t(j) = \sum_i^N \alpha_{t - 1}(i) a_{ij} b_j(o_t) $$
+
+这样可以将前向算法写作:
+
+1. 初始化:
+
+$$ \alpha_1(j) = \pi_j b_j(o_1), 1 \leq j \leq N $$
+
+2. 递归:
+
+$$ \alpha_t(j) = \sum_i^N \alpha_{t - 1}(i) a_{ij} b_j(o_t),
+1 \leq j \leq N, 1 < t \leq T $$
+
+3. 终止:
+
+$$ P(O|\lambda) = \sum_i^N \alpha_T(i) $$
+
 ## Decoding - The Viterbi Algorithm
 
 
