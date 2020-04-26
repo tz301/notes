@@ -92,8 +92,41 @@ HMM的三个问题:
 获取最可能的隐状态序列$ Q $.
 3. Learning: 给定观测序列$ O $和一系列状态, 学习HMM的参数$ A $和$ B $.
 
+下面以冰淇淋-天气案例, 分别对这三个问题进行分析和求解, 代码见[exercise.py](exercise.py).
+
 ## Likelihood - The Forward Algorithm
 
+假设HMM已知, 计算观测序列(冰淇淋数量)为3 1 3的概率.
+
+由于每个隐状态仅仅产生一个观测值, 隐状态序列长度与观测值序列长度相等.
+那么, 给定隐状态序列$ Q = q_0, q_1, \cdots, \q_T $和观测序列
+$ Q = o_0, o_1, \cdots, \o_T $, 观测序列的似然可以表示为:
+
+$$ P(O|Q) = \prod_{i=1}^{T} P(o_i|q_i) $$
+
+那么一条可能的隐状态hot hot cold对应的似然为:
+
+$$ P(3\ 1\ 3|hot\ hot\ cold) = P(3|hot) \times P(1\hot) \times P(3|cold) $$
+
+每一条隐状态序列的产生都拥有一定的概率, 容易求出其概率, 得到加权后观测序列的似然为:
+
+$$ P(O|Q) = P(O|Q) \times P(Q) = \prod_{i=1}^{T} P(o_i|q_i)
+\times \prod_{i=1}^{T} P(q_i|q_{i-1}) $$
+
+那么:
+
+$$ P(3\ 1\ 3|hot\ hot\ cold) = P(3|hot) \times P(1\hot) \times P(3|cold)
+\times P(hot|start) \times P(hot|hot) \times P(cold|hot $$
+
+最后, 将所有可能的隐状态序列对应的似然进行加权求和:
+
+$$ P(O) = \sum_Q P(O|Q) = \sum_Q \left\[ \prod_{i=1}^{T} P(o_i|q_i)
+\times \prod_{i=1}^{T} P(q_i|q_{i-1}) \right\] $$
+
+那么:
+
+$$ P(3\ 1\ 3) = P(3\ 1\ 3|hot\ hot\ cold) + P(3\ 1\ 3|cold\ cold\ cold)
++ \cdots $$
 
 ## Decoding - The Viterbi Algorithm
 
