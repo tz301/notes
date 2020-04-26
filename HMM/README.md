@@ -109,6 +109,37 @@ HMM的三个问题:
 
 <p align="center"><img src="/HMM/tex/a959d88aa378fef4613ea4a8ac56e58b.svg?invert_in_darkmode&sanitize=true" align=middle width=458.25956714999995pt height=16.438356pt/></p>
 
+### The Forward Algorithm
+
+对于拥有<img src="/HMM/tex/5e9c7a7d16b15ab5b947bedf5f56bd79.svg?invert_in_darkmode&sanitize=true" align=middle width=14.99998994999999pt height=22.465723500000017pt/>个隐状态的HMM, 如果观测序列长度为<img src="/HMM/tex/ee09a26cd2a8b21b5980249d554ff09f.svg?invert_in_darkmode&sanitize=true" align=middle width=11.889314249999991pt height=22.465723500000017pt/>, 那么总共可能有
+<img src="/HMM/tex/cc9a9c5775604b97d905380fe1fb800d.svg?invert_in_darkmode&sanitize=true" align=middle width=24.53368664999999pt height=27.6567522pt/>个隐序列. 对于一般的任务, <img src="/HMM/tex/5e9c7a7d16b15ab5b947bedf5f56bd79.svg?invert_in_darkmode&sanitize=true" align=middle width=14.99998994999999pt height=22.465723500000017pt/>和<img src="/HMM/tex/ee09a26cd2a8b21b5980249d554ff09f.svg?invert_in_darkmode&sanitize=true" align=middle width=11.889314249999991pt height=22.465723500000017pt/>可能很大, 导致计算代价太大.
+
+因此采用动态的前向算法, 对每一条可能的路径进行概率求和, 复杂度为<img src="/HMM/tex/5d79089817d0e5a7c958d20f3792bfdf.svg?invert_in_darkmode&sanitize=true" align=middle width=60.04459724999998pt height=26.76175259999998pt/>.
+
+<div align=center><img width="450" src="figure/3.png" alt=" "/></div>
+
+如上图, 网格的节点<img src="/HMM/tex/b77ed6e409322f6100f32c21bb6f1ff6.svg?invert_in_darkmode&sanitize=true" align=middle width=36.79918604999999pt height=24.65753399999998pt/>表示经历过前<img src="/HMM/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>个观测后状态<img src="/HMM/tex/e62c4c55196ed02fd2fa7c51b8c03611.svg?invert_in_darkmode&sanitize=true" align=middle width=7.710416999999989pt height=21.68300969999999pt/>的总概率:
+
+<p align="center"><img src="/HMM/tex/99940942d27ef1bed984fa14666765cb.svg?invert_in_darkmode&sanitize=true" align=middle width=239.5699779pt height=16.438356pt/></p>
+
+可以得到<img src="/HMM/tex/b77ed6e409322f6100f32c21bb6f1ff6.svg?invert_in_darkmode&sanitize=true" align=middle width=36.79918604999999pt height=24.65753399999998pt/>的递归表达:
+
+<p align="center"><img src="/HMM/tex/182435c150a2555558c40ae55acda8fe.svg?invert_in_darkmode&sanitize=true" align=middle width=197.56815705pt height=47.806078649999996pt/></p>
+
+这样可以将前向算法写作:
+
+1. 初始化:
+
+<p align="center"><img src="/HMM/tex/d3d5c36cdd22b1b3be74add440333900.svg?invert_in_darkmode&sanitize=true" align=middle width=200.7802104pt height=17.031940199999998pt/></p>
+
+2. 递归:
+
+<p align="center"><img src="/HMM/tex/0f94e732efdc27192a7b144d9734f675.svg?invert_in_darkmode&sanitize=true" align=middle width=355.91141849999997pt height=47.806078649999996pt/></p>
+
+3. 终止:
+
+<p align="center"><img src="/HMM/tex/59e8a22ca12bc7f2ab428cb411c91ee6.svg?invert_in_darkmode&sanitize=true" align=middle width=140.49446565pt height=47.806078649999996pt/></p>
+
 ## Decoding - The Viterbi Algorithm
 
 
