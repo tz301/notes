@@ -3,6 +3,8 @@
 # Created by TZ on 2020/2/15
 import numpy as np
 
+LOGGER_FORMAT = "%(asctime)s %(name)s %(levelname)s %(message)s"
+
 
 def load_txt(file_path):
   """从txt文件中读取特征和标签.
