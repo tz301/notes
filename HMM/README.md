@@ -50,3 +50,29 @@ HMM是一个同时包含了观测状态和隐藏状态的概率模型, 由五个
 * <img src="/HMM/tex/1eb95ebf2173f6c5b3788ff373fd443e.svg?invert_in_darkmode&sanitize=true" align=middle width=13.29340979999999pt height=22.465723500000017pt/>为发射概率, 表示节点<img src="/HMM/tex/8fceb32bd3f6803b77bbe1b1758a60b6.svg?invert_in_darkmode&sanitize=true" align=middle width=5.663225699999989pt height=21.68300969999999pt/>产生观测<img src="/HMM/tex/3278587601fbd6585373782719047b74.svg?invert_in_darkmode&sanitize=true" align=middle width=12.933843449999989pt height=14.15524440000002pt/>的概率.
 * <img src="/HMM/tex/d049e9034b43e5d5bfc25f7e2a30a0e7.svg?invert_in_darkmode&sanitize=true" align=middle width=14.021211599999992pt height=14.15524440000002pt/>为节点<img src="/HMM/tex/8fceb32bd3f6803b77bbe1b1758a60b6.svg?invert_in_darkmode&sanitize=true" align=middle width=5.663225699999989pt height=21.68300969999999pt/>的初始概率分布, 满足<img src="/HMM/tex/c01ea360f7f9da268b266ff4e6551cfe.svg?invert_in_darkmode&sanitize=true" align=middle width=87.18796679999998pt height=32.256008400000006pt/>,
 <img src="/HMM/tex/448621753905e93f28aeb01dfbfac7fb.svg?invert_in_darkmode&sanitize=true" align=middle width=44.97994874999999pt height=21.18721440000001pt/>表示不可能为初始状态节点.
+
+一阶马尔可夫模型遵循两个假设:
+
+1. 某个状态节点的概率仅与前一个状态节点有关:
+
+<p align="center"><img src="/HMM/tex/ceee94c7c67f44415a5d264fd97b7173.svg?invert_in_darkmode&sanitize=true" align=middle width=267.77565375pt height=16.438356pt/></p>
+
+2. 观测值<img src="/HMM/tex/bfc42b48cfe1471b0406c7d9cecaeb1b.svg?invert_in_darkmode&sanitize=true" align=middle width=12.618950849999989pt height=14.15524440000002pt/>仅与产生该观测值的节点<img src="/HMM/tex/7cc9f7d4df7214f10be34880352d9612.svg?invert_in_darkmode&sanitize=true" align=middle width=11.989211849999991pt height=14.15524440000002pt/>有关, 与其他状态节点或者观测值无关,
+即输出独立性:
+
+<p align="center"><img src="/HMM/tex/3b84dcce7e1bd461ec0bed0cb5bccb0f.svg?invert_in_darkmode&sanitize=true" align=middle width=311.11138904999996pt height=16.438356pt/></p>
+
+下面用一个例子简述HMM模型. 假设有两种天气COLD(C)和HOT(H), 但是没有天气的信息,
+只有每天吃掉的冰淇淋数量. 那么问题变成: 已知观测序列<img src="/HMM/tex/8e54b634c62877959e17337133a188a2.svg?invert_in_darkmode&sanitize=true" align=middle width=12.99542474999999pt height=22.465723500000017pt/>(每天吃掉的冰淇淋数量),
+寻找天气(C或者H)对应的隐序列<img src="/HMM/tex/bb17b0e6d694fc6d731ee88afe1bae60.svg?invert_in_darkmode&sanitize=true" align=middle width=12.99542474999999pt height=22.465723500000017pt/>, 如下图.
+观测序列<img src="/HMM/tex/566838cc629c1c40b816413f514ebf1c.svg?invert_in_darkmode&sanitize=true" align=middle width=74.18245064999998pt height=22.465723500000017pt/>对应每天吃掉的冰淇淋数量.
+
+<div align=center><img width="450" src="figure/2.png" alt=" "/></div>
+
+HMM的三个问题:
+
+1. Likelihood: 已知HMM模型 <img src="/HMM/tex/5c8f0ae74f8564dcc17feaf6c68ac190.svg?invert_in_darkmode&sanitize=true" align=middle width=77.22023264999999pt height=24.65753399999998pt/>, 给定观测序列<img src="/HMM/tex/8e54b634c62877959e17337133a188a2.svg?invert_in_darkmode&sanitize=true" align=middle width=12.99542474999999pt height=22.465723500000017pt/>,
+计算似然<img src="/HMM/tex/a28e3689e9f711f6b2d3c396dac9388a.svg?invert_in_darkmode&sanitize=true" align=middle width=52.77293669999999pt height=24.65753399999998pt/>.
+2. Decoding: 已知HMM模型 <img src="/HMM/tex/5c8f0ae74f8564dcc17feaf6c68ac190.svg?invert_in_darkmode&sanitize=true" align=middle width=77.22023264999999pt height=24.65753399999998pt/>, 给定观测序列<img src="/HMM/tex/8e54b634c62877959e17337133a188a2.svg?invert_in_darkmode&sanitize=true" align=middle width=12.99542474999999pt height=22.465723500000017pt/>,
+获取最可能的隐状态序列<img src="/HMM/tex/bb17b0e6d694fc6d731ee88afe1bae60.svg?invert_in_darkmode&sanitize=true" align=middle width=12.99542474999999pt height=22.465723500000017pt/>.
+3. Learning: 给定观测序列<img src="/HMM/tex/8e54b634c62877959e17337133a188a2.svg?invert_in_darkmode&sanitize=true" align=middle width=12.99542474999999pt height=22.465723500000017pt/>和一系列状态, 学习HMM的参数<img src="/HMM/tex/4ddffcd42610c451b271272b7ec53505.svg?invert_in_darkmode&sanitize=true" align=middle width=12.32879834999999pt height=22.465723500000017pt/>和<img src="/HMM/tex/1eb95ebf2173f6c5b3788ff373fd443e.svg?invert_in_darkmode&sanitize=true" align=middle width=13.29340979999999pt height=22.465723500000017pt/>.
