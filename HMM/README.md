@@ -65,7 +65,7 @@ HMM是一个同时包含了观测状态和隐藏状态的概率模型, 由五个
 下面用一个例子简述HMM模型. 假设有两种天气COLD(C)和HOT(H), 但是没有天气的信息,
 只有每天吃掉的冰淇淋数量. 那么问题变成: 已知观测序列<img src="/HMM/tex/8e54b634c62877959e17337133a188a2.svg?invert_in_darkmode&sanitize=true" align=middle width=12.99542474999999pt height=22.465723500000017pt/>(每天吃掉的冰淇淋数量),
 寻找天气(C或者H)对应的隐序列<img src="/HMM/tex/bb17b0e6d694fc6d731ee88afe1bae60.svg?invert_in_darkmode&sanitize=true" align=middle width=12.99542474999999pt height=22.465723500000017pt/>, 如下图.
-观测序列<img src="/HMM/tex/566838cc629c1c40b816413f514ebf1c.svg?invert_in_darkmode&sanitize=true" align=middle width=74.18245064999998pt height=22.465723500000017pt/>对应每天吃掉的冰淇淋数量.
+观测序列<img src="/HMM/tex/a738e7a9fab34d3131e991dc5ba4d18b.svg?invert_in_darkmode&sanitize=true" align=middle width=90.62086934999999pt height=24.65753399999998pt/>对应每天吃掉的冰淇淋数量.
 
 <div align=center><img width="450" src="figure/2.png" alt=" "/></div>
 
