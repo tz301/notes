@@ -162,5 +162,9 @@ $$ P(O|\lambda) = \sum_i^N \alpha_T(i) $$
 
 ## Decoding - The Viterbi Algorithm
 
+解码, 就是给定观测序列, 获取概率最大的隐序列.
+
+例如, 对于例子中的HMM, 给定观测序列(冰淇淋数量){3, 1, 3},
+解码的目标是获取最可能的天气序列.
 
 ## HMM Training - The Forward-Backward Algorithm
