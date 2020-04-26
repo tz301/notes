@@ -16,21 +16,37 @@ $$ P(q_i = a|q_1 \cdots q_{i-1}) = P(q_i = a|q_{i-1}) $$
 图中, 状态以节点表示, 每条边上标明转移概率, 每个节点所有边的转移概率之和为1.
 图b给出了一个二元语言模型的马尔科夫链.
 
-<div align=center><img width="350" src="figure/1.png" alt=" "/></div>
+<div align=center><img width="450" src="figure/1.png" alt=" "/></div>
 
 综上, 马尔科夫链主要由三个部分组成:
 
 $$
 \begin{aligned}
-& Q = q_1 q_2 \cdots q_N, \ N个节点的集合 \\
-& A = a_{11} a_{12} \cdots a_{n1} \cdots a_{nn} \ 转移概率矩阵,
-a_{ij}表示节点i到节点j的转移概率, 且满足\sum_{j=1}^N a_{ij} = 1, \forall i\\
+& Q = q_1 q_2 \cdots q_N \\
+& A = a_{11} a_{12} \cdots a_{n1} \cdots a_{nn}
+\\
 & \pi = \pi_1, \pi_2 \cdots, \pi_N \ 节点i的初始概率分布,
 满足\sum_{i=1}^N \pi_i = 1, \pi_i=0表示不可能为初始状态节点.
 \end{aligned}
 $$
 
-例如上图a中, 假设初始概率分布为$ \pi(HOT, COLD, WARM) = [0.1, 0.7, 0.2] $,
+$ Q $为$ N $个节点的集合.
+
+$ A $为转移概率矩阵, $ a_{ij} $表示节点i到节点j的转移概率,
+且满足$ \sum_{j=1}^N a_{ij} = 1, \forall i $.
+
+$ \pi_i $为节点$ i $的初始概率分布, 满足$ \sum_{i=1}^N \pi_i = 1 $,
+$ \pi_i = 0 $表示不可能为初始状态节点.
+
+例如上图a中, 假设初始概率分布为$ \pi(hot, cold, warm) = [0.1, 0.7, 0.2] $,
 那么:
 
-$$ P(COLD HOT COLD HOT) = 0.7 * 0.1 * 0.1 * 0.1 = 0.0007 $$
+$$ P(cold, hot, cold, hot) = 0.7 * 0.1 * 0.1 * 0.1 = 0.0007 $$
+
+## Hidden Markov Models
+
+很多情况下, 我们关心的状态是隐藏起来的.
+例如, 我们通过文本无法直接观测到词性标注(POS), 我们只可以观测到词.
+POS只能通过词序列来推测, 因此是被隐藏起来的.
+
+HMM是一个同时包含了观测状态和隐藏状态的概率模型, 由五个部分组成:
