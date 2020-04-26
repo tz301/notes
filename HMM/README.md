@@ -84,28 +84,28 @@ HMM的三个问题:
 假设HMM已知, 计算观测序列(冰淇淋数量)为3 1 3的概率.
 
 由于每个隐状态仅仅产生一个观测值, 隐状态序列长度与观测值序列长度相等.
-那么, 给定隐状态序列<img src="/HMM/tex/3a0af56ff3dcf7acc2f1bc48489995a2.svg?invert_in_darkmode&sanitize=true" align=middle width=117.70761749999998pt height=22.465723500000017pt/>和观测序列
-<img src="/HMM/tex/60d5e945b9cd7ade28baf8c27ff980a1.svg?invert_in_darkmode&sanitize=true" align=middle width=129.92596319999998pt height=22.465723500000017pt/>, 观测序列的似然可以表示为:
+那么, 给定隐状态序列<img src="/HMM/tex/203dc0489d93d6423f18756db63fc1fc.svg?invert_in_darkmode&sanitize=true" align=middle width=127.78558814999998pt height=22.465723500000017pt/>和观测序列
+<img src="/HMM/tex/505df8570f602e65f4a0dcba2b3a24ba.svg?invert_in_darkmode&sanitize=true" align=middle width=129.6748035pt height=22.465723500000017pt/>, 观测序列的似然可以表示为:
 
 <p align="center"><img src="/HMM/tex/1e059ace2b5d3733b9f49ef7bcb9f8f1.svg?invert_in_darkmode&sanitize=true" align=middle width=158.57174355pt height=47.806078649999996pt/></p>
 
 那么一条可能的隐状态hot hot cold对应的似然为:
 
-<p align="center"><img src="/HMM/tex/1eb656c6d04f5037490d07a65bff22bd.svg?invert_in_darkmode&sanitize=true" align=middle width=377.37865275pt height=16.438356pt/></p>
+<p align="center"><img src="/HMM/tex/978c1a0d95cea94ee47eda1f78e136f8.svg?invert_in_darkmode&sanitize=true" align=middle width=405.3201405pt height=16.438356pt/></p>
 
 每一条隐状态序列的产生都拥有一定的概率, 容易求出其概率, 得到加权后观测序列的似然为:
 
 <p align="center"><img src="/HMM/tex/c83fceb297b788b4dbf652ca1ffb7ea4.svg?invert_in_darkmode&sanitize=true" align=middle width=412.14030164999997pt height=47.806078649999996pt/></p>
 
-那么:
+即:
 
-<p align="center"><img src="/HMM/tex/b1983e738dbfde708d302c27d579291d.svg?invert_in_darkmode&sanitize=true" align=middle width=680.3317966499999pt height=16.438356pt/></p>
+<p align="center"><img src="/HMM/tex/c3e603b4d68b2bd0dbc71f1fce77228e.svg?invert_in_darkmode&sanitize=true" align=middle width=700.2746371499999pt height=16.438356pt/></p>
 
 最后, 将所有可能的隐状态序列对应的似然进行加权求和:
 
-<p align="center"><img src="/HMM/tex/a9616b6e9b2cc90c04b10703392aedea.svg?invert_in_darkmode&sanitize=true" align=middle width=390.81042659999997pt height=50.2924224pt/></p>
+<p align="center"><img src="/HMM/tex/1c15bd48fe9c3be0329d8717940e43e2.svg?invert_in_darkmode&sanitize=true" align=middle width=408.01599465pt height=50.64874485pt/></p>
 
-那么:
+即:
 
 <p align="center"><img src="/HMM/tex/a959d88aa378fef4613ea4a8ac56e58b.svg?invert_in_darkmode&sanitize=true" align=middle width=458.25956714999995pt height=16.438356pt/></p>
 
