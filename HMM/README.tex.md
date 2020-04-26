@@ -23,10 +23,8 @@ $$ P(q_i = a|q_1 \cdots q_{i-1}) = P(q_i = a|q_{i-1}) $$
 $$
 \begin{aligned}
 & Q = q_1 q_2 \cdots q_N \\
-& A = a_{11} a_{12} \cdots a_{n1} \cdots a_{nn}
-\\
-& \pi = \pi_1, \pi_2 \cdots, \pi_N \ 节点i的初始概率分布,
-满足\sum_{i=1}^N \pi_i = 1, \pi_i=0表示不可能为初始状态节点.
+& A = a_{11} a_{12} \cdots a_{1N} \cdots a_{NN} \\
+& \pi = \pi_1, \pi_2 \cdots, \pi_N
 \end{aligned}
 $$
 
