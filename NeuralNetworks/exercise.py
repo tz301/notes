@@ -7,6 +7,7 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.io import loadmat
+from base.utils import LOGGER_FORMAT
 
 
 def __plot(inputs):
@@ -54,6 +55,5 @@ def __cmd():
 
 
 if __name__ == '__main__':
-  logging.basicConfig(format="%(asctime)s %(name)s %(levelname)s %(message)s",
-                      level=logging.INFO)
+  logging.basicConfig(format=LOGGER_FORMAT, level=logging.INFO)
   __cmd()

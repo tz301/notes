@@ -6,9 +6,9 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
-from mpl_toolkits import mplot3d
+from mpl_toolkits import mplot3d  # 3d图所需.
 
-from base.utils import load_txt
+from base.utils import load_txt, LOGGER_FORMAT
 from LinearRegression.utils import compute_cost, gradient_descent
 
 
@@ -95,6 +95,5 @@ def __cmd():
 
 
 if __name__ == '__main__':
-  logging.basicConfig(format="%(asctime)s %(name)s %(levelname)s %(message)s",
-                      level=logging.INFO)
+  logging.basicConfig(format=LOGGER_FORMAT, level=logging.INFO)
   __cmd()

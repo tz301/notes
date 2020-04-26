@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.optimize import minimize
 
-from base.utils import load_txt
+from base.utils import load_txt, LOGGER_FORMAT
 from LogisticRegression.utils import sigmoid
 
 
@@ -124,6 +124,5 @@ def __cmd():
 
 
 if __name__ == '__main__':
-  logging.basicConfig(format="%(asctime)s %(name)s %(levelname)s %(message)s",
-                      level=logging.INFO)
+  logging.basicConfig(format=LOGGER_FORMAT, level=logging.INFO)
   __cmd()
