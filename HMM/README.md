@@ -10,5 +10,5 @@
 
 假设一个序列内的状态变量为<img src="/HMM/tex/e637b86bbdb2aacea366b27626449b0a.svg?invert_in_darkmode&sanitize=true" align=middle width=87.98971334999999pt height=14.611911599999981pt/>. 可以将马尔可夫假设表示为:
 
-<img src="/HMM/tex/a71e51aa5270f06bd78929a1e2fa9c18.svg?invert_in_darkmode&sanitize=true" align=middle width=267.77565375pt height=24.65753399999998pt/>
+<p align="center"><img src="/HMM/tex/ceee94c7c67f44415a5d264fd97b7173.svg?invert_in_darkmode&sanitize=true" align=middle width=267.77565375pt height=16.438356pt/></p>
 
