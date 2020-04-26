@@ -1,5 +1,5 @@
 # machine learning笔记
-来源: coursera上Andrew Ng的\<Machine Learning by Stanford University\>课程.
+经典算法, 以及coursera上Andrew Ng的\<Machine Learning by Stanford University\>课程.
 
 # 目录
 1. [Introduction](Introduction/README.md)
