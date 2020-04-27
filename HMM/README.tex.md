@@ -133,7 +133,7 @@ $$ P(3\ 1\ 3) = P(3\ 1\ 3|hot\ hot\ cold) + P(3\ 1\ 3|cold\ cold\ cold)
 对于拥有$ N $个隐状态的HMM, 如果观测序列长度为$ T $, 那么总共可能有
 $ N^T $个隐序列. 对于一般的任务, $ N $和$ T $可能很大, 导致计算代价太大.
 
-因此采用动态的前向算法, 对每一条可能的路径进行概率求和, 复杂度为$ O(N^2 T) $.
+因此采用动态规划的前向算法, 对每一条可能的路径进行概率求和, 复杂度为$ O(N^2 T) $.
 
 <div align=center><img width="450" src="figure/3.png" alt=" "/></div>
 
@@ -166,5 +166,56 @@ $$ P(O|\lambda) = \sum_i^N \alpha_T(i) $$
 
 例如, 对于例子中的HMM, 给定观测序列(冰淇淋数量){3, 1, 3},
 解码的目标是获取最可能的天气序列.
+
+对于每一条隐序列, 我们可以通过前向算法计算其似然, 然后找到似然最大的隐序列,
+但是这种算法复杂度太高. 因此采用动态规划的Viterbi算法来计算, 如下图.
+
+<div align=center><img width="450" src="figure/4.png" alt=" "/></div>
+
+Viterbi算法的思想是, 针对观测序列从左到右计算网格值$ v_t(j) &,
+代表了状态$ j $对于前$ t $个观测值最可能的隐状态序列
+$ q_1, \cdots, q_{t-1} $的概率:
+
+$$ v_t(j) = \mathop{max}\limits_{q_1, \cdots, q_{t-1}}
+P(q_1 \cdots q_{t-1}, o_1, \cdots, o_t, q_t = j| \lambda) $$
+
+容易得到$ v_t(j) $的递归表达:
+
+$$ v_t(j) = \mathop{max}\limits_{i=1}^N v_{t-1}(i) a_{ij} b_j(o_t) $$
+
+为了获取最大似然的隐状态序列, 在动态计算概率的过程中,
+还需要一个状态量来保存每次取max的路径.
+
+这样可以将前向算法写作:
+
+1. 初始化:
+
+$$
+\begin{aligned}
+v_1(j) & = \pi_j b_j(o_1), \ & 1 \leq j \leq N  \\
+bt_1(j) & = 0, \ & 1 \leq j \leq N
+\end{aligned}
+$$
+
+2. 递归:
+
+$$
+\begin{aligned}
+v_t(j) & = \mathop{max}\limits_{i=1}^N v_{t-1}(j) * a_{ij} b_j(o_t) \
+& 1 \leq j \leq N, 1 \leq j \leq T \\
+bt_t(j) & = \mathop{argmax}\limits_{i=1}^N v_{t-1}(j) * a_{ij} b_j(o_t)
+\ & 1 \leq j \leq N, 1 \leq j \leq T
+\end{aligned}
+$$
+
+3. 终止:
+
+$$
+\begin{aligned}
+The \ best \ score: \ P* & = \mathop{max}\limits_{i=1}^N v_T(i) \\
+The \ start \ of \ backtrace q_T* & = \mathop{argmax}\limits_{i=1}^N
+v_T(i)
+\end{aligned}
+$$
 
 ## HMM Training - The Forward-Backward Algorithm
