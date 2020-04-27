@@ -172,7 +172,7 @@ $$ P(O|\lambda) = \sum_i^N \alpha_T(i) $$
 
 <div align=center><img width="450" src="figure/4.png" alt=" "/></div>
 
-Viterbi算法的思想是, 针对观测序列从左到右计算网格值$ v_t(j) &,
+Viterbi算法的思想是, 针对观测序列从左到右计算网格值$ v_t(j) $,
 代表了状态$ j $对于前$ t $个观测值最可能的隐状态序列
 $ q_1, \cdots, q_{t-1} $的概率:
 
