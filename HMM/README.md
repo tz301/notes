@@ -180,3 +180,34 @@ Viterbi算法的思想是, 针对观测序列从左到右计算网格值<img src
 <p align="center"><img src="/HMM/tex/03b9e99eecefa10ec4b0e76802d81262.svg?invert_in_darkmode&sanitize=true" align=middle width=332.60732835pt height=70.22358089999999pt/></p>
 
 ## HMM Training - The Forward-Backward Algorithm
+
+HMM训练采用前向-后向算法, 或者Baum-Wehch算法, 一种EM算法来训练.
+给定观测序列和可能的隐状态集合, 通过训练来学习HMM的转移概率和发射概率.
+对于每一次迭代, 通过一个状态量来评估模型的优劣, 并不断朝着优化状态量的方向更新.
+
+对于一个简单的例子, 假设存在三组观测序列和隐序列的对应关系:
+hot hot cold -> 3 3 2; cold cold cold -> 1 1 2; cold hot hot -> 1 2 3.
+
+那么很容易通过最大似然估计得到HMM的参数:
+<p align="center"><img src="/HMM/tex/92c1873ac7212dd60c0b1812c31aad4a.svg?invert_in_darkmode&sanitize=true" align=middle width=270.80692485pt height=139.72602765pt/></p>
+
+然而, 我们无法知道一个观测序列对应的隐状态序列, 我们仅仅能获取其概率.
+
+在前向算法中定义了前向概率, 还需要定义后向概率<img src="/HMM/tex/9480545cb12c693db1b6559e43971278.svg?invert_in_darkmode&sanitize=true" align=middle width=10.16555099999999pt height=22.831056599999986pt/>, 表示从<img src="/HMM/tex/2f54f1433f0c3a3d7c44740cf8a23287.svg?invert_in_darkmode&sanitize=true" align=middle width=34.24649744999999pt height=21.18721440000001pt/>
+个观测直到最后的概率:
+
+<p align="center"><img src="/HMM/tex/e39dc0af57eec9ff8f44ebbe577a7e16.svg?invert_in_darkmode&sanitize=true" align=middle width=244.28278709999998pt height=16.438356pt/></p>
+
+后向概率的计算与前向概率相似:
+
+1. 初始化:
+
+<p align="center"><img src="/HMM/tex/cc7737fca41e1fcff0619d8534b4be04.svg?invert_in_darkmode&sanitize=true" align=middle width=148.2626277pt height=16.438356pt/></p>
+
+2. 递归:
+
+<p align="center"><img src="/HMM/tex/bc56bc63dcaf2155ee9a06da357225a7.svg?invert_in_darkmode&sanitize=true" align=middle width=369.93733425pt height=50.04352485pt/></p>
+
+3. 终止:
+
+<p align="center"><img src="/HMM/tex/c693a5a5726b4185f4216a33b7d12acb.svg?invert_in_darkmode&sanitize=true" align=middle width=196.74870105pt height=50.04352485pt/></p>
