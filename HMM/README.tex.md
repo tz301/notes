@@ -201,9 +201,9 @@ $$
 
 $$
 \begin{aligned}
-v_t(j) & = \mathop{max}\limits_{i=1}^N v_{t-1}(j) * a_{ij} b_j(o_t) \
+v_t(j) & = \mathop{max}\limits_{i=1}^N v_{t-1}(j) * a_{ij} b_j(o_t), \
 & 1 \leq j \leq N, 1 \leq j \leq T \\
-bt_t(j) & = \mathop{argmax}\limits_{i=1}^N v_{t-1}(j) * a_{ij} b_j(o_t)
+bt_t(j) & = \mathop{argmax}\limits_{i=1}^N v_{t-1}(j) * a_{ij} b_j(o_t),
 \ & 1 \leq j \leq N, 1 \leq j \leq T
 \end{aligned}
 $$
