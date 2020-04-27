@@ -173,7 +173,7 @@ Viterbi算法的思想是, 针对观测序列从左到右计算网格值<img src
 
 2. 递归:
 
-<p align="center"><img src="/HMM/tex/5dcb1c5c16344f027f30c1ae1ac2a2c8.svg?invert_in_darkmode&sanitize=true" align=middle width=423.56258009999993pt height=70.22358089999999pt/></p>
+<p align="center"><img src="/HMM/tex/7e1f382c47e9791e5e1ce460ba50bd92.svg?invert_in_darkmode&sanitize=true" align=middle width=412.60384275pt height=70.22358089999999pt/></p>
 
 3. 终止:
 
