@@ -165,7 +165,7 @@ Viterbi算法的思想是, 针对观测序列从左到右计算网格值<img src
 为了获取最大似然的隐状态序列, 在动态计算概率的过程中,
 还需要一个状态量来保存每次取max的路径.
 
-这样可以将前向算法写作:
+这样可以将Viterbi算法写作:
 
 1. 初始化:
 
@@ -177,6 +177,6 @@ Viterbi算法的思想是, 针对观测序列从左到右计算网格值<img src
 
 3. 终止:
 
-<p align="center"><img src="/HMM/tex/2d75f830fa6713b057f2704e2f058fa6.svg?invert_in_darkmode&sanitize=true" align=middle width=313.42946249999994pt height=70.22358089999999pt/></p>
+<p align="center"><img src="/HMM/tex/03b9e99eecefa10ec4b0e76802d81262.svg?invert_in_darkmode&sanitize=true" align=middle width=332.60732835pt height=70.22358089999999pt/></p>
 
 ## HMM Training - The Forward-Backward Algorithm
