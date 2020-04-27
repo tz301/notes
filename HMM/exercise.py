@@ -56,6 +56,50 @@ class HMM:
 
     return np.sum(alpha[-1, :])
 
+  def decode(self, observations):
+    """采用Viterbi算法进行解码.
+
+    Args:
+      observations: 观测值序列.
+
+    Returns:
+      最后路径以及对应的概率.
+    """
+    num_states = len(self.states)
+    num_observations = len(observations)
+    viterbi_prob = np.zeros((num_observations, num_states))
+    back_trace = np.zeros(viterbi_prob.shape, dtype=np.int)
+
+    # 初始化.
+    init_observation = observations[0]
+    for j, state in enumerate(self.states):
+      emission_prob = self.emission_prob[(state, init_observation)]
+      viterbi_prob[0, j] = self.init_prob[state] * emission_prob
+
+    # 递归.
+    tmp_prob = np.zeros(num_states)  # 计算每个网格节点时, 临时保存每条路径的概率.
+    for t, observation in enumerate(observations[1:], 1):
+      for j, cur_state in enumerate(self.states):
+        for i, last_state in enumerate(self.states):
+          transition_prob = self.transition_prob[(last_state, cur_state)]
+          emission_prob = self.emission_prob[(cur_state, observation)]
+          tmp_prob[i] = viterbi_prob[t - 1, i] * transition_prob * emission_prob
+        viterbi_prob[t, j] = np.max(tmp_prob)
+        back_trace[t, j] = np.argmax(tmp_prob)
+
+    # 终止
+    final_prob = np.max(viterbi_prob[-1])
+
+    best_state_ids = np.zeros(num_observations, dtype=np.int)
+    best_state_ids[-1] = np.argmax(viterbi_prob[-1])
+    cur_state = best_state_ids[-1]
+    for i in range(num_observations - 1):
+      cur_state = back_trace[num_observations - 1 - i, cur_state]
+      best_state_ids[num_observations - 2 - i] = cur_state
+
+    best_path = [self.states[state_id] for state_id in best_state_ids]
+    return best_path, final_prob
+
 
 def __cmd():
   """命令行函数."""
@@ -70,6 +114,9 @@ def __cmd():
 
   likelihood = hmm.compute_likelihood([3, 1, 3])
   logging.info(f"似然: {likelihood:.5f}")
+
+  best_path, best_path_prob = hmm.decode([3, 1, 3])
+  logging.info(f"概率最大的隐序列: {best_path}, 对应的概率为{best_path_prob:.5f}.")
 
 
 if __name__ == '__main__':
