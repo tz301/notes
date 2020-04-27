@@ -239,12 +239,12 @@ p(3|hot) = 0.75 \ \ & \ p(3|cold) = 0
 \end{aligned}
 $$
 
-然而, 我们无法知道一个观测序列对应的隐状态序列, 我们仅仅能获取其概率.
+然而, 实际情况下, 我们无法知道一个观测序列对应的隐状态序列, 我们仅仅能获取其概率.
 
 在前向算法中定义了前向概率, 还需要定义后向概率$ \beta $, 表示从$ t + 1 $
 个观测直到最后的概率:
 
-$$ \beta_t(i) = P(o_{t+1} o_{t+2} \cdots o_T |q_t = i|\lambda) $$
+$$ \beta_t(i) = P(o_{t+1} o_{t+2} \cdots o_T, q_t = i|\lambda) $$
 
 后向概率的计算与前向概率相似:
 
@@ -255,7 +255,7 @@ $$ \beta_T(i) = 1, 1 \leq i \leq N $$
 2. 递归:
 
 $$ \beta_t(i) = \sum_j^N \beta_{t + 1}(j) a_{ij} b_j(o_{t+1}),
-1 \leq j \leq N, 1 < t \leq T $$
+1 \leq i \leq N, 1 < t \leq T $$
 
 3. 终止:
 
