@@ -152,6 +152,31 @@ HMM的三个问题:
 
 <div align=center><img width="450" src="figure/4.png" alt=" "/></div>
 
-Viterbi算法的思想是, 针对观测序列从左到右计算网格值<img src="/HMM/tex/db53d33c44a49d2a1b726a0e71afb0f0.svg?invert_in_darkmode&sanitize=true" align=middle width=38.817829049999986pt height=24.65753399999998pt/> j <img src="/HMM/tex/49aec54dea2e3f3255347aa8e3ba988d.svg?invert_in_darkmode&sanitize=true" align=middle width=8.21920935pt height=14.15524440000002pt/> t <img src="/HMM/tex/c36f4665a4feb9e23550fdd1e84bb825.svg?invert_in_darkmode&sanitize=true" align=middle width=8.21920935pt height=14.15524440000002pt/> q_1, \cdots, q_{t-1} <img src="/HMM/tex/6536fcd2d8ec8d2e3138399149df4e73.svg?invert_in_darkmode&sanitize=true" align=middle width=4.5662248499999905pt height=14.15524440000002pt/><img src="/HMM/tex/f47683651e9afd070bfeaf942d2879ec.svg?invert_in_darkmode&sanitize=true" align=middle width=353.9259503999999pt height=25.753556400000015pt/><img src="/HMM/tex/263e46948c44ba62058b7eea25cd6295.svg?invert_in_darkmode&sanitize=true" align=middle width=8.21920935pt height=14.15524440000002pt/> v_t(j) <img src="/HMM/tex/889702ab01f16f3c9b36aebc03dbeafb.svg?invert_in_darkmode&sanitize=true" align=middle width=4.5662248499999905pt height=14.15524440000002pt/><img src="/HMM/tex/ad518edefb7bad7d0f438192ab3525b6.svg?invert_in_darkmode&sanitize=true" align=middle width=201.24585689999998pt height=36.45654870000001pt/><img src="/HMM/tex/7406101362054b578d3c37cba1c63221.svg?invert_in_darkmode&sanitize=true" align=middle width=47.03207519999999pt height=118.35616319999997pt/><img src="/HMM/tex/827c4f508041772dd3354a9b86bf1a95.svg?invert_in_darkmode&sanitize=true" align=middle width=222.43349535pt height=49.64395589999999pt/><img src="/HMM/tex/7e9f918e3b033f7633d9394c1e1d53af.svg?invert_in_darkmode&sanitize=true" align=middle width=16.43838074999999pt height=39.45205439999997pt/><img src="/HMM/tex/d32216ca8f486d3e7ee70b932eeb0c5a.svg?invert_in_darkmode&sanitize=true" align=middle width=423.56258009999993pt height=78.4427853pt/><img src="/HMM/tex/1331ac013976eda9b98125b05653dedb.svg?invert_in_darkmode&sanitize=true" align=middle width=16.43838074999999pt height=39.45205439999997pt/><img src="/HMM/tex/e02367b38ada7c1a7503e09edc685980.svg?invert_in_darkmode&sanitize=true" align=middle width=313.42946249999994pt height=78.4427853pt/>$
+Viterbi算法的思想是, 针对观测序列从左到右计算网格值<img src="/HMM/tex/c8d1ebc858a808b1232048d311047b9f.svg?invert_in_darkmode&sanitize=true" align=middle width=34.25160584999999pt height=24.65753399999998pt/>,
+代表了状态<img src="/HMM/tex/e62c4c55196ed02fd2fa7c51b8c03611.svg?invert_in_darkmode&sanitize=true" align=middle width=7.710416999999989pt height=21.68300969999999pt/>对于前<img src="/HMM/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>个观测值最可能的隐状态序列
+<img src="/HMM/tex/47daa418aa62420a78bfec3682390c1c.svg?invert_in_darkmode&sanitize=true" align=middle width=83.1125196pt height=14.611911599999981pt/>的概率:
+
+<p align="center"><img src="/HMM/tex/0d9a1b35d92942685b2461e4ed69901c.svg?invert_in_darkmode&sanitize=true" align=middle width=353.92594875pt height=25.2055452pt/></p>
+
+容易得到<img src="/HMM/tex/c8d1ebc858a808b1232048d311047b9f.svg?invert_in_darkmode&sanitize=true" align=middle width=34.25160584999999pt height=24.65753399999998pt/>的递归表达:
+
+<p align="center"><img src="/HMM/tex/8ce2ee61169c905f49bd228a2ee6e8c1.svg?invert_in_darkmode&sanitize=true" align=middle width=201.24585689999998pt height=28.5821118pt/></p>
+
+为了获取最大似然的隐状态序列, 在动态计算概率的过程中,
+还需要一个状态量来保存每次取max的路径.
+
+这样可以将前向算法写作:
+
+1. 初始化:
+
+<p align="center"><img src="/HMM/tex/047970733eb3ac4147f52fc8fea9403a.svg?invert_in_darkmode&sanitize=true" align=middle width=222.43349535pt height=41.09589pt/></p>
+
+2. 递归:
+
+<p align="center"><img src="/HMM/tex/5dcb1c5c16344f027f30c1ae1ac2a2c8.svg?invert_in_darkmode&sanitize=true" align=middle width=423.56258009999993pt height=70.22358089999999pt/></p>
+
+3. 终止:
+
+<p align="center"><img src="/HMM/tex/2d75f830fa6713b057f2704e2f058fa6.svg?invert_in_darkmode&sanitize=true" align=middle width=313.42946249999994pt height=70.22358089999999pt/></p>
 
 ## HMM Training - The Forward-Backward Algorithm
