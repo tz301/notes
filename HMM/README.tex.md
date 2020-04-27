@@ -219,3 +219,44 @@ v_T(i)
 $$
 
 ## HMM Training - The Forward-Backward Algorithm
+
+HMM训练采用前向-后向算法, 或者Baum-Wehch算法, 一种EM算法来训练.
+给定观测序列和可能的隐状态集合, 通过训练来学习HMM的转移概率和发射概率.
+对于每一次迭代, 通过一个状态量来评估模型的优劣, 并不断朝着优化状态量的方向更新.
+
+对于一个简单的例子, 假设存在三组观测序列和隐序列的对应关系:
+hot hot cold -> 3 3 2; cold cold cold -> 1 1 2; cold hot hot -> 1 2 3.
+
+那么很容易通过最大似然估计得到HMM的参数:
+$$
+\begin{aligned}
+\pi_h = 1/3 \ \ & \ \pi_c = 2/3 \\
+p(hot|hot) = 2/3 \ \ & \ p(cold|hot) = 1/3 \\
+p(cold|cold) = 2/3 \ \ & \ p(hot|cold) = 1/3 \\
+P(1|hot) = 0 \ \ & \ p(1|cold) = 0.6 \\
+p(2|hot) = 0.25 \ \ & \ p(2|cold) = 0.4 \\
+p(3|hot) = 0.75 \ \ & \ p(3|cold) = 0
+\end{aligned}
+$$
+
+然而, 我们无法知道一个观测序列对应的隐状态序列, 我们仅仅能获取其概率.
+
+在前向算法中定义了前向概率, 还需要定义后向概率$ \beta $, 表示从$ t + 1 $
+个观测直到最后的概率:
+
+$$ \beta_t(i) = P(o_{t+1} o_{t+2} \cdots o_T |q_t = i|\lambda) $$
+
+后向概率的计算与前向概率相似:
+
+1. 初始化:
+
+$$ \beta_T(i) = 1, 1 \leq i \leq N $$
+
+2. 递归:
+
+$$ \beta_t(i) = \sum_j^N \beta_{t + 1}(j) a_{ij} b_j(o_{t+1}),
+1 \leq j \leq N, 1 < t \leq T $$
+
+3. 终止:
+
+$$ P(O|\lambda) = \sum_j^N \pi_j b_j(o_1) \beta_1(j) $$
