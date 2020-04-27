@@ -186,7 +186,7 @@ $$ v_t(j) = \mathop{max}\limits_{i=1}^N v_{t-1}(i) a_{ij} b_j(o_t) $$
 为了获取最大似然的隐状态序列, 在动态计算概率的过程中,
 还需要一个状态量来保存每次取max的路径.
 
-这样可以将前向算法写作:
+这样可以将Viterbi算法写作:
 
 1. 初始化:
 
@@ -213,7 +213,7 @@ $$
 $$
 \begin{aligned}
 The \ best \ score: \ P* & = \mathop{max}\limits_{i=1}^N v_T(i) \\
-The \ start \ of \ backtrace q_T* & = \mathop{argmax}\limits_{i=1}^N
+The \ start \ of \ backtrace: \ q_T* & = \mathop{argmax}\limits_{i=1}^N
 v_T(i)
 \end{aligned}
 $$
