@@ -114,7 +114,7 @@ HMM的三个问题:
 对于拥有<img src="/HMM/tex/5e9c7a7d16b15ab5b947bedf5f56bd79.svg?invert_in_darkmode&sanitize=true" align=middle width=14.99998994999999pt height=22.465723500000017pt/>个隐状态的HMM, 如果观测序列长度为<img src="/HMM/tex/ee09a26cd2a8b21b5980249d554ff09f.svg?invert_in_darkmode&sanitize=true" align=middle width=11.889314249999991pt height=22.465723500000017pt/>, 那么总共可能有
 <img src="/HMM/tex/cc9a9c5775604b97d905380fe1fb800d.svg?invert_in_darkmode&sanitize=true" align=middle width=24.53368664999999pt height=27.6567522pt/>个隐序列. 对于一般的任务, <img src="/HMM/tex/5e9c7a7d16b15ab5b947bedf5f56bd79.svg?invert_in_darkmode&sanitize=true" align=middle width=14.99998994999999pt height=22.465723500000017pt/>和<img src="/HMM/tex/ee09a26cd2a8b21b5980249d554ff09f.svg?invert_in_darkmode&sanitize=true" align=middle width=11.889314249999991pt height=22.465723500000017pt/>可能很大, 导致计算代价太大.
 
-因此采用动态的前向算法, 对每一条可能的路径进行概率求和, 复杂度为<img src="/HMM/tex/5d79089817d0e5a7c958d20f3792bfdf.svg?invert_in_darkmode&sanitize=true" align=middle width=60.04459724999998pt height=26.76175259999998pt/>.
+因此采用动态规划的前向算法, 对每一条可能的路径进行概率求和, 复杂度为<img src="/HMM/tex/5d79089817d0e5a7c958d20f3792bfdf.svg?invert_in_darkmode&sanitize=true" align=middle width=60.04459724999998pt height=26.76175259999998pt/>.
 
 <div align=center><img width="450" src="figure/3.png" alt=" "/></div>
 
@@ -146,5 +146,12 @@ HMM的三个问题:
 
 例如, 对于例子中的HMM, 给定观测序列(冰淇淋数量){3, 1, 3},
 解码的目标是获取最可能的天气序列.
+
+对于每一条隐序列, 我们可以通过前向算法计算其似然, 然后找到似然最大的隐序列,
+但是这种算法复杂度太高. 因此采用动态规划的Viterbi算法来计算, 如下图.
+
+<div align=center><img width="450" src="figure/4.png" alt=" "/></div>
+
+Viterbi算法的思想是, 针对观测序列从左到右计算网格值<img src="/HMM/tex/db53d33c44a49d2a1b726a0e71afb0f0.svg?invert_in_darkmode&sanitize=true" align=middle width=38.817829049999986pt height=24.65753399999998pt/> j <img src="/HMM/tex/49aec54dea2e3f3255347aa8e3ba988d.svg?invert_in_darkmode&sanitize=true" align=middle width=8.21920935pt height=14.15524440000002pt/> t <img src="/HMM/tex/c36f4665a4feb9e23550fdd1e84bb825.svg?invert_in_darkmode&sanitize=true" align=middle width=8.21920935pt height=14.15524440000002pt/> q_1, \cdots, q_{t-1} <img src="/HMM/tex/6536fcd2d8ec8d2e3138399149df4e73.svg?invert_in_darkmode&sanitize=true" align=middle width=4.5662248499999905pt height=14.15524440000002pt/><img src="/HMM/tex/f47683651e9afd070bfeaf942d2879ec.svg?invert_in_darkmode&sanitize=true" align=middle width=353.9259503999999pt height=25.753556400000015pt/><img src="/HMM/tex/263e46948c44ba62058b7eea25cd6295.svg?invert_in_darkmode&sanitize=true" align=middle width=8.21920935pt height=14.15524440000002pt/> v_t(j) <img src="/HMM/tex/889702ab01f16f3c9b36aebc03dbeafb.svg?invert_in_darkmode&sanitize=true" align=middle width=4.5662248499999905pt height=14.15524440000002pt/><img src="/HMM/tex/ad518edefb7bad7d0f438192ab3525b6.svg?invert_in_darkmode&sanitize=true" align=middle width=201.24585689999998pt height=36.45654870000001pt/><img src="/HMM/tex/7406101362054b578d3c37cba1c63221.svg?invert_in_darkmode&sanitize=true" align=middle width=47.03207519999999pt height=118.35616319999997pt/><img src="/HMM/tex/827c4f508041772dd3354a9b86bf1a95.svg?invert_in_darkmode&sanitize=true" align=middle width=222.43349535pt height=49.64395589999999pt/><img src="/HMM/tex/7e9f918e3b033f7633d9394c1e1d53af.svg?invert_in_darkmode&sanitize=true" align=middle width=16.43838074999999pt height=39.45205439999997pt/><img src="/HMM/tex/d32216ca8f486d3e7ee70b932eeb0c5a.svg?invert_in_darkmode&sanitize=true" align=middle width=423.56258009999993pt height=78.4427853pt/><img src="/HMM/tex/1331ac013976eda9b98125b05653dedb.svg?invert_in_darkmode&sanitize=true" align=middle width=16.43838074999999pt height=39.45205439999997pt/><img src="/HMM/tex/e02367b38ada7c1a7503e09edc685980.svg?invert_in_darkmode&sanitize=true" align=middle width=313.42946249999994pt height=78.4427853pt/>$
 
 ## HMM Training - The Forward-Backward Algorithm
