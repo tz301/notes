@@ -211,3 +211,11 @@ hot hot cold -> 3 3 2; cold cold cold -> 1 1 2; cold hot hot -> 1 2 3.
 3. 终止:
 
 <p align="center"><img src="/HMM/tex/c693a5a5726b4185f4216a33b7d12acb.svg?invert_in_darkmode&sanitize=true" align=middle width=196.74870105pt height=50.04352485pt/></p>
+
+通过前向概率和后向概率就可以估计转移概率和发射概率. 转移概率的最大似然估计为:
+
+<p align="center"><img src="/HMM/tex/6b9e7e33e8a7fcf8c9ad04c19397582a.svg?invert_in_darkmode&sanitize=true" align=middle width=384.15455925pt height=37.0084374pt/></p>
+
+上式分母如何计算? 假设对于观测序列上<img src="/HMM/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>时刻的某个观测值,
+能够估计出<img src="/HMM/tex/f28b1ce9dc327019f10e92a9cf6d187a.svg?invert_in_darkmode&sanitize=true" align=middle width=38.94424379999999pt height=21.68300969999999pt/>的转移概率,
+那么可以通过对所有时刻的求和得到<img src="/HMM/tex/f28b1ce9dc327019f10e92a9cf6d187a.svg?invert_in_darkmode&sanitize=true" align=middle width=38.94424379999999pt height=21.68300969999999pt/>的转移概率.
