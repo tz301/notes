@@ -260,3 +260,12 @@ $$ \beta_t(i) = \sum_j^N \beta_{t + 1}(j) a_{ij} b_j(o_{t+1}),
 3. 终止:
 
 $$ P(O|\lambda) = \sum_j^N \pi_j b_j(o_1) \beta_1(j) $$
+
+通过前向概率和后向概率就可以估计转移概率和发射概率. 转移概率的最大似然估计为:
+
+$$ \tilde{a}_{ij} = \frac {number\ of\ transitions\ from\ state\ i\ to
+\ state\ j} {number\ of\ transitions\ of\ state\ i} $$
+
+上式分母如何计算? 假设对于观测序列上$ t $时刻的某个观测值,
+能够估计出$ i \rightarrow j $的转移概率,
+那么可以通过对所有时刻的求和得到$ i \rightarrow j $的转移概率.
