@@ -307,5 +307,54 @@ $$
 $$ \tilde{a}_{ij} = \frac {\sum_{t=1}^{T-1} \xi_t(i,j)}
 {\sum_{t=1}^{T-1} \sum_{k=1}^N \xi_t(i,k)} $$
 
+同样, 还需要计算发射概率:
 
+$$ b_j(v_k) = \frac {number\ of\ times\ in\ state\ j\ and\ observing
+\ symbol\ v_k} {number\ of\ times\ in\ state\ j} $$
 
+为了计算上式, 需要知道时刻$ t $在状态$ j $的概率:
+
+$$ \gamma_t(j) = P(q_t = j|O, \lambda) $$
+
+根据贝叶斯定理, 可以将上式写作:
+
+$$ \gamma_t(j) = \frac {P(q_t = j, O| \lambda)} {P(O|\lambda)} $$
+
+<div align=center><img width="450" src="figure/5.png" alt=" "/></div>
+
+通过上图可以看出, 分子项就是前向概率和后向概率的乘积, 那么可得:
+
+$$ \gamma_t(j) = \frac {\alpha_t(j) \beta_t(j)} {P(O|\lambda)} $$
+
+那么就得到了发射概率的计算如下:
+
+$$ b_j(v_k) = \frac {\sum_{t=1\ s.t.\ o_t=v_k}^T \gamma_t(j)}
+{\sum_{t=1}^T \gamma_t(j)} $$
+
+这样, 就可以通过E-M算法不断迭代估计HMM的参数, 直到收敛. 前向后向算法如下:
+
+1. 初始化转移概率矩阵$ A $和发射概率矩阵$ B $.
+
+2. E-step:
+
+$$
+\begin{aligned}
+\gamma_t(j) & = \frac {\alpha_t(j) \beta_t(j)} {\alpha_T(q_F)}
+\ \forall t\ and\ j \\
+\xi_t(i, j) & = \frac {\alpha_t(i) a_{ij} b_j(o_{t+1}) \beta_{t + 1}(j)}
+{\alpha_T(q_F)}\ \forall t,\ i\ and\ j
+\end{aligned}
+$$
+
+3. M-step
+
+$$
+\begin{aligned}
+\tilde{a}_{ij} &= \frac {\sum_{t=1}^{T-1} \xi_t(i, j)}
+{\sum_{t=1}^{T-1} \sum_{k=1}^N \xi_t(i, k)} \\
+\tilde{b}_{j}(v_k) &= \frac {\sum_{t=1\ s.t.\ o_t=v_k}^T \gamma_t(j)}
+{\sum_{t=1}^T \gamma_t(j)}
+\end{aligned}
+$$
+
+4. 重复2和3直到收敛, 返回$ A $和$ B $.
