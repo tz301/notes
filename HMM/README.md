@@ -242,6 +242,8 @@ hot hot cold -> 3 3 2; cold cold cold -> 1 1 2; cold hot hot -> 1 2 3.
 
 <p align="center"><img src="/HMM/tex/2f4f2f3bb39cb9ab2d2a33f4a1f19542.svg?invert_in_darkmode&sanitize=true" align=middle width=236.91092865pt height=115.1703762pt/></p>
 
+<div align=center><img width="450" src="figure/5.png" alt=" "/></div>
+
 那么将上式对所有<img src="/HMM/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>求和就可以得到从状态<img src="/HMM/tex/8fceb32bd3f6803b77bbe1b1758a60b6.svg?invert_in_darkmode&sanitize=true" align=middle width=5.663225699999989pt height=21.68300969999999pt/>到状态<img src="/HMM/tex/e62c4c55196ed02fd2fa7c51b8c03611.svg?invert_in_darkmode&sanitize=true" align=middle width=7.710416999999989pt height=21.68300969999999pt/>的所有转移数量.
 还需要计算状态<img src="/HMM/tex/8fceb32bd3f6803b77bbe1b1758a60b6.svg?invert_in_darkmode&sanitize=true" align=middle width=5.663225699999989pt height=21.68300969999999pt/>的所有转移数量, 可以对所有以状态<img src="/HMM/tex/8fceb32bd3f6803b77bbe1b1758a60b6.svg?invert_in_darkmode&sanitize=true" align=middle width=5.663225699999989pt height=21.68300969999999pt/>为起始的转移进行求和得到.
 这样, 就得到了转移概率的计算公式:
@@ -260,7 +262,7 @@ hot hot cold -> 3 3 2; cold cold cold -> 1 1 2; cold hot hot -> 1 2 3.
 
 <p align="center"><img src="/HMM/tex/453cd0c1f1205c5991a1a3b2877316cf.svg?invert_in_darkmode&sanitize=true" align=middle width=160.60403204999997pt height=38.83491479999999pt/></p>
 
-<div align=center><img width="450" src="figure/5.png" alt=" "/></div>
+<div align=center><img width="450" src="figure/6.png" alt=" "/></div>
 
 通过上图可以看出, 分子项就是前向概率和后向概率的乘积, 那么可得:
 
