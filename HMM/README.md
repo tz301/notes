@@ -191,12 +191,12 @@ hot hot cold -> 3 3 2; cold cold cold -> 1 1 2; cold hot hot -> 1 2 3.
 那么很容易通过最大似然估计得到HMM的参数:
 <p align="center"><img src="/HMM/tex/92c1873ac7212dd60c0b1812c31aad4a.svg?invert_in_darkmode&sanitize=true" align=middle width=270.80692485pt height=139.72602765pt/></p>
 
-然而, 我们无法知道一个观测序列对应的隐状态序列, 我们仅仅能获取其概率.
+然而, 实际情况下, 我们无法知道一个观测序列对应的隐状态序列, 我们仅仅能获取其概率.
 
 在前向算法中定义了前向概率, 还需要定义后向概率<img src="/HMM/tex/9480545cb12c693db1b6559e43971278.svg?invert_in_darkmode&sanitize=true" align=middle width=10.16555099999999pt height=22.831056599999986pt/>, 表示从<img src="/HMM/tex/2f54f1433f0c3a3d7c44740cf8a23287.svg?invert_in_darkmode&sanitize=true" align=middle width=34.24649744999999pt height=21.18721440000001pt/>
 个观测直到最后的概率:
 
-<p align="center"><img src="/HMM/tex/e39dc0af57eec9ff8f44ebbe577a7e16.svg?invert_in_darkmode&sanitize=true" align=middle width=244.28278709999998pt height=16.438356pt/></p>
+<p align="center"><img src="/HMM/tex/e5b65d571e2a7d7a7d59b5f815f72d69.svg?invert_in_darkmode&sanitize=true" align=middle width=247.02244545pt height=16.438356pt/></p>
 
 后向概率的计算与前向概率相似:
 
@@ -206,7 +206,7 @@ hot hot cold -> 3 3 2; cold cold cold -> 1 1 2; cold hot hot -> 1 2 3.
 
 2. 递归:
 
-<p align="center"><img src="/HMM/tex/bc56bc63dcaf2155ee9a06da357225a7.svg?invert_in_darkmode&sanitize=true" align=middle width=369.93733425pt height=50.04352485pt/></p>
+<p align="center"><img src="/HMM/tex/11c4a716da4274deea1c006d61b50aec.svg?invert_in_darkmode&sanitize=true" align=middle width=367.89014295pt height=50.04352485pt/></p>
 
 3. 终止:
 
