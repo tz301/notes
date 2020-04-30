@@ -300,6 +300,8 @@ $$
 \end{aligned}
 $$
 
+<div align=center><img width="450" src="figure/5.png" alt=" "/></div>
+
 那么将上式对所有$ t $求和就可以得到从状态$ i $到状态$ j $的所有转移数量.
 还需要计算状态$ i $的所有转移数量, 可以对所有以状态$ i $为起始的转移进行求和得到.
 这样, 就得到了转移概率的计算公式:
@@ -320,7 +322,7 @@ $$ \gamma_t(j) = P(q_t = j|O, \lambda) $$
 
 $$ \gamma_t(j) = \frac {P(q_t = j, O| \lambda)} {P(O|\lambda)} $$
 
-<div align=center><img width="450" src="figure/5.png" alt=" "/></div>
+<div align=center><img width="450" src="figure/6.png" alt=" "/></div>
 
 通过上图可以看出, 分子项就是前向概率和后向概率的乘积, 那么可得:
 
