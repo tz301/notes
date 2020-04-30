@@ -201,8 +201,8 @@ $$
 
 $$
 \begin{aligned}
-v_t(j) & = \mathop{max}\limits_{i=1}^N v_{t-1}(j) a_{ij} b_j(o_t), \
-& 1 \leq j \leq N, 1 \leq j \leq T \\
+v_t(j) & = \mathop{max}\limits_{i=1}^N v_{t-1}(j) a_{ij} b_j(o_t),
+\ & 1 \leq j \leq N, 1 \leq j \leq T \\
 bt_t(j) & = \mathop{argmax}\limits_{i=1}^N v_{t-1}(j) a_{ij} b_j(o_t),
 \ & 1 \leq j \leq N, 1 \leq j \leq T
 \end{aligned}
@@ -242,7 +242,7 @@ $$
 然而, 实际情况下, 我们无法知道一个观测序列对应的隐状态序列, 我们仅仅能获取其概率.
 
 在前向算法中定义了前向概率, 还需要定义后向概率$ \beta $, 表示从$ t + 1 $
-个观测直到最后的概率:
+个观测值到最后的概率:
 
 $$ \beta_t(i) = P(o_{t+1} o_{t+2} \cdots o_T, q_t = i|\lambda) $$
 
@@ -266,6 +266,46 @@ $$ P(O|\lambda) = \sum_j^N \pi_j b_j(o_1) \beta_1(j) $$
 $$ \tilde{a}_{ij} = \frac {number\ of\ transitions\ from\ state\ i\ to
 \ state\ j} {number\ of\ transitions\ of\ state\ i} $$
 
-上式分母如何计算? 假设对于观测序列上$ t $时刻的某个观测值,
+对于上式的分母, 如果对于观测序列上$ t $时刻的某个观测值,
 能够估计出$ i \rightarrow j $的转移概率,
 那么可以通过对所有时刻的求和得到$ i \rightarrow j $的转移概率.
+
+定义$ t $时刻状态为$ i $, $ t + 1 $时刻状态为$ j $的概率为$ \xi_t $:
+
+$$ \xi_t(i, j) = P(q_t = i, q_{t+1} = j|O, \lambda) $$
+
+为了计算上式, 先计算包含观测序列概率的$ \xi_t $:
+
+$$ not-quite-\xi_t(i, j) = P(q_t = i, q_{t+1} = j, O| \lambda) $$
+
+<div align=center><img width="450" src="figure/4.png" alt=" "/></div>
+
+从上图可以看出$ not-quite-\xi_t $的计算为:
+
+$$ not-quite-\xi_t(i, j) = \alpha_t(i) a_{ij} b_j(o_{t+1})
+\beta_{t+1}(j) $$
+
+根据贝叶斯定理:
+
+$$ P(X|Y, Z) = \frac {P(X, Y|Z)} {P(Y|Z)} $$
+
+可得:
+
+$$
+\begin{aligned}
+\xi_t(i, j) & = P(q_t = i, q_{t+1} = j|O, \lambda) \\
+& = \frac {P(q_t = i, q_{t+1} = j, O|\lambda)} {P(O|\lambda)} \\
+& = \frac {\alpha_t(i) a_{ij} b_j(o_{t+1}) \beta_{t+1}(j)}
+{\sum_{j=1}^N \alpha_t(j) \beta_t(j)}
+\end{aligned}
+$$
+
+那么将上式对所有$ t $求和就可以得到从状态$ i $到状态$ j $的所有转移数量.
+还需要计算状态$ i $的所有转移数量, 可以对所有以状态$ i $为起始的转移进行求和得到.
+这样, 就得到了转移概率的计算公式:
+
+$$ \tilde{a}_{ij} = \frac {\sum_{t=1}^{T-1} \xi_t(i,j)}
+{\sum_{t=1}^{T-1} \sum_{k=1}^N \xi_t(i,k)} $$
+
+
+
