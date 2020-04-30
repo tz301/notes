@@ -173,7 +173,7 @@ Viterbi算法的思想是, 针对观测序列从左到右计算网格值<img src
 
 2. 递归:
 
-<p align="center"><img src="/HMM/tex/7e1f382c47e9791e5e1ce460ba50bd92.svg?invert_in_darkmode&sanitize=true" align=middle width=412.60384275pt height=70.22358089999999pt/></p>
+<p align="center"><img src="/HMM/tex/f0f4e161e3a06e2c7fb49c6a1e16ebde.svg?invert_in_darkmode&sanitize=true" align=middle width=412.60384275pt height=70.22358089999999pt/></p>
 
 3. 终止:
 
@@ -194,7 +194,7 @@ hot hot cold -> 3 3 2; cold cold cold -> 1 1 2; cold hot hot -> 1 2 3.
 然而, 实际情况下, 我们无法知道一个观测序列对应的隐状态序列, 我们仅仅能获取其概率.
 
 在前向算法中定义了前向概率, 还需要定义后向概率<img src="/HMM/tex/9480545cb12c693db1b6559e43971278.svg?invert_in_darkmode&sanitize=true" align=middle width=10.16555099999999pt height=22.831056599999986pt/>, 表示从<img src="/HMM/tex/2f54f1433f0c3a3d7c44740cf8a23287.svg?invert_in_darkmode&sanitize=true" align=middle width=34.24649744999999pt height=21.18721440000001pt/>
-个观测直到最后的概率:
+个观测值到最后的概率:
 
 <p align="center"><img src="/HMM/tex/e5b65d571e2a7d7a7d59b5f815f72d69.svg?invert_in_darkmode&sanitize=true" align=middle width=247.02244545pt height=16.438356pt/></p>
 
@@ -216,6 +216,37 @@ hot hot cold -> 3 3 2; cold cold cold -> 1 1 2; cold hot hot -> 1 2 3.
 
 <p align="center"><img src="/HMM/tex/6b9e7e33e8a7fcf8c9ad04c19397582a.svg?invert_in_darkmode&sanitize=true" align=middle width=384.15455925pt height=37.0084374pt/></p>
 
-上式分母如何计算? 假设对于观测序列上<img src="/HMM/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>时刻的某个观测值,
+对于上式的分母, 如果对于观测序列上<img src="/HMM/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>时刻的某个观测值,
 能够估计出<img src="/HMM/tex/f28b1ce9dc327019f10e92a9cf6d187a.svg?invert_in_darkmode&sanitize=true" align=middle width=38.94424379999999pt height=21.68300969999999pt/>的转移概率,
 那么可以通过对所有时刻的求和得到<img src="/HMM/tex/f28b1ce9dc327019f10e92a9cf6d187a.svg?invert_in_darkmode&sanitize=true" align=middle width=38.94424379999999pt height=21.68300969999999pt/>的转移概率.
+
+定义<img src="/HMM/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>时刻状态为<img src="/HMM/tex/8fceb32bd3f6803b77bbe1b1758a60b6.svg?invert_in_darkmode&sanitize=true" align=middle width=5.663225699999989pt height=21.68300969999999pt/>, <img src="/HMM/tex/2f54f1433f0c3a3d7c44740cf8a23287.svg?invert_in_darkmode&sanitize=true" align=middle width=34.24649744999999pt height=21.18721440000001pt/>时刻状态为<img src="/HMM/tex/e62c4c55196ed02fd2fa7c51b8c03611.svg?invert_in_darkmode&sanitize=true" align=middle width=7.710416999999989pt height=21.68300969999999pt/>的概率为<img src="/HMM/tex/324efe480281e20ccaa6e9f265fd0f99.svg?invert_in_darkmode&sanitize=true" align=middle width=12.15760424999999pt height=22.831056599999986pt/>:
+
+<p align="center"><img src="/HMM/tex/fcff57eec45e63f74d8eabe3b0bf1833.svg?invert_in_darkmode&sanitize=true" align=middle width=235.8516105pt height=16.438356pt/></p>
+
+为了计算上式, 先计算包含观测序列概率的<img src="/HMM/tex/324efe480281e20ccaa6e9f265fd0f99.svg?invert_in_darkmode&sanitize=true" align=middle width=12.15760424999999pt height=22.831056599999986pt/>:
+
+<p align="center"><img src="/HMM/tex/b92a016a76ebc11fc02f3fc68072db5e.svg?invert_in_darkmode&sanitize=true" align=middle width=335.48359515pt height=16.438356pt/></p>
+
+<div align=center><img width="450" src="figure/4.png" alt=" "/></div>
+
+从上图可以看出<img src="/HMM/tex/c689f4a0f610674011ed94b2d2f28c2e.svg?invert_in_darkmode&sanitize=true" align=middle width=112.70283254999998pt height=22.831056599999986pt/>的计算为:
+
+<p align="center"><img src="/HMM/tex/8471e163a750ec997ae7cb397b547379.svg?invert_in_darkmode&sanitize=true" align=middle width=333.3174471pt height=17.031940199999998pt/></p>
+
+根据贝叶斯定理:
+
+<p align="center"><img src="/HMM/tex/ebe45cd9060a7cf6c71aaf8b38993101.svg?invert_in_darkmode&sanitize=true" align=middle width=176.23050389999997pt height=38.83491479999999pt/></p>
+
+可得:
+
+<p align="center"><img src="/HMM/tex/2f4f2f3bb39cb9ab2d2a33f4a1f19542.svg?invert_in_darkmode&sanitize=true" align=middle width=236.91092865pt height=115.1703762pt/></p>
+
+那么将上式对所有<img src="/HMM/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>求和就可以得到从状态<img src="/HMM/tex/8fceb32bd3f6803b77bbe1b1758a60b6.svg?invert_in_darkmode&sanitize=true" align=middle width=5.663225699999989pt height=21.68300969999999pt/>到状态<img src="/HMM/tex/e62c4c55196ed02fd2fa7c51b8c03611.svg?invert_in_darkmode&sanitize=true" align=middle width=7.710416999999989pt height=21.68300969999999pt/>的所有转移数量.
+还需要计算状态<img src="/HMM/tex/8fceb32bd3f6803b77bbe1b1758a60b6.svg?invert_in_darkmode&sanitize=true" align=middle width=5.663225699999989pt height=21.68300969999999pt/>的所有转移数量, 可以对所有以状态<img src="/HMM/tex/8fceb32bd3f6803b77bbe1b1758a60b6.svg?invert_in_darkmode&sanitize=true" align=middle width=5.663225699999989pt height=21.68300969999999pt/>为起始的转移进行求和得到.
+这样, 就得到了转移概率的计算公式:
+
+<p align="center"><img src="/HMM/tex/e0d46e4cb4e47fb9517bb3b7da5cb5ee.svg?invert_in_darkmode&sanitize=true" align=middle width=184.06265624999997pt height=46.72166729999999pt/></p>
+
+
+
