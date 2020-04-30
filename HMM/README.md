@@ -248,5 +248,38 @@ hot hot cold -> 3 3 2; cold cold cold -> 1 1 2; cold hot hot -> 1 2 3.
 
 <p align="center"><img src="/HMM/tex/e0d46e4cb4e47fb9517bb3b7da5cb5ee.svg?invert_in_darkmode&sanitize=true" align=middle width=184.06265624999997pt height=46.72166729999999pt/></p>
 
+同样, 还需要计算发射概率:
 
+<p align="center"><img src="/HMM/tex/34d868ea47ff672a579d70c01998e2b7.svg?invert_in_darkmode&sanitize=true" align=middle width=455.6393721pt height=37.0084374pt/></p>
 
+为了计算上式, 需要知道时刻<img src="/HMM/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>在状态<img src="/HMM/tex/e62c4c55196ed02fd2fa7c51b8c03611.svg?invert_in_darkmode&sanitize=true" align=middle width=7.710416999999989pt height=21.68300969999999pt/>的概率:
+
+<p align="center"><img src="/HMM/tex/59a5543ce8f1820800a995b70fb914af.svg?invert_in_darkmode&sanitize=true" align=middle width=159.54467925pt height=16.438356pt/></p>
+
+根据贝叶斯定理, 可以将上式写作:
+
+<p align="center"><img src="/HMM/tex/453cd0c1f1205c5991a1a3b2877316cf.svg?invert_in_darkmode&sanitize=true" align=middle width=160.60403204999997pt height=38.83491479999999pt/></p>
+
+<div align=center><img width="450" src="figure/5.png" alt=" "/></div>
+
+通过上图可以看出, 分子项就是前向概率和后向概率的乘积, 那么可得:
+
+<p align="center"><img src="/HMM/tex/b7055fb75ce8b7eee19ccd71b272df48.svg?invert_in_darkmode&sanitize=true" align=middle width=131.06509845pt height=38.83491479999999pt/></p>
+
+那么就得到了发射概率的计算如下:
+
+<p align="center"><img src="/HMM/tex/69e96c5c300ad48fbc8e06128e8d9f8f.svg?invert_in_darkmode&sanitize=true" align=middle width=209.76344565pt height=48.4659615pt/></p>
+
+这样, 就可以通过E-M算法不断迭代估计HMM的参数, 直到收敛. 前向后向算法如下:
+
+1. 初始化转移概率矩阵<img src="/HMM/tex/4ddffcd42610c451b271272b7ec53505.svg?invert_in_darkmode&sanitize=true" align=middle width=12.32879834999999pt height=22.465723500000017pt/>和发射概率矩阵<img src="/HMM/tex/1eb95ebf2173f6c5b3788ff373fd443e.svg?invert_in_darkmode&sanitize=true" align=middle width=13.29340979999999pt height=22.465723500000017pt/>.
+
+2. E-step:
+
+<p align="center"><img src="/HMM/tex/5b37cce3fca4a0c73b1479d78fa7c72d.svg?invert_in_darkmode&sanitize=true" align=middle width=321.49511789999997pt height=84.24519509999999pt/></p>
+
+3. M-step
+
+<p align="center"><img src="/HMM/tex/a327a856614f0a41b787c8dbb00efbe0.svg?invert_in_darkmode&sanitize=true" align=middle width=210.34560195pt height=101.76299594999999pt/></p>
+
+4. 重复2和3直到收敛, 返回<img src="/HMM/tex/4ddffcd42610c451b271272b7ec53505.svg?invert_in_darkmode&sanitize=true" align=middle width=12.32879834999999pt height=22.465723500000017pt/>和<img src="/HMM/tex/1eb95ebf2173f6c5b3788ff373fd443e.svg?invert_in_darkmode&sanitize=true" align=middle width=13.29340979999999pt height=22.465723500000017pt/>.
