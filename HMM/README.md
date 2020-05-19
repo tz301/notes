@@ -285,3 +285,5 @@ hot hot cold -> 3 3 2; cold cold cold -> 1 1 2; cold hot hot -> 1 2 3.
 <p align="center"><img src="/HMM/tex/a327a856614f0a41b787c8dbb00efbe0.svg?invert_in_darkmode&sanitize=true" align=middle width=210.34560195pt height=101.76299594999999pt/></p>
 
 4. 重复2和3直到收敛, 返回<img src="/HMM/tex/4ddffcd42610c451b271272b7ec53505.svg?invert_in_darkmode&sanitize=true" align=middle width=12.32879834999999pt height=22.465723500000017pt/>和<img src="/HMM/tex/1eb95ebf2173f6c5b3788ff373fd443e.svg?invert_in_darkmode&sanitize=true" align=middle width=13.29340979999999pt height=22.465723500000017pt/>.
+
+<div align=center><img width="450" src="figure/6.png" alt=" "/></div>
