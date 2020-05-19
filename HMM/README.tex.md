@@ -360,3 +360,5 @@ $$
 $$
 
 4. 重复2和3直到收敛, 返回$ A $和$ B $.
+
+<div align=center><img width="450" src="figure/6.png" alt=" "/></div>
