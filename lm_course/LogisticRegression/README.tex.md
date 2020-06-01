@@ -5,7 +5,7 @@
 ## Hypothesis Representation
 对于二分类问题, 可以采用逻辑回归模型. 逻辑回归模型的输出满足:
 
-$$  \leq h_\theta(x) \leq 1 $$
+$$ 0 \leq h_\theta(x) \leq 1 $$
 
 这样, 可以设定一个阈值来进行二分类.
 
