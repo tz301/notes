@@ -10,6 +10,8 @@
 
 假设一个序列内的状态变量为<img src="/HMM/tex/e637b86bbdb2aacea366b27626449b0a.svg?invert_in_darkmode&sanitize=true" align=middle width=87.98971334999999pt height=14.611911599999981pt/>. 可以将马尔可夫假设表示为:
 
+<p align="center"><img src="/HMM/tex/ceee94c7c67f44415a5d264fd97b7173.svg?invert_in_darkmode&sanitize=true" align=middle width=267.77565375pt height=16.438356pt/></p>
+
 下图a给出了天气变化的马尔科夫链, 可能的天气为HOT, COLD和WARM.
 图中, 状态以节点表示, 每条边上标明转移概率, 每个节点所有边的转移概率之和为1.
 图b给出了一个二元语言模型的马尔科夫链.
