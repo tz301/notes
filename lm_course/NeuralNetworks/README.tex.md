@@ -8,7 +8,7 @@
 
 <div align=center><img width="350" src="figure/1.png" alt=" "/></div>
 
-假设有$ m $个训练样本: $ \left\{ \left( x^{(1)}, y^{(1)} \right),
+假设有$ m $个训练样本: $ 1\left\{ \left( x^{(1)}, y^{(1)} \right),
 \left( x^{(2)}, y^{(2)} \right), \cdots,
 \left( x^{(m)}, y^{(m)} \right) \right\} $, 定义$ L $为网络的层数,
 $ s_l $为第$ l $层的单元数(不包含偏置单元数).
