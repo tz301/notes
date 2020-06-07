@@ -65,19 +65,6 @@ __LEN = 0
 #     return __merge(merge_sort(left), merge_sort(right))
 #
 #
-# def counting_sort(in_list: List, max_value=100) -> List:
-#   """计数排序."""
-#   bucket = [0] * (max_value + 1)
-#   for value in in_list:
-#     bucket[value] += 1
-#
-#   out_list = list()
-#   for i, bucket_value in enumerate(bucket):
-#     if bucket_value != 0:
-#       out_list.extend([i] * bucket_value)
-#   return out_list
-#
-#
 # def bucket_sort(in_list: List) -> List:
 #   """桶排序."""
 #   min_value = min(in_list)
@@ -218,6 +205,18 @@ def __heap_sort(nums):
     __heapify(nums, 0)
 
 
+def __counting_sort(nums, max_value=100):
+  """计数排序."""
+  bucket = [0] * (max_value + 1)
+  for num in nums:
+    bucket[num] += 1
+
+  nums.clear()
+  for i, num in enumerate(bucket):
+    if num > 0:
+      nums.extend([i] * num)
+
+
 def __cmd():
   """测试排序算法."""
   in_list = [5, 4, 2, 3, 29, 8, 1, 7, 13]
@@ -229,7 +228,7 @@ def __cmd():
       # ("归并", __merge_sort),
       ("快速", __quick_sort),
       ("堆", __heap_sort),
-      # ("计数", __counting_sort),
+      ("计数", __counting_sort),
       # ("桶", __bucket_sort),
       # ("基数", __radix_sort)
   ]
