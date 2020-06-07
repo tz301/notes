@@ -7,23 +7,6 @@ import logging
 from base.utils import LOGGER_FORMAT
 
 __LEN = 0
-
-
-# def insertion_sorting(in_list: List) -> List:
-#   """插入排序."""
-#   out_list = in_list.copy()
-#   num = len(in_list)
-#   for i in range(1, num):
-#     current = out_list[i]
-#
-#     j = i
-#     while j > 0 and current < out_list[j - 1]:
-#       out_list[j] = out_list[j - 1]
-#       j -= 1
-#
-#     out_list[j] = current
-#
-#   return out_list
 #
 #
 # def shell_sort(in_list: List) -> List:
@@ -82,16 +65,7 @@ __LEN = 0
 #     return __merge(merge_sort(left), merge_sort(right))
 #
 #
-# def __partition(in_list, left, right):
-#   """分区."""
-#   pivot = left
-#   index = pivot + 1
-#   for i in range(index, right + 1):
-#     if in_list[i] < in_list[pivot]:
-#       in_list[i], in_list[index] = in_list[index], in_list[i]
-#       index += 1
-#   in_list[pivot], in_list[index - 1] = in_list[index - 1], in_list[pivot]
-#   return index - 1
+
 #
 #
 # def quick_sort(in_list: List, left=None, right=None) -> List:
@@ -240,6 +214,28 @@ def __insertion_sorting(nums):
     nums[j] = tmp
 
 
+def __partition(nums, pivot, right):
+  """快速排序分区."""
+  index = pivot + 1
+  for i in range(index, right + 1):
+    if nums[i] < nums[pivot]:
+      nums[i], nums[index] = nums[index], nums[i]
+      index += 1
+  nums[pivot], nums[index - 1] = nums[index - 1], nums[pivot]
+  return index - 1
+
+
+def __quick_sort(nums, left=None, right=None):
+  """快速排序."""
+  left = 0 if left is None else left
+  right = len(nums) - 1 if right is None else right
+
+  if left < right:
+    index = __partition(nums, left, right)
+    __quick_sort(nums, left, index - 1)
+    __quick_sort(nums, index + 1, right)
+
+
 def __cmd():
   """测试排序算法."""
   in_list = [5, 4, 2, 3, 29, 8, 1, 7, 13]
@@ -249,7 +245,7 @@ def __cmd():
       ("插入", __insertion_sorting),
       # ("希尔", __shell_sort),
       # ("归并", __merge_sort),
-      # ("快速", __quick_sort),
+      ("快速", __quick_sort),
       # ("堆", __heap_sort),
       # ("计数", __counting_sort),
       # ("桶", __bucket_sort),
