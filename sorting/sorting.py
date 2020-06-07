@@ -65,61 +65,6 @@ __LEN = 0
 #     return __merge(merge_sort(left), merge_sort(right))
 #
 #
-
-#
-#
-# def quick_sort(in_list: List, left=None, right=None) -> List:
-#   """快速排序."""
-#   out_list = in_list.copy()
-#   left = 0 if left is None else left
-#   right = len(in_list) - 1 if right is None else right
-#
-#   if left < right:
-#     partition_index = __partition(out_list, left, right)
-#     out_list = quick_sort(out_list, left, partition_index - 1)
-#     out_list = quick_sort(out_list, partition_index + 1, right)
-#   return out_list
-#
-#
-# def __build_max_heap(in_list):
-#   """建立顶堆."""
-#   global __LEN
-#
-#   __LEN = len(in_list)
-#   for i in range(floor(__LEN / 2), -1, -1):
-#     __heapify(in_list, i)
-#
-#
-# def __heapify(in_list, index):
-#   """堆调整."""
-#   left = 2 * index + 1
-#   right = 2 * index + 2
-#   largest = index
-#
-#   if left < __LEN and in_list[left] > in_list[largest]:
-#     largest = left
-#
-#   if right < __LEN and in_list[right] > in_list[largest]:
-#     largest = right
-#
-#   if largest != index:
-#     in_list[index], in_list[largest] = in_list[largest], in_list[index]
-#     __heapify(in_list, largest)
-#
-#
-# def heap_sort(in_list: List) -> List:
-#   """堆排序."""
-#   global __LEN
-#   out_list = in_list.copy()
-#   __build_max_heap(out_list)
-#
-#   for i in range(len(in_list) - 1, 0, -1):
-#     out_list[0], out_list[i] = out_list[i], out_list[0]
-#     __LEN = __LEN - 1
-#     __heapify(out_list, 0)
-#   return out_list
-#
-#
 # def counting_sort(in_list: List, max_value=100) -> List:
 #   """计数排序."""
 #   bucket = [0] * (max_value + 1)
@@ -236,6 +181,43 @@ def __quick_sort(nums, left=None, right=None):
     __quick_sort(nums, index + 1, right)
 
 
+def __heapify(nums, index):
+  """堆调整."""
+  left = 2 * index + 1
+  right = 2 * index + 2
+  largest = index
+
+  if left < __LEN and nums[left] > nums[largest]:
+    largest = left
+
+  if right < __LEN and nums[right] > nums[largest]:
+    largest = right
+
+  if largest != index:
+    nums[index], nums[largest] = nums[largest], nums[index]
+    __heapify(nums, largest)
+
+
+def __build_top_heap(nums):
+  """建立顶堆."""
+  global __LEN
+
+  __LEN = len(nums)
+  for i in range(__LEN // 2, -1, -1):
+    __heapify(nums, i)
+
+
+def __heap_sort(nums):
+  """堆排序."""
+  global __LEN
+  __build_top_heap(nums)
+
+  for i in range(len(nums) - 1, 0, -1):
+    nums[0], nums[i] = nums[i], nums[0]
+    __LEN -= 1
+    __heapify(nums, 0)
+
+
 def __cmd():
   """测试排序算法."""
   in_list = [5, 4, 2, 3, 29, 8, 1, 7, 13]
@@ -246,7 +228,7 @@ def __cmd():
       # ("希尔", __shell_sort),
       # ("归并", __merge_sort),
       ("快速", __quick_sort),
-      # ("堆", __heap_sort),
+      ("堆", __heap_sort),
       # ("计数", __counting_sort),
       # ("桶", __bucket_sort),
       # ("基数", __radix_sort)
