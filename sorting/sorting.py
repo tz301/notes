@@ -228,13 +228,25 @@ def __selection_sorting(nums):
       nums[i], nums[min_index] = nums[min_index], nums[i]
 
 
+def __insertion_sorting(nums):
+  """插入排序."""
+  length = len(nums)
+  for i in range(1, length):
+    tmp = nums[i]
+    j = i
+    while j > 0 and tmp < nums[j - 1]:
+      nums[j] = nums[j - 1]
+      j -= 1
+    nums[j] = tmp
+
+
 def __cmd():
   """测试排序算法."""
   in_list = [5, 4, 2, 3, 29, 8, 1, 7, 13]
   func_list = [
       ("冒泡", __bubble_sorting),
       ("选择", __selection_sorting),
-      # ("插入", __insertion_sorting),
+      ("插入", __insertion_sorting),
       # ("希尔", __shell_sort),
       # ("归并", __merge_sort),
       # ("快速", __quick_sort),
