@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Created by TZ on 2020/2/12
+# Created by tz301 on 2020/2/12
 import logging
 from pathlib import Path
 
@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from base.utils import load_txt, LOGGER_FORMAT
-from LinearRegression.utils import gradient_descent
+from lm_course.LinearRegression.utils import gradient_descent
 
 
 def __normalize_feat(feat):

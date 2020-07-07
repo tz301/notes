@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Created by TZ on 2020/2/15
+# Created by tz301 on 2020/2/15
 import numpy as np
 
 LOGGER_FORMAT = "%(asctime)s %(name)s %(levelname)s %(message)s"

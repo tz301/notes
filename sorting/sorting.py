@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Created by TZ on 2020/5/9
+# Created by tz301 on 2020/5/9
 """排序算法."""
 import logging
 

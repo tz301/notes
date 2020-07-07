@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Created by TZ on 2020/2/15
+# Created by tz301 on 2020/2/15
 import logging
 from pathlib import Path
 
@@ -9,7 +9,7 @@ import numpy as np
 from scipy.optimize import minimize
 
 from base.utils import load_txt, LOGGER_FORMAT
-from LogisticRegression.utils import sigmoid
+from lm_course.LogisticRegression.utils import sigmoid
 
 
 def __plot(feat, label):

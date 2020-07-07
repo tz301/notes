@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Created by TZ on 2020/2/12
+# Created by tz301 on 2020/2/12
 import logging
 from pathlib import Path
 
@@ -9,7 +9,7 @@ import numpy as np
 from mpl_toolkits import mplot3d  # 3d图所需.
 
 from base.utils import load_txt, LOGGER_FORMAT
-from LinearRegression.utils import compute_cost, gradient_descent
+from lm_course.LinearRegression.utils import compute_cost, gradient_descent
 
 
 def __plot(feat, label):
