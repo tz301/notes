@@ -1,0 +1,9 @@
+language: python
+
+jobs:
+  include:
+    - stage: check
+      script: python3 -m pylint --indent-string='  ' --max-line-length=80
+              --disable=no-else-return,too-few-public-methods,logging-format-interpolation
+              --good-names=i,j,t,ax,lr,mu --ignore-imports=yes
+              asr_feature base hmm lm_course sorting
