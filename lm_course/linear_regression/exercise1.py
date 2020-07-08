@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Created by tz301 on 2020/2/12
+"""线性回归练习1."""
 import logging
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
+# pylint: disable=unused-import,bad-option-value
 from mpl_toolkits import mplot3d  # 3d图所需.
 
 from base.utils import load_txt, LOGGER_FORMAT
 from lm_course.linear_regression.utils import compute_cost, gradient_descent
 
 
-def __plot(feat, label):
+def __plot_data(feat, label):
   """绘图.
 
   Args:
@@ -20,9 +22,9 @@ def __plot(feat, label):
     label: 标签, 维度为(样本数).
   """
   plt.figure()
-  plt.plot(feat, label, "rx", label="Training Data")
-  plt.xlabel("Population of City in 10,000s")
-  plt.ylabel("Profit in $10,000s")
+  plt.plot(feat, label, 'rx', label='Training Data')
+  plt.xlabel('Population of City in 10,000s')
+  plt.ylabel('Profit in $10,000s')
 
 
 def __cost_visualizing(best_theta, feat, label):
@@ -47,30 +49,28 @@ def __cost_visualizing(best_theta, feat, label):
 
   plt.figure()
   ax = plt.axes(projection='3d')
-  ax.plot_surface(grid1, grid2, costs, cmap="viridis")
-  ax.set_xlabel(r"$\theta_0$")
-  ax.set_ylabel(r"$\theta_1$")
-  ax.set_zlabel("cost")
+  ax.plot_surface(grid1, grid2, costs, cmap='viridis')
+  ax.set_xlabel(r'$\theta_0$')
+  ax.set_ylabel(r'$\theta_1$')
+  ax.set_zlabel('cost')
 
   plt.figure()
   ax = plt.axes()
   log_costs = np.log10(costs)
   space = np.logspace((log_costs.min()), (log_costs.max()), 15)
   ax.contour(grid1, grid2, costs, space)
-  plt.plot(best_theta[0], best_theta[1], "rx")
-  ax.set_xlabel(r"$\theta_0$")
-  ax.set_ylabel(r"$\theta_1$")
+  plt.plot(best_theta[0], best_theta[1], 'rx')
+  ax.set_xlabel(r'$\theta_0$')
+  ax.set_ylabel(r'$\theta_1$')
 
 
 def __cmd():
-  """命令行函数.
-
-  """
-  feat, label = load_txt(Path(__file__).parent / "data1.txt")
+  """命令行函数."""
+  feat, label = load_txt(Path(__file__).parent / 'data1.txt')
   num = len(feat)  # 样本数
 
   # 绘图显示数据.
-  __plot(feat, label)
+  __plot_data(feat, label)
 
   # 梯度下降.
   lr = 0.01
@@ -78,16 +78,16 @@ def __cmd():
   init_theta = np.zeros(2)
   feat = np.concatenate([np.ones((num, 1)), feat], axis=-1)  # 增加全为1的第0列.
   best_theta, _ = gradient_descent(init_theta, feat, label, lr, iteration)
-  logging.info(f"梯度下降得到的最优参数: [{best_theta[0]:.5f} "
-               f"{best_theta[1]:.5f}]")
+  logging.info(f'梯度下降得到的最优参数: [{best_theta[0]:.5f} '
+               f'{best_theta[1]:.5f}].')
 
-  plt.plot(feat[:, 1], np.dot(feat, best_theta), "-",
-           label="Linear Regression")
+  plt.plot(feat[:, 1], np.dot(feat, best_theta), '-',
+           label='Linear Regression')
   plt.legend()
 
   # 预测.
   pred = np.squeeze(np.dot(np.array([[1, 35000]]), best_theta))
-  logging.info(f"人口为35000时, 预测得到的利润为: {pred:.2f}")
+  logging.info(f'人口为35000时, 预测得到的利润为: {pred:.2f}.')
 
   # 代价函数可视化.
   __cost_visualizing(best_theta, feat, label)

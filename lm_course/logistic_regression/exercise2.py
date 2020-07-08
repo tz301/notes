@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Created by tz301 on 2020/2/16
+"""逻辑回归练习2."""
 import logging
 from pathlib import Path
 
@@ -9,7 +10,7 @@ import numpy as np
 from scipy.optimize import minimize
 
 from base.utils import load_txt, LOGGER_FORMAT
-from lm_course.logistic_regression.utils import sigmoid
+from lm_course.logistic_regression.utils import predict, sigmoid
 
 
 def __plot(feat, label):
@@ -23,11 +24,11 @@ def __plot(feat, label):
   neg = np.where(label == 0)[0]
 
   plt.figure()
-  plt.plot(feat[pos, 0], feat[pos, 1], "k+", label="y = 1")
-  plt.scatter(feat[neg, 0], feat[neg, 1], facecolors="y", edgecolors="k",
-              label="y = 0")
-  plt.xlabel("Microchip Test 1")
-  plt.ylabel("Microchip Test 2")
+  plt.plot(feat[pos, 0], feat[pos, 1], 'k+', label='y = 1')
+  plt.scatter(feat[neg, 0], feat[neg, 1], facecolors='y', edgecolors='k',
+              label='y = 0')
+  plt.xlabel('Microchip Test 1')
+  plt.ylabel('Microchip Test 2')
   plt.legend()
 
 
@@ -93,45 +94,25 @@ def __compute_grad(theta, feat, label, lambda_factor):
   return grad + penalty
 
 
-def __predict(theta, feat):
-  """预测结果.
+def __gradient_descent(feat, label):
+  """梯度下降.
 
   Args:
-    theta: 参数, 维度(特征数).
-    feat: 特征, 维度(特征数)或者(样本数, 特征数).
-
-  Returns:
-    标签, 0或者1, 维度(样本数).
+    feat: 特征, 维度(样本数, 特征数).
+    label: 标签, 维度(样本数).
   """
-  if len(feat.shape) == 1:
-    feat = np.expand_dims(feat, 1)
-  return (np.dot(feat, theta) >= 0.5).astype(np.int)
-
-
-def __cmd():
-  """命令行函数.
-
-  """
-  feat, label = load_txt(Path(__file__).parent / "data2.txt")
-  num = len(feat)  # 样本数
-
-  # 样本作图.
-  __plot(feat, label)
-
-  # 梯度下降.
-  new_feat = __feat_mapping(feat)
-  init_theta = np.zeros(new_feat.shape[1])
+  init_theta = np.zeros(feat.shape[1])
   grid_num = 50
   grid_x = np.linspace(-1, 1.5, grid_num)
   grid_y = np.linspace(-1, 1.5, grid_num)
   for lambda_factor in [0, 0.01, 1, 100]:
-    args = (new_feat, label, lambda_factor)
+    args = (feat, label, lambda_factor)
     optimal = minimize(__compute_cost, init_theta, args=args,
-                       method="TNC", jac=__compute_grad)
-    best_theta = optimal["x"]
+                       method='TNC', jac=__compute_grad)
+    best_theta = optimal['x']
 
-    acc = np.sum(__predict(best_theta, new_feat) == label) / num
-    logging.info(f"正则化因子为{lambda_factor}时, 训练集准确率为: {acc * 100:.2f}%.")
+    acc = np.sum(predict(best_theta, feat) == label) / len(feat)
+    logging.info(f'正则化因子为{lambda_factor}时, 训练集准确率为: {acc * 100:.2f}%.')
 
     value_z = np.zeros((grid_num, grid_num))
     for i in range(grid_num):
@@ -140,8 +121,20 @@ def __cmd():
         value_z[i, j] = np.dot(__feat_mapping(feat_tmp), best_theta)
 
     __plot(feat, label)
-    plt.title(r"$\lambda=$" + f"{lambda_factor}")
+    plt.title(r'$\lambda=$' + f'{lambda_factor}')
     plt.contour(grid_x, grid_y, value_z, [0])
+
+
+def __cmd():
+  """命令行函数."""
+  feat, label = load_txt(Path(__file__).parent / 'data2.txt')
+
+  # 样本作图.
+  __plot(feat, label)
+
+  # 梯度下降.
+  new_feat = __feat_mapping(feat)
+  __gradient_descent(new_feat, label)
 
   plt.show()
 

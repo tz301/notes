@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Created by tz301 on 2020/3/29
+"""神经网络练习."""
+# pylint: skip-file
 import logging
 import math
 
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.io import loadmat
+
 from base.utils import LOGGER_FORMAT
 
 
@@ -20,7 +23,7 @@ def __plot(inputs):
   cols = 10
   indexes = np.random.choice(inputs.shape[0], rows * cols, replace=False)
   samples = inputs[indexes, :]
-  num_samples, input_layer_size = samples.shape
+  _, input_layer_size = samples.shape
   height = width = int(math.sqrt(input_layer_size))
 
   image_index = 0
@@ -42,16 +45,14 @@ def __plot(inputs):
 
 
 def __cmd():
-  """命令行函数.
-
-  """
-  data = loadmat("data.mat")
-  inputs = data["X"]
-  labels = data["y"]
+  """命令行函数."""
+  data = loadmat('data.mat')
+  inputs = data['X']
+  # labels = data['y']
   __plot(inputs)
 
-  num_samples, input_layer_size = inputs.shape
-  num_labels = 10
+  # num_samples, input_layer_size = inputs.shape
+  # num_labels = 10
 
 
 if __name__ == '__main__':

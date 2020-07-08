@@ -115,7 +115,7 @@ def __cmd():
                        ('cold', 1): 0.5, ('cold', 2): 0.4, ('cold', 3): 0.1}
 
   likelihood = hmm.compute_likelihood([3, 1, 3])
-  logging.info(f'似然: {likelihood:.5f}')
+  logging.info(f'似然: {likelihood:.5f}.')
 
   best_path, best_path_prob = hmm.decode([3, 1, 3])
   logging.info(f'概率最大的隐序列: {best_path}, 对应的概率为{best_path_prob:.5f}.')

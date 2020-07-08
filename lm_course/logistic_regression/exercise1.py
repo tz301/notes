@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Created by tz301 on 2020/2/15
+"""逻辑回归练习1."""
 import logging
 from pathlib import Path
 
@@ -9,10 +10,10 @@ import numpy as np
 from scipy.optimize import minimize
 
 from base.utils import load_txt, LOGGER_FORMAT
-from lm_course.logistic_regression.utils import sigmoid
+from lm_course.logistic_regression.utils import predict, sigmoid
 
 
-def __plot(feat, label):
+def __plot_data(feat, label):
   """作图.
 
   Args:
@@ -27,11 +28,11 @@ def __plot(feat, label):
 
   fig = plt.figure()
   ax = fig.subplots()
-  ax.plot(feat[pos, 0], feat[pos, 1], "k+", label="Admitted")
-  ax.scatter(feat[neg, 0], feat[neg, 1], facecolors="y", edgecolors="k",
-             label="Not Admitted")
-  plt.xlabel("Exam 1 score")
-  plt.ylabel("Exam 2 score")
+  ax.plot(feat[pos, 0], feat[pos, 1], 'k+', label='Admitted')
+  ax.scatter(feat[neg, 0], feat[neg, 1], facecolors='y', edgecolors='k',
+             label='Not Admitted')
+  plt.xlabel('Exam 1 score')
+  plt.ylabel('Exam 2 score')
   return ax
 
 
@@ -69,44 +70,27 @@ def __compute_grad(theta, feat, label):
   return grad
 
 
-def __predict(theta, feat):
-  """预测结果.
-
-  Args:
-    theta: 参数, 维度(特征数).
-    feat: 特征, 维度(特征数)或者(样本数, 特征数).
-
-  Returns:
-    标签, 0或者1, 维度(样本数).
-  """
-  if len(feat.shape) == 1:
-    feat = np.expand_dims(feat, 1)
-  return (np.dot(feat, theta) >= 0.5).astype(np.int)
-
-
 def __cmd():
-  """命令行函数.
-
-  """
-  feat, label = load_txt(Path(__file__).parent / "data1.txt")
+  """命令行函数."""
+  feat, label = load_txt(Path(__file__).parent / 'data1.txt')
   num = len(feat)  # 样本数
 
   # 样本作图.
-  ax = __plot(feat, label)
+  ax = __plot_data(feat, label)
 
   # 梯度下降.
   init_theta = np.zeros(3)
   feat = np.concatenate([np.ones((num, 1)), feat], axis=-1)  # 增加全为1的第0列.
   optimal = minimize(__compute_cost, init_theta, args=(feat, label),
-                     method="TNC", jac=__compute_grad)
-  best_theta = optimal["x"]
-  logging.info(f"梯度下降得到的最优参数: [{best_theta[0]:.5f} "
-               f"{best_theta[1]:.5f} {best_theta[2]:.5f}]")
+                     method='TNC', jac=__compute_grad)
+  best_theta = optimal['x']
+  logging.info(f'梯度下降得到的最优参数: [{best_theta[0]:.5f} '
+               f'{best_theta[1]:.5f} {best_theta[2]:.5f}].')
 
   # 绘出决策边界, sigmoid(theta * feature) = 0.5的直线, 即theta * feature = 0的直线.
   boundary_x = np.array([min(feat[:, 1]) - 2, max(feat[:, 2]) + 2])
   boundary_y = -1 / best_theta[2] * (boundary_x * best_theta[1] + best_theta[0])
-  ax.plot(boundary_x, boundary_y, label="Decision Boundary")
+  ax.plot(boundary_x, boundary_y, label='Decision Boundary')
   handles, labels = ax.get_legend_handles_labels()
   handles = [handles[0], handles[2], handles[1]]
   labels = [labels[0], labels[2], labels[1]]
@@ -115,12 +99,12 @@ def __cmd():
 
   # 预测.
   prob = sigmoid(np.dot(np.array([[1, 45, 85]]), best_theta))[0]
-  logging.info(f"科目1分数为45, 科目2分数为85时, 入学概率为: {prob:.3f}.")
+  logging.info(f'科目1分数为45, 科目2分数为85时, 入学概率为: {prob:.3f}.')
 
   # 训练集准确率.
-  predict = __predict(best_theta, feat)
-  acc = np.sum(predict == label) / num
-  logging.info(f"训练集准确率为: {acc * 100:.0f}%.")
+  prediction = predict(best_theta, feat)
+  acc = np.sum(prediction == label) / num
+  logging.info(f'训练集准确率为: {acc * 100:.0f}%.')
 
 
 if __name__ == '__main__':

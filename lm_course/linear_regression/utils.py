@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Created by TZ on 2020/2/12
+# Created by tz301 on 2020/2/12
+"""共用模块."""
 import numpy as np
 
 

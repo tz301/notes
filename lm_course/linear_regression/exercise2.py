@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Created by tz301 on 2020/2/12
+"""线性回归练习2."""
 import logging
 from pathlib import Path
 
@@ -45,11 +46,11 @@ def __gradient_descent_multi_lr(init_theta, feat, label, lr_list, iteration):
 
   plt.figure()
   iterations = range(iteration)
-  colors = ["b", "k", "g", "r", "m", "c"]
+  colors = ['b', 'k', 'g', 'r', 'm', 'c']
   for (lr, _, costs), color in zip(res, colors):
-    plt.plot(iterations, costs, color, label=f"lr={lr}")
-  plt.xlabel("iteration")
-  plt.ylabel("cost")
+    plt.plot(iterations, costs, color, label=f'lr={lr}')
+  plt.xlabel('iteration')
+  plt.ylabel('cost')
   plt.legend()
   plt.show()
 
@@ -57,15 +58,12 @@ def __gradient_descent_multi_lr(init_theta, feat, label, lr_list, iteration):
 
 
 def __cmd():
-  """命令行函数.
-
-  """
-  feat, label = load_txt(Path(__file__).parent / "data2.txt")
-  num = len(label)  # 样本数
+  """命令行函数."""
+  feat, label = load_txt(Path(__file__).parent / 'data2.txt')
 
   feat_norm, mu, sigma = __normalize_feat(feat)
   # 增加全为1的第0列.
-  feat_norm = np.concatenate([np.ones((num, 1)), feat_norm], axis=-1)
+  feat_norm = np.concatenate([np.ones((len(label), 1)), feat_norm], axis=-1)
 
   # 梯度下降, 不同学习率.
   lr_list = [0.3, 0.1, 0.03, 0.01, 0.003, 0.001]
@@ -73,24 +71,24 @@ def __cmd():
   init_theta = np.zeros(3)
   best_theta = __gradient_descent_multi_lr(init_theta, feat_norm, label,
                                            lr_list, iteration)
-  logging.info(f"梯度下降得到的最优参数: [{best_theta[0]:.5f} "
-               f"{best_theta[1]:.5f} {best_theta[2]:.5f}]")
+  logging.info(f'梯度下降得到的最优参数: [{best_theta[0]:.5f} '
+               f'{best_theta[1]:.5f} {best_theta[2]:.5f}].')
 
   # 梯度下降预测
   feat1 = np.array([1650, 3])
   pred1 = np.squeeze(np.dot(np.insert((feat1 - mu) / sigma, 0, 1), best_theta))
-  logging.info(f"房屋尺寸为1650, 卧室数量为3时, 梯度下降预测得到的房价: {pred1:.2f}")
+  logging.info(f'房屋尺寸为1650, 卧室数量为3时, 梯度下降预测得到的房价: {pred1:.2f}.')
 
   # Normal Equation
-  feat = np.concatenate([np.ones((num, 1)), feat], axis=-1)
+  feat = np.concatenate([np.ones((len(label), 1)), feat], axis=-1)
   inv_item = np.linalg.pinv(np.dot(feat.T, feat))
   theta_equation = np.dot(np.dot(inv_item, feat.T), label)
-  logging.info(f"Normal Equation得到的最优参数: [{theta_equation[0]:.5f} "
-               f"{theta_equation[1]:.5f} {theta_equation[2]:.5f}]")
+  logging.info(f'Normal Equation得到的最优参数: [{theta_equation[0]:.5f} '
+               f'{theta_equation[1]:.5f} {theta_equation[2]:.5f}].')
 
   feat2 = np.array([1, 1650, 3])
   pred2 = np.squeeze(np.dot(feat2, theta_equation))
-  logging.info(f"房屋尺寸为1650, 卧室数量为3时, Normal Equation预测得到的房价: {pred2:.2f}")
+  logging.info(f'房屋尺寸为1650, 卧室数量为3时, Normal Equation预测得到的房价: {pred2:.2f}.')
 
 
 if __name__ == '__main__':
