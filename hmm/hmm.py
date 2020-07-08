@@ -66,6 +66,7 @@ class HMM:
     Returns:
       最后路径以及对应的概率.
     """
+    # pylint: disable=too-many-locals
     num_states = len(self.states)
     num_observations = len(observations)
     viterbi_prob = np.zeros((num_observations, num_states))
@@ -105,19 +106,19 @@ class HMM:
 def __cmd():
   """命令行函数."""
   hmm = HMM()
-  hmm.states = ["hot", "cold"]
+  hmm.states = ['hot', 'cold']
   hmm.vocabularies = {1, 2, 3}
-  hmm.init_prob = {"hot": 0.8, "cold": 0.2}
-  hmm.transition_prob = {("hot", "hot"): 0.6, ("hot", "cold"): 0.4,
-                         ("cold", "hot"): 0.5, ("cold", "cold"): 0.5}
-  hmm.emission_prob = {("hot", 1): 0.2, ("hot", 2): 0.4, ("hot", 3): 0.4,
-                       ("cold", 1): 0.5, ("cold", 2): 0.4, ("cold", 3): 0.1}
+  hmm.init_prob = {'hot': 0.8, 'cold': 0.2}
+  hmm.transition_prob = {('hot', 'hot'): 0.6, ('hot', 'cold'): 0.4,
+                         ('cold', 'hot'): 0.5, ('cold', 'cold'): 0.5}
+  hmm.emission_prob = {('hot', 1): 0.2, ('hot', 2): 0.4, ('hot', 3): 0.4,
+                       ('cold', 1): 0.5, ('cold', 2): 0.4, ('cold', 3): 0.1}
 
   likelihood = hmm.compute_likelihood([3, 1, 3])
-  logging.info(f"似然: {likelihood:.5f}")
+  logging.info(f'似然: {likelihood:.5f}')
 
   best_path, best_path_prob = hmm.decode([3, 1, 3])
-  logging.info(f"概率最大的隐序列: {best_path}, 对应的概率为{best_path_prob:.5f}.")
+  logging.info(f'概率最大的隐序列: {best_path}, 对应的概率为{best_path_prob:.5f}.')
 
 
 if __name__ == '__main__':
