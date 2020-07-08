@@ -4,7 +4,7 @@
 
 ## Definition
 对于回归问题, 假设有一堆训练集, 记:
-* <img src="/lm_course/linear_regression/tex/abe0fbe21b756ea08ab305f5e3274bae.svg?invert_in_darkmode&sanitize=true" align=middle width=20.369197199999988pt height=20.221802699999984pt/> - 训练集的样本数量.
+* <img src="/lm_course/linear_regression/tex/2bee088c6c93b1f9dc1cf6c9467c142a.svg?invert_in_darkmode&sanitize=true" align=middle width=39.09072914999999pt height=21.18721440000001pt/> - 训练集的样本数量.
 * <img src="/lm_course/linear_regression/tex/8dde4837326a1a7c455b0ed833248442.svg?invert_in_darkmode&sanitize=true" align=middle width=15.599359049999991pt height=14.15524440000002pt/> - 输入变量/特征.
 * <img src="/lm_course/linear_regression/tex/68e88a2e78e9cd82aa3cdf41067c18c8.svg?invert_in_darkmode&sanitize=true" align=middle width=14.26380119999999pt height=14.15524440000002pt/> - 输出变量/目标变量.
 * <img src="/lm_course/linear_regression/tex/c195cd8912f414ba9af73b2c2aafd2ed.svg?invert_in_darkmode&sanitize=true" align=middle width=38.135511149999985pt height=24.65753399999998pt/> - 一个样本对.
