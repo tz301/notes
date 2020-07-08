@@ -187,7 +187,7 @@ def __heapify(nums, index):
 
 def __build_top_heap(nums):
   """建立顶堆."""
-  global __LEN
+  global __LEN  # pylint: disable=global-statement
 
   __LEN = len(nums)
   for i in range(__LEN // 2, -1, -1):
@@ -196,7 +196,7 @@ def __build_top_heap(nums):
 
 def __heap_sort(nums):
   """堆排序."""
-  global __LEN
+  global __LEN  # pylint: disable=global-statement
   __build_top_heap(nums)
 
   for i in range(len(nums) - 1, 0, -1):
