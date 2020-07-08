@@ -9,7 +9,7 @@ import numpy as np
 from scipy.optimize import minimize
 
 from base.utils import load_txt, LOGGER_FORMAT
-from lm_course.LogisticRegression.utils import sigmoid
+from lm_course.logistic_regression.utils import sigmoid
 
 
 def __plot(feat, label):

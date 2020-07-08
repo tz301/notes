@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from base.utils import load_txt, LOGGER_FORMAT
-from lm_course.LinearRegression.utils import gradient_descent
+from lm_course.linear_regression.utils import gradient_descent
 
 
 def __normalize_feat(feat):

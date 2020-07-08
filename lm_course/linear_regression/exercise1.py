@@ -9,7 +9,7 @@ import numpy as np
 from mpl_toolkits import mplot3d  # 3d图所需.
 
 from base.utils import load_txt, LOGGER_FORMAT
-from lm_course.LinearRegression.utils import compute_cost, gradient_descent
+from lm_course.linear_regression.utils import compute_cost, gradient_descent
 
 
 def __plot(feat, label):

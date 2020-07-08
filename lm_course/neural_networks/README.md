@@ -20,7 +20,7 @@
 
 神经网络的代价函数是逻辑回归更加一般化的表达:
 
-<p align="center"><img src="/lm_course/NeuralNetworks/tex/2e7416997799bc04748c5ef031a3fa9e.svg?invert_in_darkmode&sanitize=true" align=middle width=519.8380869pt height=108.4456593pt/></p>
+<p align="center"><img src="/lm_course/neural_networks/tex/2e7416997799bc04748c5ef031a3fa9e.svg?invert_in_darkmode&sanitize=true" align=middle width=519.8380869pt height=108.4456593pt/></p>
 
 其中, <img src="/lm_course/NeuralNetworks/tex/7fdca86fa5369346e24865b4b84db64a.svg?invert_in_darkmode&sanitize=true" align=middle width=15.13700594999999pt height=22.465723500000017pt/>为分类数, <img src="/lm_course/NeuralNetworks/tex/e21f6629c0fd3bb7dbe387a0b7541ea8.svg?invert_in_darkmode&sanitize=true" align=middle width=78.36310515pt height=29.190975000000005pt/>为第<img src="/lm_course/NeuralNetworks/tex/0513e5ea3aca37742a6d9d75796a34c9.svg?invert_in_darkmode&sanitize=true" align=middle width=9.075367949999992pt height=22.831056599999986pt/>类输出.
 
@@ -28,11 +28,11 @@
 
 记:
 
-<p align="center"><img src="/lm_course/NeuralNetworks/tex/c7c6fd80e824f5b5ea62a1389c66f635.svg?invert_in_darkmode&sanitize=true" align=middle width=181.392618pt height=78.9048876pt/></p>
+<p align="center"><img src="/lm_course/neural_networks/tex/c7c6fd80e824f5b5ea62a1389c66f635.svg?invert_in_darkmode&sanitize=true" align=middle width=181.392618pt height=78.9048876pt/></p>
 
 那么可以将前向计算向量化为:
 
-<p align="center"><img src="/lm_course/NeuralNetworks/tex/a6f7bf12b4a1ae94ac7bdc29df680db7.svg?invert_in_darkmode&sanitize=true" align=middle width=159.9695625pt height=132.92097554999998pt/></p>
+<p align="center"><img src="/lm_course/neural_networks/tex/a6f7bf12b4a1ae94ac7bdc29df680db7.svg?invert_in_darkmode&sanitize=true" align=middle width=159.9695625pt height=132.92097554999998pt/></p>
 
 ## Quiz
 1. Which of the following statements are true? Check all that apply. <br/>
