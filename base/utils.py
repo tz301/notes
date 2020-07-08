@@ -4,7 +4,7 @@
 """共用模块."""
 import numpy as np
 
-LOGGER_FORMAT = "%(asctime)s %(name)s %(levelname)s %(message)s"
+LOGGER_FORMAT = '%(asctime)s %(name)s %(levelname)s %(message)s'
 
 
 def load_txt(file_path):
