@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Created by tz301 on 2020/4/26
+"""HMM样例."""
 import logging
 
 import numpy as np

@@ -92,7 +92,7 @@ HMM的三个问题:
 获取最可能的隐状态序列$ Q $.
 3. Learning: 给定观测序列$ O $和一系列状态, 学习HMM的参数$ A $和$ B $.
 
-下面以冰淇淋-天气案例, 分别对这三个问题进行分析和求解, 代码见[exercise.py](exercise.py).
+下面以冰淇淋-天气案例, 分别对这三个问题进行分析和求解, 代码见[hmm.py](hmm.py).
 
 ## Likelihood - The Forward Algorithm
 
