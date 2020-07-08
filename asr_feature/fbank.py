@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Created by tz301 on 2020/7/7
+"""FBank特征."""
 import logging
 from decimal import Decimal, ROUND_HALF_UP
 from math import ceil, pi
