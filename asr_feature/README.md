@@ -91,6 +91,7 @@ DCT拥有多种形式, 常用的DCT-II如下:
 
 <p align="center"><img src="/asr_feature/tex/29356b8339fc408fc95f1d377d706325.svg?invert_in_darkmode&sanitize=true" align=middle width=221.3268915pt height=47.60747145pt/></p>
 
-倒谱加权的作用主要是增加高频成分, 如下:
+倒谱加权的作用主要是增加高频成分. 例如MFCC为<img src="/asr_feature/tex/5e9c7a7d16b15ab5b947bedf5f56bd79.svg?invert_in_darkmode&sanitize=true" align=middle width=14.99998994999999pt height=22.465723500000017pt/>阶, 加权系数为<img src="/asr_feature/tex/6e75432f3e00dc52c8ba25566dcdf692.svg?invert_in_darkmode&sanitize=true" align=middle width=11.18724254999999pt height=22.465723500000017pt/>阶,
+倒谱加权为:
 
-<p align="center"><img src="/asr_feature/tex/90422291412e8c04037d1c1b952730c8.svg?invert_in_darkmode&sanitize=true" align=middle width=227.39063984999999pt height=33.81208709999999pt/></p>
+<p align="center"><img src="/asr_feature/tex/f5765e5fb318777e71a76d274cb49e92.svg?invert_in_darkmode&sanitize=true" align=middle width=238.71684209999998pt height=33.62942055pt/></p>
