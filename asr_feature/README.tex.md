@@ -105,6 +105,7 @@ DCT拥有多种形式, 常用的DCT-II如下:
 $$ X_k = \sum_{n=0}^{N-1} x_n cos
 \left[ \frac \pi N {\left( n + \frac 1 2 \right)}  \right] $$
 
-倒谱加权的作用主要是增加高频成分, 如下:
+倒谱加权的作用主要是增加高频成分. 例如MFCC为$ N $阶, 加权系数为$ L $阶,
+倒谱加权为:
 
-$$ y = 1 + \frac l 2 sin \left( \frac {n \pi} l \right), 0 \leq n < N $$
+$$ y_n = 1 + \frac L 2 sin \left( \frac {n \pi} L \right), 0 \leq n < N $$
