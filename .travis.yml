@@ -5,6 +5,6 @@ jobs:
   include:
     - stage: check
       script: python3 -m pylint --indent-string='  ' --max-line-length=80
-              --disable=no-else-return,too-few-public-methods,logging-format-interpolation,logging-fstring-interpolation
+              --disable=no-else-return,too-few-public-methods,logging-format-interpolation,logging-fstring-interpolation,import-error,no-name-in-module
               --good-names=i,j,t,ax,lr,mu --ignore-imports=yes
               asr_feature base hmm lm_course sorting
