@@ -14,7 +14,7 @@ from base.utils import LOGGER_FORMAT
 
 def __lifter(cepstrum, order=22):
   """倒谱加权.
-  
+
   Args:
     cepstrum: 倒谱.
     order: 阶数, 默认22.
@@ -23,7 +23,7 @@ def __lifter(cepstrum, order=22):
     加权后的倒谱.
   """
   if order > 0:
-    num_frames, num_coeff = np.shape(cepstrum)
+    _, num_coeff = np.shape(cepstrum)
     coeff = np.arange(num_coeff)
     lift = 1 + (order / 2.0) * np.sin(np.pi * coeff / order)
     return lift * cepstrum
