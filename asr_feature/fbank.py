@@ -196,7 +196,7 @@ def __cmd():
   feature = fbank(signal, sample_rate)
   logging.info(f'fbank特征维度: {feature.shape}.')
   assert feature.shape == (419, 26), 'fbank特征维度错误.'
-  assert abs(feature[0][0] - 1.87086) < 1e-5, 'fbank特征错误.'
+  assert abs(feature[0, 0] - 1.87086) < 1e-5, 'fbank特征错误.'
 
 
 if __name__ == '__main__':
