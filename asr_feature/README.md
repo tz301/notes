@@ -82,3 +82,15 @@ Fbank和MFCC均需要经过**预加重** - **分帧** - **加窗** - **傅里叶
 将上述获取的功率谱通过梅尔滤波器组进行滤波, 就得到了FBank特征.
 
 ### MFCC
+
+MFCC的流程通常为: FBank - 取log - DCT - 倒谱加权.
+
+由于FBank特征系数之间是高度相关的, 采用DCT对FBank去相关化, 同时也可以实现压缩.
+
+DCT拥有多种形式, 常用的DCT-II如下:
+
+<p align="center"><img src="/asr_feature/tex/29356b8339fc408fc95f1d377d706325.svg?invert_in_darkmode&sanitize=true" align=middle width=221.3268915pt height=47.60747145pt/></p>
+
+倒谱加权的作用主要是增加高频成分, 如下:
+
+<p align="center"><img src="/asr_feature/tex/90422291412e8c04037d1c1b952730c8.svg?invert_in_darkmode&sanitize=true" align=middle width=227.39063984999999pt height=33.81208709999999pt/></p>
