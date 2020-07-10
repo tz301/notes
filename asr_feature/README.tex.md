@@ -2,7 +2,7 @@
 
 # 语音特征
 
-语音识别常用的特征包括FBank, MFCC等, 常见的变换包括Delta变换和CMVN变换.
+语音识别常用的特征包括FBank, MFCC, Pitch等, 常见的变换包括Delta变换和CMVN变换.
 
 ## FBank和MFCC
 
@@ -10,7 +10,12 @@ FBank和MFCC特征有很多相似之处, MFCC在FBank的基础上做了进一步
 FBank特征提取的更多是音频信号的本质, 而MFCC则受限于一些机器学习算法,
 在语音识别中广泛使用.
 
-Fbank和MFCC均需要经过**预加重** - **分帧** - **加窗** - **傅里叶变化** - **梅尔滤波**这些流程.
+Fbank特征的提取流程为:
+1. 预加重.
+2. 分帧.
+3. 加窗.
+4. 傅里叶变换.
+5. 梅尔滤波.
 
 ### 预加重(Pre-Emphasis)
 
@@ -109,3 +114,39 @@ $$ X_k = \sum_{n=0}^{N-1} x_n cos
 倒谱加权为:
 
 $$ y_n = 1 + \frac L 2 sin \left( \frac {n \pi} L \right), 0 \leq n < N $$
+
+## Pitch
+
+如果一个复杂信号和一个可变频率的正弦波在音调上听感一致,
+那么正弦波的频率就是复杂信号的pitch.
+
+Pitch特征的提取有多种方法, 例如:
+1. Yin: Alain De Cheveign´e and Hideki Kawahara, “Yin, a fundamen- tal frequency estimator for speech and music,” The Journal of the Acoustical Society ofAmerica, vol. 111, pp. 1917, 2002.
+2. Getf0: David Talkin, “A robust algorithm for pitch tracking (rapt),” Speech coding and synthesis, vol. 495, pp. 518, 1995.
+3. SAcC: Daniel PWEllis and Byunk Suk Lee, “Noise robust pitch track- ing by subband autocorrelation classification,” in 13th Annual Conference of the International Speech Communication Asso- ciation, 2012.
+4. Wu: M. Wu, D.L. Wang, and G.J. Brown, “A multipitch tracking algorithm for noisy speech,” IEEETransactions on Speech and Audio Processing, vol. 11, no. 3, pp. 229–241, 2003.
+5. SWIPE: A. Camacho and J. G. Harris, “A sawtooth waveform inspired pitch estimator for speech and music,” Journal of the Acousti- cal Society ofAmerica, vol. 124, no. 3, pp. 1638–1652, 2008.
+6. YAAPT: Kavita Kasi and Stephen A Zahorian, “Yet another algorithm for pitch tracking,” in Acoustics, Speech, and Signal Process- ing (ICASSP), 2002 IEEE International Conference on. IEEE, 2002, vol. 1, pp. I–361.
+
+对于语音识别来说, kaldi pitch的表现较好, 下面主要参考: Ghahremani P, BabaAli B, Povey D, et al. A pitch extraction algorithm tuned for automatic speech recognition[C]//2014 IEEE international conference on acoustics, speech and signal processing (ICASSP). IEEE, 2014: 2494-2498.
+
+Pitch特征的提取流程为:
+1. 重采样.
+
+### 重采样
+
+假设采样后信号$ s(t) $, 第$ n $个采样点$ x_n $是$ n / S $时刻的 $ \delta $函数,
+其中, $ S $为采样频率.
+
+定义滤波函数$ f_{C,w}(t) $, 参数$ C \leq S/2 $表示截止频率, 窗宽$ w \geq 1$.
+
+选取Hanning窗函数$ w(t) $, 区间为
+$ \left[ \frac {-w} {2C}, \frac {w} {2C} \right] $. 定义滤波函数为:
+
+$ f_{C,w}(t) = 2C sinc(2Ct) w(t) $
+
+其中, $ sinc $为归一化的sinc函数.
+
+对于任意时刻$ t $, 计算窗内所有输入信号加窗后的数值之和, 得到重采样后的信号:
+
+$ s'(t) = \sum_n x_n \frac {f_{C,w}(t - n / S)} {S} $
