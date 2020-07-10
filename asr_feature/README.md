@@ -2,7 +2,7 @@
 
 # 语音特征
 
-语音识别常用的特征包括FBank, MFCC等, 常见的变换包括Delta变换和CMVN变换.
+语音识别常用的特征包括FBank, MFCC, Pitch等, 常见的变换包括Delta变换和CMVN变换.
 
 ## FBank和MFCC
 
@@ -10,7 +10,12 @@ FBank和MFCC特征有很多相似之处, MFCC在FBank的基础上做了进一步
 FBank特征提取的更多是音频信号的本质, 而MFCC则受限于一些机器学习算法,
 在语音识别中广泛使用.
 
-Fbank和MFCC均需要经过**预加重** - **分帧** - **加窗** - **傅里叶变化** - **梅尔滤波**这些流程.
+Fbank特征的提取流程为:
+1. 预加重.
+2. 分帧.
+3. 加窗.
+4. 傅里叶变换.
+5. 梅尔滤波.
 
 ### 预加重(Pre-Emphasis)
 
@@ -95,3 +100,39 @@ DCT拥有多种形式, 常用的DCT-II如下:
 倒谱加权为:
 
 <p align="center"><img src="/asr_feature/tex/f5765e5fb318777e71a76d274cb49e92.svg?invert_in_darkmode&sanitize=true" align=middle width=238.71684209999998pt height=33.62942055pt/></p>
+
+## Pitch
+
+如果一个复杂信号和一个可变频率的正弦波在音调上听感一致,
+那么正弦波的频率就是复杂信号的pitch.
+
+Pitch特征的提取有多种方法, 例如:
+1. Yin: Alain De Cheveign´e and Hideki Kawahara, “Yin, a fundamen- tal frequency estimator for speech and music,” The Journal of the Acoustical Society ofAmerica, vol. 111, pp. 1917, 2002.
+2. Getf0: David Talkin, “A robust algorithm for pitch tracking (rapt),” Speech coding and synthesis, vol. 495, pp. 518, 1995.
+3. SAcC: Daniel PWEllis and Byunk Suk Lee, “Noise robust pitch track- ing by subband autocorrelation classification,” in 13th Annual Conference of the International Speech Communication Asso- ciation, 2012.
+4. Wu: M. Wu, D.L. Wang, and G.J. Brown, “A multipitch tracking algorithm for noisy speech,” IEEETransactions on Speech and Audio Processing, vol. 11, no. 3, pp. 229–241, 2003.
+5. SWIPE: A. Camacho and J. G. Harris, “A sawtooth waveform inspired pitch estimator for speech and music,” Journal of the Acousti- cal Society ofAmerica, vol. 124, no. 3, pp. 1638–1652, 2008.
+6. YAAPT: Kavita Kasi and Stephen A Zahorian, “Yet another algorithm for pitch tracking,” in Acoustics, Speech, and Signal Process- ing (ICASSP), 2002 IEEE International Conference on. IEEE, 2002, vol. 1, pp. I–361.
+
+对于语音识别来说, kaldi pitch的表现较好, 下面主要参考: Ghahremani P, BabaAli B, Povey D, et al. A pitch extraction algorithm tuned for automatic speech recognition[C]//2014 IEEE international conference on acoustics, speech and signal processing (ICASSP). IEEE, 2014: 2494-2498.
+
+Pitch特征的提取流程为:
+1. 重采样.
+
+### 重采样
+
+假设采样后信号<img src="/asr_feature/tex/1e1cd67f38bd36937fd1b33d0685bf3b.svg?invert_in_darkmode&sanitize=true" align=middle width=26.42701049999999pt height=24.65753399999998pt/>, 第<img src="/asr_feature/tex/1921941e267a38d161d9fcc7b3df9a61.svg?invert_in_darkmode&sanitize=true" align=middle width=9.86687624999999pt height=14.15524440000002pt/>个采样点<img src="/asr_feature/tex/168fb4eddcc5ed7b56677c5f09164b7f.svg?invert_in_darkmode&sanitize=true" align=middle width=17.521011749999992pt height=14.15524440000002pt/>是<img src="/asr_feature/tex/fae4aefa3cdb3111d870132c7fc739ef.svg?invert_in_darkmode&sanitize=true" align=middle width=29.11348769999999pt height=24.65753399999998pt/>时刻的 <img src="/asr_feature/tex/f4a02e5afd3c51c34036863474c11e94.svg?invert_in_darkmode&sanitize=true" align=middle width=7.928075099999989pt height=22.831056599999986pt/>函数,
+其中, <img src="/asr_feature/tex/dee3f05776ccbc001bd3e363130afa0a.svg?invert_in_darkmode&sanitize=true" align=middle width=11.027402099999989pt height=22.465723500000017pt/>为采样频率.
+
+定义滤波函数<img src="/asr_feature/tex/ae25d802dc4a8c6ca74eb002dd324c33.svg?invert_in_darkmode&sanitize=true" align=middle width=50.841565499999994pt height=24.65753399999998pt/>, 参数<img src="/asr_feature/tex/899152ab9dec1c3edd956dafb93febfb.svg?invert_in_darkmode&sanitize=true" align=middle width=61.39482524999998pt height=24.65753399999998pt/>表示截止频率, 窗宽<img src="/asr_feature/tex/8d6a6623dff6c3c697210c8a29078c5c.svg?invert_in_darkmode&sanitize=true" align=middle width=42.347685599999984pt height=21.18721440000001pt/>.
+
+选取Hanning窗函数<img src="/asr_feature/tex/337713b725c1d8b85dd4180055cd53c3.svg?invert_in_darkmode&sanitize=true" align=middle width=30.93237674999999pt height=24.65753399999998pt/>, 区间为
+<img src="/asr_feature/tex/2305e0c42c1ec04b8720bf532e7cb615.svg?invert_in_darkmode&sanitize=true" align=middle width=65.77529969999999pt height=27.94539330000001pt/>. 定义滤波函数为:
+
+<img src="/asr_feature/tex/68220148fe20b37bbfa0f2296e46354a.svg?invert_in_darkmode&sanitize=true" align=middle width=195.05018445pt height=24.65753399999998pt/>
+
+其中, <img src="/asr_feature/tex/4c92b0bf040bc45da3c7ba431e843372.svg?invert_in_darkmode&sanitize=true" align=middle width=30.34938719999999pt height=21.68300969999999pt/>为归一化的sinc函数.
+
+对于任意时刻<img src="/asr_feature/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>, 计算窗内所有输入信号加窗后的数值之和, 得到重采样后的信号:
+
+<img src="/asr_feature/tex/91ee994f49e15d6ac8a9b42e6518a055.svg?invert_in_darkmode&sanitize=true" align=middle width=179.0752293pt height=33.95427420000001pt/>
