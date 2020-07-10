@@ -135,18 +135,18 @@ Pitch特征的提取流程为:
 
 ### 重采样
 
-假设采样后信号$ s(t) $, 第$ n $个采样点$ x_n $是$ n / S $时刻的 $ \delta $函数,
-其中, $ S $为采样频率.
+假设采样后信号$ s(t) $, 第$ n $个采样点$ x_n $可以看作$ n / S $时刻的 $ \delta $函数,
+$ S $为采样频率.
 
 定义滤波函数$ f_{C,w}(t) $, 参数$ C \leq S/2 $表示截止频率, 窗宽$ w \geq 1$.
 
-选取Hanning窗函数$ w(t) $, 区间为
-$ \left[ \frac {-w} {2C}, \frac {w} {2C} \right] $. 定义滤波函数为:
+选取Hanning窗函数$ w(t) $, 定义滤波函数为:
 
-$ f_{C,w}(t) = 2C sinc(2Ct) w(t) $
+$$ f_{C,w}(t) = 2C sinc(2Ct) w(t),
+\ t \in \left[ \frac {-w} {2C}, \frac {w} {2C} \right] $$
 
 其中, $ sinc $为归一化的sinc函数.
 
 对于任意时刻$ t $, 计算窗内所有输入信号加窗后的数值之和, 得到重采样后的信号:
 
-$ s'(t) = \sum_n x_n \frac {f_{C,w}(t - n / S)} {S} $
+$$ s'(t) = \sum_n x_n \frac {f_{C,w}(t - n / S)} {S} $$
