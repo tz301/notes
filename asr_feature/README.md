@@ -121,18 +121,17 @@ Pitch特征的提取流程为:
 
 ### 重采样
 
-假设采样后信号<img src="/asr_feature/tex/1e1cd67f38bd36937fd1b33d0685bf3b.svg?invert_in_darkmode&sanitize=true" align=middle width=26.42701049999999pt height=24.65753399999998pt/>, 第<img src="/asr_feature/tex/1921941e267a38d161d9fcc7b3df9a61.svg?invert_in_darkmode&sanitize=true" align=middle width=9.86687624999999pt height=14.15524440000002pt/>个采样点<img src="/asr_feature/tex/168fb4eddcc5ed7b56677c5f09164b7f.svg?invert_in_darkmode&sanitize=true" align=middle width=17.521011749999992pt height=14.15524440000002pt/>是<img src="/asr_feature/tex/fae4aefa3cdb3111d870132c7fc739ef.svg?invert_in_darkmode&sanitize=true" align=middle width=29.11348769999999pt height=24.65753399999998pt/>时刻的 <img src="/asr_feature/tex/f4a02e5afd3c51c34036863474c11e94.svg?invert_in_darkmode&sanitize=true" align=middle width=7.928075099999989pt height=22.831056599999986pt/>函数,
-其中, <img src="/asr_feature/tex/dee3f05776ccbc001bd3e363130afa0a.svg?invert_in_darkmode&sanitize=true" align=middle width=11.027402099999989pt height=22.465723500000017pt/>为采样频率.
+假设采样后信号<img src="/asr_feature/tex/1e1cd67f38bd36937fd1b33d0685bf3b.svg?invert_in_darkmode&sanitize=true" align=middle width=26.42701049999999pt height=24.65753399999998pt/>, 第<img src="/asr_feature/tex/1921941e267a38d161d9fcc7b3df9a61.svg?invert_in_darkmode&sanitize=true" align=middle width=9.86687624999999pt height=14.15524440000002pt/>个采样点<img src="/asr_feature/tex/168fb4eddcc5ed7b56677c5f09164b7f.svg?invert_in_darkmode&sanitize=true" align=middle width=17.521011749999992pt height=14.15524440000002pt/>可以看作<img src="/asr_feature/tex/fae4aefa3cdb3111d870132c7fc739ef.svg?invert_in_darkmode&sanitize=true" align=middle width=29.11348769999999pt height=24.65753399999998pt/>时刻的 <img src="/asr_feature/tex/f4a02e5afd3c51c34036863474c11e94.svg?invert_in_darkmode&sanitize=true" align=middle width=7.928075099999989pt height=22.831056599999986pt/>函数,
+<img src="/asr_feature/tex/dee3f05776ccbc001bd3e363130afa0a.svg?invert_in_darkmode&sanitize=true" align=middle width=11.027402099999989pt height=22.465723500000017pt/>为采样频率.
 
 定义滤波函数<img src="/asr_feature/tex/ae25d802dc4a8c6ca74eb002dd324c33.svg?invert_in_darkmode&sanitize=true" align=middle width=50.841565499999994pt height=24.65753399999998pt/>, 参数<img src="/asr_feature/tex/899152ab9dec1c3edd956dafb93febfb.svg?invert_in_darkmode&sanitize=true" align=middle width=61.39482524999998pt height=24.65753399999998pt/>表示截止频率, 窗宽<img src="/asr_feature/tex/8d6a6623dff6c3c697210c8a29078c5c.svg?invert_in_darkmode&sanitize=true" align=middle width=42.347685599999984pt height=21.18721440000001pt/>.
 
-选取Hanning窗函数<img src="/asr_feature/tex/337713b725c1d8b85dd4180055cd53c3.svg?invert_in_darkmode&sanitize=true" align=middle width=30.93237674999999pt height=24.65753399999998pt/>, 区间为
-<img src="/asr_feature/tex/2305e0c42c1ec04b8720bf532e7cb615.svg?invert_in_darkmode&sanitize=true" align=middle width=65.77529969999999pt height=27.94539330000001pt/>. 定义滤波函数为:
+选取Hanning窗函数<img src="/asr_feature/tex/337713b725c1d8b85dd4180055cd53c3.svg?invert_in_darkmode&sanitize=true" align=middle width=30.93237674999999pt height=24.65753399999998pt/>, 定义滤波函数为:
 
-<img src="/asr_feature/tex/68220148fe20b37bbfa0f2296e46354a.svg?invert_in_darkmode&sanitize=true" align=middle width=195.05018445pt height=24.65753399999998pt/>
+<p align="center"><img src="/asr_feature/tex/37a6200bd5daba15804b306fc55cdaea.svg?invert_in_darkmode&sanitize=true" align=middle width=312.55079789999996pt height=39.452455349999994pt/></p>
 
 其中, <img src="/asr_feature/tex/4c92b0bf040bc45da3c7ba431e843372.svg?invert_in_darkmode&sanitize=true" align=middle width=30.34938719999999pt height=21.68300969999999pt/>为归一化的sinc函数.
 
 对于任意时刻<img src="/asr_feature/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>, 计算窗内所有输入信号加窗后的数值之和, 得到重采样后的信号:
 
-<img src="/asr_feature/tex/91ee994f49e15d6ac8a9b42e6518a055.svg?invert_in_darkmode&sanitize=true" align=middle width=179.0752293pt height=33.95427420000001pt/>
+<p align="center"><img src="/asr_feature/tex/ef9f32570d3577feaa94bdd3a6fa4f72.svg?invert_in_darkmode&sanitize=true" align=middle width=199.80226365pt height=42.353648699999994pt/></p>
