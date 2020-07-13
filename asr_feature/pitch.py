@@ -35,6 +35,9 @@ class LinearResampler:
     __window_width: 采样窗宽.
     __first_index: 输出样本点对应的第一个输入样本点索引.
     __weights: 窗函数权重.
+    __input_offset: 输入信号的偏置.
+    __output_offset: 输出信号的偏置.
+    __input_buffer: 输入信号的缓存.
   """
 
   def __init__(self, in_sample_rate, out_sample_rate, cutoff_freq):
@@ -57,6 +60,10 @@ class LinearResampler:
     self.__first_index = [0] * self.__out_samples_in_unit
     self.__weights = [np.array([0]) for _ in range(self.__out_samples_in_unit)]
     self.__set_indexes_and_weights()
+
+    self.__input_offset = 0
+    self.__output_offset = 0
+    self.__input_buffer = np.array([])
 
   def __check(self):
     """参数检查."""
@@ -105,11 +112,12 @@ class LinearResampler:
         delta_t = input_t - output_t
         self.__weights[i][j] = self.__filter(delta_t) / self.__in_sample_rate
 
-  def __get_num_output_samples(self, num_input_samples):
+  def __num_output_samples(self, num_input_samples, is_end):
     """获取输出样本数量.
 
     Args:
       num_input_samples: 输入样本数量.
+      is_end: 是否结束.
 
     Returns:
       输出样本数量.
@@ -117,6 +125,9 @@ class LinearResampler:
     tick_freq = _lcm(self.__in_sample_rate, self.__out_sample_rate)
     ticks_per_input_period = int(tick_freq / self.__in_sample_rate)
     interval_length_in_ticks = num_input_samples * ticks_per_input_period
+
+    if not is_end:
+      interval_length_in_ticks -= int(floor(self.__window_width * tick_freq))
 
     ticks_per_output_period = int(tick_freq / self.__out_sample_rate)
     last_output_samp = int(interval_length_in_ticks / ticks_per_output_period)
@@ -139,48 +150,126 @@ class LinearResampler:
                          unit_index * self.__in_samples_in_unit)
     return first_input_index, samp_out_wrapped
 
-  def resample(self, signal):
+  def __update_buffer(self, signal):
+    """更新buffer.
+
+    Args:
+      signal: 信号.
+    """
+    old_buffer = self.__input_buffer.copy()
+    max_needed = int(ceil(self.__in_sample_rate / self.__cutoff_freq))
+    self.__input_buffer = np.zeros(max_needed)
+
+    for i in range(-max_needed, 0):
+      input_index = i + len(signal)
+      if input_index > 0:
+        self.__input_buffer[i + max_needed] = signal[input_index]
+      elif input_index + len(old_buffer) >= 0:
+        self.__input_buffer[i + max_needed] = old_buffer[i + len(old_buffer)]
+
+  def __reset(self):
+    """重置."""
+    self.__input_offset = 0
+    self.__output_offset = 0
+    self.__input_buffer = np.array([])
+
+  def resample(self, signal, is_end):
     """对信号进行重采样.
 
     Args:
       signal: 信号.
+      is_end: 是否结束.
 
     Returns:
       重采样后的信号.
     """
     sig_dim = len(signal)
-    num_output_samples = self.__get_num_output_samples(sig_dim)
+    num_input_samples = self.__input_offset + sig_dim
+    num_output_samples = self.__num_output_samples(num_input_samples, is_end)
 
-    outputs = np.zeros(num_output_samples)
-    for out_index in range(num_output_samples):
-      first_input_index, samp_out_wrapped = self.__get_indexes(out_index)
+    outputs = np.zeros(num_output_samples - self.__output_offset)
+    for samp_out in range(self.__output_offset, num_output_samples):
+      first_input_index, samp_out_wrapped = self.__get_indexes(samp_out)
       weights = self.__weights[samp_out_wrapped]
       weights_dim = len(weights)
+      first_input_index -= self.__input_offset
+      output_index = samp_out - self.__output_offset
 
       if first_input_index >= 0 and first_input_index + weights_dim <= sig_dim:
         cur_sig = signal[first_input_index:first_input_index + weights_dim]
-        outputs[out_index] = np.dot(cur_sig, weights)
+        outputs[output_index] = np.dot(cur_sig, weights)
       else:  # 边界处理.
         for i in range(weights_dim):
+          weight = weights[i]
           input_index = first_input_index + i
-          if 0 <= input_index < sig_dim:
-            outputs[out_index] += weights[i] * signal[input_index]
+          buffer_index = len(self.__input_buffer) + input_index
+          if input_index < 0 <= buffer_index:
+            outputs[output_index] += weight * self.__input_buffer[buffer_index]
+          elif 0 <= input_index < sig_dim:
+            outputs[output_index] += weight * signal[input_index]
+          elif input_index >= sig_dim:
+            assert is_end
+
+    if is_end:
+      self.__reset()
+    else:
+      self.__input_offset = num_input_samples
+      self.__output_offset = num_output_samples
+      self.__update_buffer(signal)
     return outputs
 
 
-def pitch(signal, sample_rate):
-  """提取pitch特征.
+class PitchExtractor:
+  """Pitch特征提取器.
 
-  Args:
-    signal: 信号.
-    sample_rate: 采样频率.
-
-  Returns:
-    pitch特征.
+  Attributes:
+    __is_end: 是否结束.
+    __resampler: 重采样类.
   """
-  resampler = LinearResampler(sample_rate, 3000, 1000)
-  signal = resampler.resample(signal)
-  return np.zeros((1, 1))
+
+  def __init__(self, sample_rate):
+    """初始化.
+
+    Args:
+      sample_rate: 采样频率.
+    """
+    self.__is_end = False
+
+    resample_sample_rate = 3000
+    cutoff_freq = 1000
+    self.__resampler = LinearResampler(sample_rate, resample_sample_rate,
+                                       cutoff_freq)
+
+  def __accept_wave_form(self, signal):
+    """接收音频数据.
+
+    Args:
+      signal: 信号.
+    """
+    signal = self.__resampler.resample(signal, self.__is_end)
+
+  def __input_finished(self):
+    """完成所有输入."""
+    self.__is_end = True
+    self.__accept_wave_form([])
+
+  def __reset(self):
+    """重置."""
+    self.__is_end = False
+
+  def extract(self, signal):
+    """提取pitch特征.
+
+    Args:
+      signal: 信号.
+
+    Returns:
+      pitch特征.
+    """
+    self.__accept_wave_form(signal)
+    self.__input_finished()
+    self.__reset()
+    return np.zeros((1, 1))
 
 
 def __cmd():
@@ -191,7 +280,7 @@ def __cmd():
   for i in range(num):
     signal[i] = (abs(i * 433024) % 65535) - (65535 // 2)
 
-  feature = pitch(signal, sample_rate)
+  feature = PitchExtractor(sample_rate).extract(signal)
   logging.info(f'pitch特征维度: {feature.shape}.')
 
 
