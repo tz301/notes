@@ -133,6 +133,7 @@ Pitch特征的提取有多种方法, 例如:
 Pitch特征的提取流程为:
 1. 重采样.
 2. 归一化.
+3. NCCF(Normalized Cross Correlation Function)计算.
 
 ### 重采样
 
@@ -155,3 +156,6 @@ $$ s'(t) = \sum_n x_n \frac {f_{C,w}(t - n / S)} {S} $$
 2. 归一化.
 
 将重采样后的信号除以均方值进行归一化.
+
+3. NCCF计算.
+
