@@ -120,8 +120,7 @@ Pitch特征的提取有多种方法, 例如:
 
 kaldi pitch没有对每一帧是否为人声进行判断,
 而是对每一帧都计算pitch, 使得pitch是一个连续的值, 更加符合语音识别任务.
-
-Kaldi pitch特征的提取流程为:
+主要提取流程如下:
 1. 重采样.
 2. 归一化.
 3. NCCF(Normalized Cross Correlation Function)计算.
@@ -162,19 +161,21 @@ Kaldi pitch特征的提取流程为:
 
 为了寻找能够最大化NCCF的偏移值(lag), 先定义计算lag的区间.
 
-定义<img src="/asr_feature/tex/409cc5ac144829bcfc245e07aa40bdee.svg?invert_in_darkmode&sanitize=true" align=middle width=272.93525159999996pt height=24.65753399999998pt/>为计算NCCF的lag区间.
+定义<img src="/asr_feature/tex/a63a4877971e55b6902dddb7f39039fb.svg?invert_in_darkmode&sanitize=true" align=middle width=273.87131145pt height=24.65753399999998pt/>为计算NCCF的lag区间.
 定义滤波宽度<img src="/asr_feature/tex/e0d75638341aaa771a47999137d21473.svg?invert_in_darkmode&sanitize=true" align=middle width=12.210846449999991pt height=14.15524440000002pt/>, 那么输出的lag区间为
-<img src="/asr_feature/tex/4fc2381090fcc64374a7a5cdd816d375.svg?invert_in_darkmode&sanitize=true" align=middle width=566.68399095pt height=24.65753399999998pt/>.
+<img src="/asr_feature/tex/78d171e9c6367863c5fd3fb63d71bc23.svg?invert_in_darkmode&sanitize=true" align=middle width=417.45395670000005pt height=24.65753399999998pt/>.
 这样可以在更大的lag区间内计算NCCF.
 
-对于帧索引<img src="/asr_feature/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>, 那么需要处理的信号从<img src="/asr_feature/tex/0d96419b06718e78d88dd57061895109.svg?invert_in_darkmode&sanitize=true" align=middle width=132.96840974999998pt height=22.831056599999986pt/>开始,
-长度为<img src="/asr_feature/tex/1c91b2b990331d6f304ac6a2050c710e.svg?invert_in_darkmode&sanitize=true" align=middle width=272.38445354999993pt height=22.831056599999986pt/>.
-定义t帧的信号为<img src="/asr_feature/tex/a0c2628cdda80dbecfdc0a032e22537b.svg?invert_in_darkmode&sanitize=true" align=middle width=129.34732964999998pt height=24.65753399999998pt/>,
-定义<img src="/asr_feature/tex/7630609e2cb723f1b61986af92b8ffff.svg?invert_in_darkmode&sanitize=true" align=middle width=23.49794039999999pt height=14.611878600000017pt/>为<img src="/asr_feature/tex/f5cb86ce54122626240d4bd0d88caf96.svg?invert_in_darkmode&sanitize=true" align=middle width=18.61868744999999pt height=14.611878600000017pt/>内从<img src="/asr_feature/tex/8fceb32bd3f6803b77bbe1b1758a60b6.svg?invert_in_darkmode&sanitize=true" align=middle width=5.663225699999989pt height=21.68300969999999pt/>开始, 长度为<img src="/asr_feature/tex/2086fd40b7a7ea129392b2ed40a4a31f.svg?invert_in_darkmode&sanitize=true" align=middle width=118.40424914999998pt height=22.831056599999986pt/>
+对于帧索引<img src="/asr_feature/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>, 需要处理的信号从<img src="/asr_feature/tex/09367ca11f67c9fe997c850dad2307f7.svg?invert_in_darkmode&sanitize=true" align=middle width=105.05850299999999pt height=22.831056599999986pt/>开始,
+长度为<img src="/asr_feature/tex/8307c4010326377822c07bf42b470f4a.svg?invert_in_darkmode&sanitize=true" align=middle width=194.75435594999996pt height=22.831056599999986pt/>.
+定义<img src="/asr_feature/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>帧的信号为<img src="/asr_feature/tex/0e3b38cebcddb24629c054e3f7bab79f.svg?invert_in_darkmode&sanitize=true" align=middle width=146.69875605pt height=24.65753399999998pt/>,
+<img src="/asr_feature/tex/7630609e2cb723f1b61986af92b8ffff.svg?invert_in_darkmode&sanitize=true" align=middle width=23.49794039999999pt height=14.611878600000017pt/>为<img src="/asr_feature/tex/f5cb86ce54122626240d4bd0d88caf96.svg?invert_in_darkmode&sanitize=true" align=middle width=18.61868744999999pt height=14.611878600000017pt/>内从<img src="/asr_feature/tex/8fceb32bd3f6803b77bbe1b1758a60b6.svg?invert_in_darkmode&sanitize=true" align=middle width=5.663225699999989pt height=21.68300969999999pt/>开始, 长度为<img src="/asr_feature/tex/2c3e207f73aa48f312f612513b1c0e8d.svg?invert_in_darkmode&sanitize=true" align=middle width=90.00856589999998pt height=22.831056599999986pt/>
 的子序列.
 
 那么可以得到第<img src="/asr_feature/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>帧, 第<img src="/asr_feature/tex/6361dd721b68dd339b33b2652c0abd4b.svg?invert_in_darkmode&sanitize=true" align=middle width=5.2283516999999895pt height=22.831056599999986pt/>个偏移处的NCCF为:
 
-<p align="center"><img src="/asr_feature/tex/2242da8f877da86e51de08e8768c3654.svg?invert_in_darkmode&sanitize=true" align=middle width=327.64647959999996pt height=45.132167849999995pt/></p>
+<p align="center"><img src="/asr_feature/tex/91b4c33b10389e0b3cf207f7848f2396.svg?invert_in_darkmode&sanitize=true" align=middle width=273.643392pt height=45.132167849999995pt/></p>
+
+其中, 参数ballest的意义是, 降低ballest有利于非人声区域pitch计算的连续性.
 
 ### NCCF上采样
