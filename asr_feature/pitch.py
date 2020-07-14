@@ -83,7 +83,7 @@ class LinearResampler:
     self.__in_samples_in_unit = int(in_sample_rate / base_freq)
     self.__out_samples_in_unit = int(out_sample_rate / base_freq)
     self.__window_width = num_zeros / (2 * self.__cutoff_freq)
-    self.__first_index = [0] * self.__out_samples_in_unit
+    self.__first_index = np.zeros(self.__out_samples_in_unit, dtype=np.int)
     self.__weights = [np.array([0]) for _ in range(self.__out_samples_in_unit)]
     self.__set_indexes_and_weights()
 
@@ -226,6 +226,92 @@ class LinearResampler:
     return outputs
 
 
+class ArbitraryResample:
+  """重采样类, 允许非线性时间间隔的重采样.
+
+  Attributes:
+    __num_in_samples: 输入样本点数.
+    __in_sample_rate: 采样频率.
+    __cutoff_freq: 滤波的截止频率.
+    __num_zeros: 滤波的零的数量.
+    __num_out_samples: 输出样本数量.
+    __window_width: 采样窗宽.
+    __first_index: 输出样本点对应的第一个输入样本点索引.
+    __weights: 窗函数权重.
+  """
+
+  def __init__(self, num_in_samples, in_sample_rate, cutoff_freq,
+               sample_points, num_zeros):
+    """初始化.
+
+    Args:
+      num_in_samples: 输入样本点数.
+      in_sample_rate: 采样频率.
+      cutoff_freq: 滤波的截止频率.
+      sample_points: 采样点对应的时间列表, 单位s.
+      num_zeros: 滤波的零的数量.
+    """
+    self.__num_in_samples = num_in_samples
+    self.__in_sample_rate = in_sample_rate
+    self.__cutoff_freq = cutoff_freq
+    self.__num_zeros = num_zeros
+    self.__check()
+
+    self.__num_out_samples = len(sample_points)
+    self.__window_width = num_zeros / (2 * self.__cutoff_freq)
+    self.__first_index = np.zeros(len(sample_points), dtype=np.int)
+    self.__weights = [np.array([0]) for _ in sample_points]
+    self.__set_indexes_and_weights(sample_points)
+
+  def __check(self):
+    """参数检查."""
+    assert self.__num_in_samples > 0
+    assert self.__in_sample_rate > 0
+    assert self.__cutoff_freq > 0
+    assert self.__cutoff_freq * 2 <= self.__in_sample_rate
+    assert self.__num_zeros > 0
+
+  def __set_indexes_and_weights(self, sample_points):
+    """设置索引和权重.
+
+    Args:
+      sample_points: 采样点对应的时间列表, 单位s.
+    """
+    for i in range(len(sample_points)):
+      t = sample_points[i]
+      t_min = t - self.__window_width
+      t_max = t + self.__window_width
+      index_min = int(ceil(t_min * self.__in_sample_rate))
+      index_max = int(ceil(t_max * self.__in_sample_rate))
+      index_min = max(index_min, 0)
+      index_max = min(index_max, self.__num_in_samples - 1)
+      self.__first_index[i] = index_min
+
+      num_indices = index_max - index_min + 1
+      self.__weights[i] = np.zeros(num_indices)
+      for j in range(num_indices):
+        delta_t = sample_points[i] - (index_min + j) / self.__in_sample_rate
+        filter_value = _filter(delta_t, self.__cutoff_freq, self.__num_zeros)
+        self.__weights[i][j] = filter_value / self.__in_sample_rate
+
+  def resample(self, signal):
+    """对信号进行重采样.
+
+    Args:
+      signal: 信号.
+
+    Returns:
+      重采样后的信号.
+    """
+    output = np.zeros((len(signal), self.__num_out_samples))
+    for i in range(self.__num_out_samples):
+      first_index = self.__first_index[i]
+      weight = self.__weights[i]
+      sub_input = signal[:, first_index: first_index + len(weight)]
+      output[:, i] = np.dot(sub_input, weight)
+    return output
+
+
 class PitchConfig:
   """Pitch配置.
 
@@ -344,6 +430,7 @@ class PitchExtractor:
     __nccf_last_lag: 最后一个nccf偏移值.
     __lags: nccf偏移列表.
     __num_lags: nccf偏移数.
+    __nccf_resampler: nccf重采样类.
     __frames_latency:
     __frame_info:
     __forward_cost:
@@ -375,11 +462,14 @@ class PitchExtractor:
     self.__lags = self.__select_lags()
     self.__num_lags = self.__nccf_last_lag - self.__nccf_first_lag + 1
 
-    self.__frames_latency = 0
     upsample_cutoff = self.__conf.resample_freq * 0.5
     lags_offset = (self.__lags - self.__nccf_first_lag /
                    self.__conf.resample_freq)
+    self.__nccf_resampler = ArbitraryResample(
+        self.__num_lags, self.__conf.resample_freq, upsample_cutoff,
+        lags_offset, self.__conf.upsample_filter_width)
 
+    self.__frames_latency = 0
     self.__frame_info = [PitchFrameInfo(len(self.__lags))]
     self.__forward_cost = np.zeros(len(self.__lags))
     self.__nccf_info = list()
@@ -552,6 +642,8 @@ class PitchExtractor:
       if frame < self.__conf.recompute_frame:
         self.__nccf_info.append(NccfInfo(np.average(norm_prod), mean_square))
 
+    nccf_pitch = self.__nccf_resampler.resample(nccf_pitch)
+    nccf_pov = self.__nccf_resampler.resample(nccf_pov)
     self.__update_buffer(signal)
 
     prev_frame_end_sample = 0
