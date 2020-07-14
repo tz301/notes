@@ -200,6 +200,6 @@ $$ nccf_{t,l} = \frac {\bold{v}_{t,0}^T \bold{v}_{t,l}}
 {\sqrt{|| \bold{v}_{t,0} ||_2^2 || \bold{v}_{t,l} ||_2^2 +
  n^4 ballast}} $$
 
-其中, 参数ballest的意义是, 降低ballest有利于非人声区域pitch计算的连续性.
+其中, $ n $为窗内的样本数, 降低ballest有利于非人声区域pitch计算的连续性.
 
 ### NCCF上采样
