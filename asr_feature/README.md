@@ -116,10 +116,10 @@ Pitch特征的提取有多种方法, 例如:
 5. SWIPE: A. Camacho and J. G. Harris, “A sawtooth waveform inspired pitch estimator for speech and music,” Journal of the Acousti- cal Society ofAmerica, vol. 124, no. 3, pp. 1638–1652, 2008.
 6. YAAPT: Kavita Kasi and Stephen A Zahorian, “Yet another algorithm for pitch tracking,” in Acoustics, Speech, and Signal Process- ing (ICASSP), 2002 IEEE International Conference on. IEEE, 2002, vol. 1, pp. I–361.
 
-对于语音识别来说, kaldi pitch没有对每一帧是否为人声进行判断,
-而是对每一帧都计算pitch, 使得pitch是一个连续的值, 更加符合语音识别任务.
+下面主要参考kaldi pitch: Ghahremani P, BabaAli B, Povey D, et al. A pitch extraction algorithm tuned for automatic speech recognition[C]//2014 IEEE international conference on acoustics, speech and signal processing (ICASSP). IEEE, 2014: 2494-2498.
 
-下面主要参考: Ghahremani P, BabaAli B, Povey D, et al. A pitch extraction algorithm tuned for automatic speech recognition[C]//2014 IEEE international conference on acoustics, speech and signal processing (ICASSP). IEEE, 2014: 2494-2498.
+kaldi pitch没有对每一帧是否为人声进行判断,
+而是对每一帧都计算pitch, 使得pitch是一个连续的值, 更加符合语音识别任务.
 
 Kaldi pitch特征的提取流程为:
 1. 重采样.
@@ -144,14 +144,14 @@ Kaldi pitch特征的提取流程为:
 
 <p align="center"><img src="/asr_feature/tex/ef9f32570d3577feaa94bdd3a6fa4f72.svg?invert_in_darkmode&sanitize=true" align=middle width=199.80226365pt height=42.353648699999994pt/></p>
 
-2. 归一化.
+### 归一化.
 
 将重采样后的信号除以均方值进行归一化.
 
-3. NCCF计算.
+### NCCF计算.
 
 互相关(Cross Correlation Function, CCF)一般用来度量两个量之间的相似度,
-它是一个向量向量相对于另一个向量的偏移的函数, 也叫滑动内积.
+它是一个向量相对于另一个向量的偏移的函数, 也叫滑动内积.
 而自相关(Auto Correlation Function, ACF)就是信号自身与自身的互相关.
 
 自相关函数在波形重合处会出现峰值, 因此可以用来计算序列中的重复模式, 即基频.
@@ -162,7 +162,19 @@ Kaldi pitch特征的提取流程为:
 
 为了寻找能够最大化NCCF的偏移值(lag), 先定义计算lag的区间.
 
-定义<img src="/asr_feature/tex/1a09e389db201a5ae763729877f55fdf.svg?invert_in_darkmode&sanitize=true" align=middle width=375.59203934999994pt height=24.65753399999998pt/> w <img src="/asr_feature/tex/47fe92c858c0e762704439dea47bf2e1.svg?invert_in_darkmode&sanitize=true" align=middle width=29.653758749999987pt height=22.831056599999986pt/> outer-min-lag = min-lag - w/2, \ outer-max-lag = max-lag + w/2 <img src="/asr_feature/tex/2ffb8bcad2b8efe47f93397b86dcf083.svg?invert_in_darkmode&sanitize=true" align=middle width=83.35695555pt height=22.831056599999986pt/> t <img src="/asr_feature/tex/746bb8981f36aaa9a63b204e154e6640.svg?invert_in_darkmode&sanitize=true" align=middle width=4.5662248499999905pt height=14.15524440000002pt/> t \cdot window-shift <img src="/asr_feature/tex/ee993522f92acf8eb2ee8014f2988b12.svg?invert_in_darkmode&sanitize=true" align=middle width=4.5662248499999905pt height=14.15524440000002pt/> window-width + outer-max-lag <img src="/asr_feature/tex/9fcb9fa1b563bee7703b0eca2336354b.svg?invert_in_darkmode&sanitize=true" align=middle width=10.50232094999999pt height=20.221802699999984pt/> \bold{w}_t = \left( w_{t,0}, w_{t,1}, \cdot \right) <img src="/asr_feature/tex/4b7aa2b86b7d546d7112059b94c0c73a.svg?invert_in_darkmode&sanitize=true" align=middle width=4.5662248499999905pt height=14.15524440000002pt/> \bold{v}_{t,i} <img src="/asr_feature/tex/1ac34588d9ff872d00993837ebf03e9a.svg?invert_in_darkmode&sanitize=true" align=middle width=8.21920935pt height=14.15524440000002pt/> \bold{w}_t <img src="/asr_feature/tex/4609f678acb7bf9b5582d24a80697e25.svg?invert_in_darkmode&sanitize=true" align=middle width=8.21920935pt height=14.15524440000002pt/> i <img src="/asr_feature/tex/7c4718d81306402fd829ee46cf3cf095.svg?invert_in_darkmode&sanitize=true" align=middle width=4.5662248499999905pt height=14.15524440000002pt/> window-width <img src="/asr_feature/tex/df9a69ea4bcf32a29cb6dc27925d9029.svg?invert_in_darkmode&sanitize=true" align=middle width=4.5662248499999905pt height=14.15524440000002pt/> t <img src="/asr_feature/tex/8e15d8b425c1d9668d1730ad4bf0cabd.svg?invert_in_darkmode&sanitize=true" align=middle width=4.5662248499999905pt height=14.15524440000002pt/> l <img src="/asr_feature/tex/6e4671e9872d1cb8a574af43943789c5.svg?invert_in_darkmode&sanitize=true" align=middle width=62.83548809999999pt height=22.465723500000017pt/><img src="/asr_feature/tex/838ccf78de857fb5595753e604ff3ddd.svg?invert_in_darkmode&sanitize=true" align=middle width=273.55054155pt height=41.1177129pt/>$
+定义<img src="/asr_feature/tex/409cc5ac144829bcfc245e07aa40bdee.svg?invert_in_darkmode&sanitize=true" align=middle width=272.93525159999996pt height=24.65753399999998pt/>为计算NCCF的lag区间.
+定义滤波宽度<img src="/asr_feature/tex/e0d75638341aaa771a47999137d21473.svg?invert_in_darkmode&sanitize=true" align=middle width=12.210846449999991pt height=14.15524440000002pt/>, 那么输出的lag区间为
+<img src="/asr_feature/tex/4fc2381090fcc64374a7a5cdd816d375.svg?invert_in_darkmode&sanitize=true" align=middle width=566.68399095pt height=24.65753399999998pt/>.
+这样可以在更大的lag区间内计算NCCF.
 
-4. NCCF上采样
+对于帧索引<img src="/asr_feature/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>, 那么需要处理的信号从<img src="/asr_feature/tex/0d96419b06718e78d88dd57061895109.svg?invert_in_darkmode&sanitize=true" align=middle width=132.96840974999998pt height=22.831056599999986pt/>开始,
+长度为<img src="/asr_feature/tex/1c91b2b990331d6f304ac6a2050c710e.svg?invert_in_darkmode&sanitize=true" align=middle width=272.38445354999993pt height=22.831056599999986pt/>.
+定义t帧的信号为<img src="/asr_feature/tex/a0c2628cdda80dbecfdc0a032e22537b.svg?invert_in_darkmode&sanitize=true" align=middle width=129.34732964999998pt height=24.65753399999998pt/>,
+定义<img src="/asr_feature/tex/7630609e2cb723f1b61986af92b8ffff.svg?invert_in_darkmode&sanitize=true" align=middle width=23.49794039999999pt height=14.611878600000017pt/>为<img src="/asr_feature/tex/f5cb86ce54122626240d4bd0d88caf96.svg?invert_in_darkmode&sanitize=true" align=middle width=18.61868744999999pt height=14.611878600000017pt/>内从<img src="/asr_feature/tex/8fceb32bd3f6803b77bbe1b1758a60b6.svg?invert_in_darkmode&sanitize=true" align=middle width=5.663225699999989pt height=21.68300969999999pt/>开始, 长度为<img src="/asr_feature/tex/2086fd40b7a7ea129392b2ed40a4a31f.svg?invert_in_darkmode&sanitize=true" align=middle width=118.40424914999998pt height=22.831056599999986pt/>
+的子序列.
 
+那么可以得到第<img src="/asr_feature/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>帧, 第<img src="/asr_feature/tex/6361dd721b68dd339b33b2652c0abd4b.svg?invert_in_darkmode&sanitize=true" align=middle width=5.2283516999999895pt height=22.831056599999986pt/>个偏移处的NCCF为:
+
+<p align="center"><img src="/asr_feature/tex/2242da8f877da86e51de08e8768c3654.svg?invert_in_darkmode&sanitize=true" align=middle width=327.64647959999996pt height=45.132167849999995pt/></p>
+
+### NCCF上采样
