@@ -159,13 +159,17 @@ kaldi pitch没有对每一帧是否为人声进行判断,
 对于ACF和CCF, 偏移越大, 计算的序列就越短, 那么不同偏移处的数值是无法比较的.
 而NCCF通过归一化使得不同偏移处的数值可以比较.
 
-为了寻找能够最大化NCCF的偏移值(lag), 先定义计算lag的区间.
+为了寻找能够最大化NCCF的偏移, 先定义计算偏移的区间.
 
-定义<img src="/asr_feature/tex/a63a4877971e55b6902dddb7f39039fb.svg?invert_in_darkmode&sanitize=true" align=middle width=273.87131145pt height=24.65753399999998pt/>为计算NCCF的lag区间.
+定义<img src="/asr_feature/tex/a63a4877971e55b6902dddb7f39039fb.svg?invert_in_darkmode&sanitize=true" align=middle width=273.87131145pt height=24.65753399999998pt/>为计算NCCF的lag区间,
+采用非线性的方式获取偏移值:
+
+<p align="center"><img src="/asr_feature/tex/127e93e3dbd59b2fa1407d64d3a3e1c5.svg?invert_in_darkmode&sanitize=true" align=middle width=312.73628925pt height=20.582203949999997pt/></p>
+
 定义滤波宽度<img src="/asr_feature/tex/e0d75638341aaa771a47999137d21473.svg?invert_in_darkmode&sanitize=true" align=middle width=12.210846449999991pt height=14.15524440000002pt/>, 那么输出的lag区间为:
 <p align="center"><img src="/asr_feature/tex/3b9fdc96e9b62529563a849e2511a7a5.svg?invert_in_darkmode&sanitize=true" align=middle width=417.4539567pt height=17.031940199999998pt/></p>
 
-这样可以在更大的lag区间内计算NCCF.
+这样可以在更大的偏移区间内计算NCCF.
 
 对于帧索引<img src="/asr_feature/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>, 需要处理的信号从<img src="/asr_feature/tex/09367ca11f67c9fe997c850dad2307f7.svg?invert_in_darkmode&sanitize=true" align=middle width=105.05850299999999pt height=22.831056599999986pt/>开始,
 长度为<img src="/asr_feature/tex/8307c4010326377822c07bf42b470f4a.svg?invert_in_darkmode&sanitize=true" align=middle width=194.75435594999996pt height=22.831056599999986pt/>.
