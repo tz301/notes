@@ -182,7 +182,6 @@ $$ s'(t) = \sum_n x_n \frac {f_{C,w}(t - n / S)} {S} $$
 $$ L_i = lag_{min} {\left( 1 + \delta_{pitch} \right)}^i,
 \ i \geq 0, L_i \leq lag_{max} $$
 
-
 定义滤波宽度$ w $, 那么输出的lag区间为:
 $$ lag_{min,outer} = lag_{min} - w/2,
 \ lag_{max,outer} = lag_{max} + w/2 $$
