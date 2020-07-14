@@ -23,6 +23,29 @@ def _lcm(num1, num2):
   return abs(num1 * num2) // gcd(num1, num2)
 
 
+def _filter(t_index, cutoff_freq, num_zeros):
+  """滤波, Hanning窗 + sinc函数.
+
+  Args:
+    t_index: 以窗中心为基准的时间索引.
+
+  Returns:
+    窗函数滤波值.
+  """
+  window_width = num_zeros / (2 * cutoff_freq)
+  if abs(t_index) < window_width:
+    coeff = 2 * pi * cutoff_freq / num_zeros
+    window = 0.5 * (1 + cos(coeff * t_index))
+  else:
+    window = 0
+
+  if t_index != 0:
+    filter_value = sin(2 * pi * cutoff_freq * t_index) / (pi * t_index)
+  else:
+    filter_value = 2 * cutoff_freq
+  return filter_value * window
+
+
 class LinearResampler:
   """线性重采样类, 要求时间间隔线性.
 
@@ -30,6 +53,7 @@ class LinearResampler:
     __in_sample_rate: 输入信号的采样频率.
     __out_sample_rate: 输出信号的采样频率.
     __cutoff_freq: 滤波的截止频率.
+    __num_zeros: 滤波的零的数量.
     __in_samples_in_unit: 输入采样点数的最小单位.
     __out_samples_in_unit: 输出采样点数的最小单位.
     __window_width: 采样窗宽.
@@ -40,23 +64,25 @@ class LinearResampler:
     __input_buffer: 输入信号的缓存.
   """
 
-  def __init__(self, in_sample_rate, out_sample_rate, cutoff_freq):
+  def __init__(self, in_sample_rate, out_sample_rate, cutoff_freq, num_zeros=1):
     """初始化.
 
     Args:
       in_sample_rate: 输入信号的采样频率.
       out_sample_rate: 输出信号的采样频率.
       cutoff_freq: 滤波的截止频率.
+      num_zeros: 滤波的零的数量, 默认1.
     """
     self.__in_sample_rate = in_sample_rate
     self.__out_sample_rate = out_sample_rate
     self.__cutoff_freq = cutoff_freq
+    self.__num_zeros = num_zeros
     self.__check()
 
     base_freq = gcd(in_sample_rate, out_sample_rate)
     self.__in_samples_in_unit = int(in_sample_rate / base_freq)
     self.__out_samples_in_unit = int(out_sample_rate / base_freq)
-    self.__window_width = 1 / (2 * self.__cutoff_freq)
+    self.__window_width = num_zeros / (2 * self.__cutoff_freq)
     self.__first_index = [0] * self.__out_samples_in_unit
     self.__weights = [np.array([0]) for _ in range(self.__out_samples_in_unit)]
     self.__set_indexes_and_weights()
@@ -72,27 +98,7 @@ class LinearResampler:
     assert self.__cutoff_freq > 0
     assert self.__cutoff_freq * 2 < self.__in_sample_rate
     assert self.__cutoff_freq * 2 < self.__out_sample_rate
-
-  def __filter(self, t_index):
-    """滤波, Hanning窗 + sinc函数.
-
-    Args:
-      t_index: 以窗中心为基准的时间索引.
-
-    Returns:
-      窗函数滤波值.
-    """
-    if abs(t_index) < self.__window_width:
-      coeff = 2 * pi * self.__cutoff_freq
-      window = 0.5 * (1 + cos(coeff * t_index))
-    else:
-      window = 0
-
-    if t_index != 0:
-      filter_value = sin(2 * pi * self.__cutoff_freq * t_index) / (pi * t_index)
-    else:
-      filter_value = 2 * self.__cutoff_freq
-    return filter_value * window
+    assert self.__num_zeros > 0
 
   def __set_indexes_and_weights(self):
     """设置索引和权重."""
@@ -110,7 +116,8 @@ class LinearResampler:
         input_index = min_input_index + j
         input_t = input_index / self.__in_sample_rate
         delta_t = input_t - output_t
-        self.__weights[i][j] = self.__filter(delta_t) / self.__in_sample_rate
+        filter_value = _filter(delta_t, self.__cutoff_freq, self.__num_zeros)
+        self.__weights[i][j] = filter_value / self.__in_sample_rate
 
   def __num_output_samples(self, num_input_samples, is_end):
     """获取输出样本数量.
