@@ -174,14 +174,20 @@ $$ s'(t) = \sum_n x_n \frac {f_{C,w}(t - n / S)} {S} $$
 对于ACF和CCF, 偏移越大, 计算的序列就越短, 那么不同偏移处的数值是无法比较的.
 而NCCF通过归一化使得不同偏移处的数值可以比较.
 
-为了寻找能够最大化NCCF的偏移值(lag), 先定义计算lag的区间.
+为了寻找能够最大化NCCF的偏移, 先定义计算偏移的区间.
 
-定义$ lag_{min} = 1/f_{0,max}, \ lag_{max} = 1/f_{0,min} $为计算NCCF的lag区间.
+定义$ lag_{min} = 1/f_{0,max}, \ lag_{max} = 1/f_{0,min} $为计算NCCF的lag区间,
+采用非线性的方式获取偏移值:
+
+$$ L_i = lag_{min} {\left( 1 + \delta_{pitch} \right)}^i,
+\ i \geq 0, L_i \leq lag_{max} $$
+
+
 定义滤波宽度$ w $, 那么输出的lag区间为:
 $$ lag_{min,outer} = lag_{min} - w/2,
 \ lag_{max,outer} = lag_{max} + w/2 $$
 
-这样可以在更大的lag区间内计算NCCF.
+这样可以在更大的偏移区间内计算NCCF.
 
 对于帧索引$ t $, 需要处理的信号从$ t \cdot window_{shift} $开始,
 长度为$ window_{width} + lag_{max,outer} $.
