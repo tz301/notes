@@ -181,6 +181,6 @@ kaldi pitch没有对每一帧是否为人声进行判断,
 
 <p align="center"><img src="/asr_feature/tex/91b4c33b10389e0b3cf207f7848f2396.svg?invert_in_darkmode&sanitize=true" align=middle width=273.643392pt height=45.132167849999995pt/></p>
 
-其中, 参数ballest的意义是, 降低ballest有利于非人声区域pitch计算的连续性.
+其中, <img src="/asr_feature/tex/1921941e267a38d161d9fcc7b3df9a61.svg?invert_in_darkmode&sanitize=true" align=middle width=9.86687624999999pt height=14.15524440000002pt/>为窗内的样本数, 降低ballest有利于非人声区域pitch计算的连续性.
 
 ### NCCF上采样
