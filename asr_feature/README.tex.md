@@ -134,8 +134,7 @@ Pitch特征的提取有多种方法, 例如:
 
 kaldi pitch没有对每一帧是否为人声进行判断,
 而是对每一帧都计算pitch, 使得pitch是一个连续的值, 更加符合语音识别任务.
-
-Kaldi pitch特征的提取流程为:
+主要提取流程如下:
 1. 重采样.
 2. 归一化.
 3. NCCF(Normalized Cross Correlation Function)计算.
@@ -177,21 +176,23 @@ $$ s'(t) = \sum_n x_n \frac {f_{C,w}(t - n / S)} {S} $$
 
 为了寻找能够最大化NCCF的偏移值(lag), 先定义计算lag的区间.
 
-定义$ lag_{min} = 1/f0_{max}, \ lag_{max} = 1/f0_{min} $为计算NCCF的lag区间.
+定义$ lag_{min} = 1/f_{0,max}, \ lag_{max} = 1/f_{0,min} $为计算NCCF的lag区间.
 定义滤波宽度$ w $, 那么输出的lag区间为
-$ outer-min-lag = min-lag - w/2, \ outer-max-lag = max-lag + w/2 $.
+$ lag_{min,outer} = lag_{min} - w/2, \ lag_{max,outer} = lag_{max} + w/2 $.
 这样可以在更大的lag区间内计算NCCF.
 
-对于帧索引$ t $, 那么需要处理的信号从$ t \cdot window-shift $开始,
-长度为$ window-width + outer-max-lag $.
-定义t帧的信号为$ \bold{w}_t = \left( w_{t,0}, w_{t,1}, \cdot \right) $,
-定义$ \bold{v}_{t,i} $为$ \bold{w}_t $内从$ i $开始, 长度为$ window-width $
+对于帧索引$ t $, 需要处理的信号从$ t \cdot window_{shift} $开始,
+长度为$ window_{width} + lag_{max,outer} $.
+定义$ t $帧的信号为$ \bold{w}_t = \left( w_{t,0}, w_{t,1}, \cdots \right) $,
+$ \bold{v}_{t,i} $为$ \bold{w}_t $内从$ i $开始, 长度为$ window_{width} $
 的子序列.
 
 那么可以得到第$ t $帧, 第$ l $个偏移处的NCCF为:
 
 $$ nccf_{t,l} = \frac {\bold{v}_{t,0}^T \bold{v}_{t,l}}
 {\sqrt{|| \bold{v}_{t,0} ||_2^2 || \bold{v}_{t,l} ||_2^2 +
- n^4 nccf-ballast}} $$
+ n^4 ballast}} $$
+
+其中, 参数ballest的意义是, 降低ballest有利于非人声区域pitch计算的连续性.
 
 ### NCCF上采样
