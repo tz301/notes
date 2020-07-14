@@ -219,12 +219,128 @@ class LinearResampler:
     return outputs
 
 
+class PitchConfig:
+  """Pitch配置.
+
+  Attributes:
+    sample_rate: 采样频率.
+    frame_shift: 帧移.
+    frame_length: 帧长.
+    min_f0: 最小f0.
+    max_f0: 最大f0.
+    soft_min_f0: 最小soft f0.
+    penalty_factor:
+    lowpass_cutoff: 低通截止频率.
+    resample_freq: 重采样频率.
+    delta_pitch: pitch间隔.
+    nccf_ballast: nccf_ballast.
+    upsample_filter_width: 上采样滤波宽度.
+    max_frames_latency: 最大帧延迟.
+    frames_per_chunk:
+    recompute_frame:
+    nccf_shift: nccf帧移.
+    nccf_length: nccf帧长.
+  """
+
+  def __init__(self, sample_rate):
+    """初始化.
+
+    Args:
+      sample_rate: 采样频率.
+    """
+    self.sample_rate = sample_rate
+    self.frame_shift = 0.01
+    self.frame_length = 0.025
+    self.min_f0 = 50
+    self.max_f0 = 400
+    self.soft_min_f0 = 10
+    self.penalty_factor = 0.1
+    self.lowpass_cutoff = 1000
+    self.resample_freq = 4000
+    self.delta_pitch = 0.005
+    self.nccf_ballast = 7000
+    self.upsample_filter_width = 5
+    self.max_frames_latency = 0
+    self.frames_per_chunk = 0
+    self.recompute_frame = 500
+    self.nccf_shift = int(self.resample_freq * self.frame_shift)
+    self.nccf_length = int(self.resample_freq * self.frame_length)
+
+
+class StateInfo:
+  """状态信息类, 用于Viterbi计算, 储存一帧计算所需的偏移.
+
+  Attributes:
+    __back_pointer: 当前状态最优的上一状态帧的状态索引.
+    __pov_nccf: pov计算的nccf.
+  """
+
+  def __init__(self):
+    """初始化."""
+    self.__back_pointer = 0
+    self.__pov_nccf = 0
+
+
+class PitchFrameInfo:
+  """Pitch帧信息类, 储存用于计算一帧pitch的信息.
+
+  Attributes:
+    __state_info: 状态信息.
+    __state_offset: 状态偏移.
+    __cur_best_state: 当前最好的状态.
+    __prev_info: 前一个状态信息.
+  """
+
+  def __init__(self, num_states):
+    """初始化.
+
+    Args:
+      num_states: 状态数.
+    """
+    self.__state_info = [StateInfo] * num_states
+    self.__state_offset = 0
+    self.__cur_best_state = -1
+    self.__prev_info = None
+
+
+class NccfInfo:
+  """Nccf信息类.
+
+  Attributes:
+    avg_norm_prod: 平均范数内积.
+    mean_square_energy: 均方能量.
+  """
+
+  def __init__(self, avg_norm_prod, mean_square_energy):
+    """初始化.
+
+    Args:
+      avg_norm_prod: 平均范数内积.
+      mean_square_energy: 均方能量.
+    """
+    self.avg_norm_prod = avg_norm_prod
+    self.mean_square_energy = mean_square_energy
+
+
 class PitchExtractor:
   """Pitch特征提取器.
 
   Attributes:
     __is_end: 是否结束.
+    __conf: pitch配置类.
     __resampler: 重采样类.
+    __num_processed: 已处理的样本数.
+    __buffer: 缓存.
+    __signal_sum: 重采样后信号和.
+    __signal_sum_sq: 重采样后信号平方和.
+    __nccf_first_lag: 第一个nccf偏移值.
+    __nccf_last_lag: 最后一个nccf偏移值.
+    __lags: nccf偏移列表.
+    __num_lags: nccf偏移数.
+    __frames_latency:
+    __frame_info:
+    __forward_cost:
+    __nccf_info:
   """
 
   def __init__(self, sample_rate):
@@ -234,11 +350,159 @@ class PitchExtractor:
       sample_rate: 采样频率.
     """
     self.__is_end = False
+    self.__conf = PitchConfig(sample_rate)
+    self.__resampler = LinearResampler(sample_rate, self.__conf.resample_freq,
+                                       self.__conf.lowpass_cutoff)
 
-    resample_sample_rate = 3000
-    cutoff_freq = 1000
-    self.__resampler = LinearResampler(sample_rate, resample_sample_rate,
-                                       cutoff_freq)
+    self.__num_processed = 0
+    self.__buffer = list()
+
+    self.__signal_sum = 0
+    self.__signal_sum_sq = 0
+
+    win = self.__conf.upsample_filter_width / (2.0 * self.__conf.resample_freq)
+    outer_min_lag = 1 / self.__conf.max_f0 - win
+    outer_max_lag = 1 / self.__conf.min_f0 + win
+    self.__nccf_first_lag = int(ceil(self.__conf.resample_freq * outer_min_lag))
+    self.__nccf_last_lag = int(floor(self.__conf.resample_freq * outer_max_lag))
+    self.__lags = self.__select_lags()
+    self.__num_lags = self.__nccf_last_lag - self.__nccf_first_lag + 1
+
+    self.__frames_latency = 0
+    upsample_cutoff = self.__conf.resample_freq * 0.5
+    lags_offset = (self.__lags - self.__nccf_first_lag /
+                   self.__conf.resample_freq)
+
+    self.__frame_info = [PitchFrameInfo(len(self.__lags))]
+    self.__forward_cost = np.zeros(len(self.__lags))
+    self.__nccf_info = list()
+
+  def __select_lags(self):
+    """选取NCCF lag, 范围为[1/max_f0, 1/min_f0].
+
+    Returns:
+      NCCF lag.
+    """
+    min_lag = 1 / self.__conf.max_f0
+    max_lag = 1 / self.__conf.min_f0
+    lag = min_lag
+    lags = list()
+    while lag <= max_lag:
+      lags.append(lag)
+      lag *= 1 + self.__conf.delta_pitch
+    return np.array(lags)
+
+  def __num_frames_available(self, num_sample):
+    """获取可处理的帧数.
+
+    Args:
+      num_sample: 样本数.
+
+    Returns:
+      帧数.
+    """
+    frame_length = self.__conf.nccf_length
+    if not self.__is_end:
+      frame_length += self.__nccf_last_lag
+    if num_sample < frame_length:
+      return 0
+    else:
+      return int((num_sample - frame_length) / self.__conf.nccf_shift + 1)
+
+  def __update_buffer(self, signal):
+    """更新缓存.
+
+    Args:
+      signal: 信号.
+    """
+    num_frames = len(self.__frame_info) - 1
+    next_frame = num_frames
+    frame_shift = self.__conf.nccf_shift
+    next_frame_sample = frame_shift * next_frame
+
+    self.__signal_sum += np.sum(signal)
+    self.__signal_sum_sq += np.dot(signal, signal)
+
+    next_num_processed = self.__num_processed + len(signal)
+    if next_frame_sample > next_num_processed:
+      full_frame_length = self.__conf.nccf_length + self.__nccf_last_lag
+      assert full_frame_length < frame_shift
+    else:
+      new_buffer = np.zeros(next_num_processed - next_frame_sample)
+      for i in range(next_frame_sample, next_num_processed):
+        if i >= self.__num_processed:
+          new_buffer[i - next_frame_sample] = signal[i - self.__num_processed]
+        else:
+          buffer_index = i - self.__num_processed + len(self.__buffer)
+          new_buffer[i - next_frame_sample] = self.__buffer[buffer_index]
+      self.__buffer = new_buffer
+    self.__num_processed = next_num_processed
+
+  def __extract_window(self, signal, start_frame, length):
+    """提取窗内的信号.
+
+    Args:
+      signal: 信号.
+      start_frame: 起始帧索引.
+      length: 窗长.
+
+    Returns:
+      窗信号.
+    """
+    offset = start_frame - self.__num_processed
+    assert offset >= 0
+
+    if offset + length > len(signal):
+      raise NotImplementedError("sub extract")
+
+    return signal[offset: offset + length]
+
+  def __cal_correlation(self, window, length):
+    """计算相关所需的系数.
+
+    Args:
+      window: 窗信号.
+      length: 用于计算相关系数的长度.
+
+    Returns:
+      内积和范数内积.
+    """
+    mean_value = np.sum(window[:length]) / length
+    zero_mean_wave = window - mean_value
+
+    sub_array1 = zero_mean_wave[:length]
+    e1 = np.dot(sub_array1, sub_array1)
+    inner_prod = np.zeros(self.__num_lags)
+    norm_prod = np.zeros(self.__num_lags)
+    for lag in range(self.__nccf_first_lag, self.__nccf_last_lag + 1):
+      sub_array2 = zero_mean_wave[lag: lag + length]
+      e2 = np.dot(sub_array2, sub_array2)
+      inner_prod[lag - self.__nccf_first_lag] = np.dot(sub_array1, sub_array2)
+      norm_prod[lag - self.__nccf_first_lag] = e1 * e2
+    return inner_prod, norm_prod
+
+  def __cal_nccf(self, inner_prod, norm_prod, nccf_ballast):
+    """计算nccf.
+
+    Args:
+      inner_prod: 内积.
+      norm_prod: 范数内积.
+      nccf_ballast: ballast.
+
+    Returns:
+      nccf.
+    """
+    nccf = np.zeros(self.__num_lags)
+    for lag in range(self.__num_lags):
+      numerator = inner_prod[lag]
+      denominator = pow(norm_prod[lag] + nccf_ballast, 0.5)
+      if denominator != 0:
+        nccf[lag] = numerator / denominator
+      else:
+        assert numerator == 0
+        nccf[lag] = 0
+      assert -1.01 < nccf[lag] < 1.01
+    return nccf
 
   def __accept_wave_form(self, signal):
     """接收音频数据.
@@ -247,6 +511,46 @@ class PitchExtractor:
       signal: 信号.
     """
     signal = self.__resampler.resample(signal, self.__is_end)
+
+    cur_sum = self.__signal_sum + sum(signal)
+    cur_sum_sq = self.__signal_sum_sq + np.dot(signal, signal)
+    cur_num_samp = self.__num_processed + len(signal)
+    mean_square = cur_sum_sq / cur_num_samp - pow(cur_sum / cur_num_samp, 2.0)
+
+    end_frame = self.__num_frames_available(cur_num_samp)
+    start_frame = len(self.__frame_info) - 1
+    num_new_frames = end_frame - start_frame
+
+    if num_new_frames == 0:
+      self.__update_buffer(signal)
+      return
+
+    num_resample_lags = len(self.__lags)
+    basic_frame_length = self.__conf.nccf_length
+    full_frame_length = basic_frame_length + self.__nccf_last_lag
+    nccf_ballast = self.__conf.nccf_ballast
+    nccf_ballast *= pow(mean_square * basic_frame_length, 2)
+
+    nccf_pitch = np.zeros((num_new_frames, self.__num_lags))
+    nccf_pov = np.zeros((num_new_frames, self.__num_lags))
+    for frame in range(start_frame, end_frame):
+      start_sample = frame * self.__conf.nccf_shift
+      window = self.__extract_window(signal, start_sample, full_frame_length)
+      inner_prod, norm_prod = self.__cal_correlation(window, basic_frame_length)
+
+      index = frame - start_frame
+      nccf_pitch[index] = self.__cal_nccf(inner_prod, norm_prod, nccf_ballast)
+      nccf_pov[index] = self.__cal_nccf(inner_prod, norm_prod, 0)
+
+      if frame < self.__conf.recompute_frame:
+        self.__nccf_info.append(NccfInfo(np.average(norm_prod), mean_square))
+
+    self.__update_buffer(signal)
+
+    prev_frame_end_sample = 0
+    cur_forward_cost = np.zeros(num_resample_lags)
+
+    exit(0)
 
   def __input_finished(self):
     """完成所有输入."""
