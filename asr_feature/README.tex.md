@@ -117,6 +117,8 @@ $$ y_n = 1 + \frac L 2 sin \left( \frac {n \pi} L \right), 0 \leq n < N $$
 
 ## Pitch
 
+Pitch特征提取就是计算声音基频F0的过程.
+
 如果一个复杂信号和一个可变频率的正弦波在音调上听感一致,
 那么正弦波的频率就是复杂信号的pitch.
 
@@ -128,12 +130,16 @@ Pitch特征的提取有多种方法, 例如:
 5. SWIPE: A. Camacho and J. G. Harris, “A sawtooth waveform inspired pitch estimator for speech and music,” Journal of the Acousti- cal Society ofAmerica, vol. 124, no. 3, pp. 1638–1652, 2008.
 6. YAAPT: Kavita Kasi and Stephen A Zahorian, “Yet another algorithm for pitch tracking,” in Acoustics, Speech, and Signal Process- ing (ICASSP), 2002 IEEE International Conference on. IEEE, 2002, vol. 1, pp. I–361.
 
-对于语音识别来说, kaldi pitch的表现较好, 下面主要参考: Ghahremani P, BabaAli B, Povey D, et al. A pitch extraction algorithm tuned for automatic speech recognition[C]//2014 IEEE international conference on acoustics, speech and signal processing (ICASSP). IEEE, 2014: 2494-2498.
+对于语音识别来说, kaldi pitch没有对每一帧是否为人声进行判断,
+而是对每一帧都计算pitch, 使得pitch是一个连续的值, 更加符合语音识别任务.
 
-Pitch特征的提取流程为:
+下面主要参考: Ghahremani P, BabaAli B, Povey D, et al. A pitch extraction algorithm tuned for automatic speech recognition[C]//2014 IEEE international conference on acoustics, speech and signal processing (ICASSP). IEEE, 2014: 2494-2498.
+
+Kaldi pitch特征的提取流程为:
 1. 重采样.
 2. 归一化.
 3. NCCF(Normalized Cross Correlation Function)计算.
+4. NCCF上采样.
 
 ### 重采样
 
@@ -158,4 +164,35 @@ $$ s'(t) = \sum_n x_n \frac {f_{C,w}(t - n / S)} {S} $$
 将重采样后的信号除以均方值进行归一化.
 
 3. NCCF计算.
+
+互相关(Cross Correlation Function, CCF)一般用来度量两个量之间的相似度,
+它是一个向量向量相对于另一个向量的偏移的函数, 也叫滑动内积.
+而自相关(Auto Correlation Function, ACF)就是信号自身与自身的互相关.
+
+自相关函数在波形重合处会出现峰值, 因此可以用来计算序列中的重复模式, 即基频.
+通过计算不同偏移处的自相关, 找到峰值处的偏移值.
+
+对于ACF和CCF, 偏移越大, 计算的序列就越短, 那么不同偏移处的数值是无法比较的.
+而NCCF通过归一化使得不同偏移处的数值可以比较.
+
+为了寻找能够最大化NCCF的偏移值(lag), 先定义计算lag的区间.
+
+定义$ min-lag = 1/max-f0, \ max-lag = 1/min-f0 %为计算NCCF的lag区间.
+定义滤波宽度$ w $, 那么输出的lag区间为
+$ outer-min-lag = min-lag - w/2, \ outer-max-lag = max-lag + w/2 $.
+这样可以在更大的lag区间内计算NCCF.
+
+对于帧索引$ t $, 那么需要处理的信号从$ t \cdot window-shift $开始,
+长度为$ window-width + outer-max-lag $.
+定义t帧的信号为$ \bold{w}_t = \left( w_{t,0}, w_{t,1}, \cdot \right) $,
+定义$ \bold{v}_{t,i} $为$ \bold{w}_t $内从$ i $开始, 长度为$ window-width $
+的子序列.
+
+那么可以得到第$ t $帧, 第$ l $个偏移处的NCCF为:
+
+$$ nccf_{t,l} = \frac {\bold{v}_{t,0}^T \bold{v}_{t,l}}
+{\sqrt{|| \bold{v}_{t,0} ||_2^2 || \bold{v}_{t,l} ||_2^2 +
+ n^4 nccf-ballast}} $$
+
+4. NCCF上采样
 
