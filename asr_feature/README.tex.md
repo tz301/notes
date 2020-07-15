@@ -138,7 +138,7 @@ kaldi pitch没有对每一帧是否为人声进行判断,
 1. 重采样.
 2. 归一化.
 3. NCCF(Normalized Cross Correlation Function)计算.
-4. NCCF上采样.
+4. 代价函数.
 
 ### 重采样
 
@@ -196,10 +196,12 @@ $ \bold{v}_{t,i} $为$ \bold{w}_t $内从$ i $开始, 长度为$ window_{width} 
 
 那么可以得到第$ t $帧, 第$ l $个偏移处的NCCF为:
 
-$$ nccf_{t,l} = \frac {\bold{v}_{t,0}^T \bold{v}_{t,l}}
+$$ \Phi_{t,l} = \frac {\bold{v}_{t,0}^T \bold{v}_{t,l}}
 {\sqrt{|| \bold{v}_{t,0} ||_2^2 || \bold{v}_{t,l} ||_2^2 +
  n^4 ballast}} $$
 
 其中, $ n $为窗内的样本数, 降低ballest有利于非人声区域pitch计算的连续性.
 
-### NCCF上采样
+在完成NCCF计算后, 还需要进行上采样.
+
+### 代价函数
