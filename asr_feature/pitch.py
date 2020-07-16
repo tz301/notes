@@ -759,7 +759,6 @@ class PitchExtractor:
       self.__update_buffer(signal)
       return
 
-    num_resample_lags = len(self.__lags)
     basic_frame_length = self.__conf.nccf_length
     full_frame_length = basic_frame_length + self.__nccf_last_lag
     nccf_ballast = self.__conf.nccf_ballast
@@ -783,8 +782,18 @@ class PitchExtractor:
     nccf_pov = self.__nccf_resampler.resample(nccf_pov)
     self.__update_buffer(signal)
 
-    prev_frame_end_sample = 0
-    cur_forward_cost = np.zeros(num_resample_lags)
+    index_info = np.zeros((len(self.__lags), 2), dtype=np.int)
+    cur_forward_cost = np.zeros(len(self.__lags))
+    for frame_idx, frame in enumerate(range(start_frame, end_frame)):
+      cur_info = copy(self.__frame_info[-1])
+      cur_info.set_nccf_pov(nccf_pov[frame_idx])
+      cur_info.compute_back_traces(self.__conf, nccf_pitch[frame_idx],
+                                   self.__lags, self.__forward_cost, index_info,
+                                   cur_forward_cost)
+
+      self.__forward_cost = cur_forward_cost.copy()
+      self.__forward_cost -= np.min(self.__forward_cost)
+      self.__frame_info.append(cur_info)
 
       if frame < self.__conf.recompute_frame:
         self.__nccf_info[frame].nccf_pitch = nccf_pitch[frame_idx]
