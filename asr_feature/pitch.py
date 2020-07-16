@@ -3,7 +3,8 @@
 # Created by tz301 on 2020/7/10
 """Pitch特征."""
 import logging
-from math import ceil, cos, floor, gcd, pi, sin
+from copy import copy
+from math import ceil, cos, floor, gcd, log, pi, sin
 
 import numpy as np
 
@@ -322,7 +323,7 @@ class PitchConfig:
     min_f0: 最小f0.
     max_f0: 最大f0.
     soft_min_f0: 最小soft f0.
-    penalty_factor:
+    penalty_factor: 惩罚因子.
     lowpass_cutoff: 低通截止频率.
     resample_freq: 重采样频率.
     delta_pitch: pitch间隔.
@@ -364,20 +365,21 @@ class StateInfo:
   """状态信息类, 用于Viterbi计算, 储存一帧计算所需的偏移.
 
   Attributes:
-    __back_pointer: 当前状态最优的上一状态帧的状态索引.
-    __pov_nccf: pov计算的nccf.
+    back_pointer: 当前状态最优的上一状态帧的状态索引.
+    nccf_pov: nccf计算得到的人声概率.
   """
 
   def __init__(self):
     """初始化."""
-    self.__back_pointer = 0
-    self.__pov_nccf = 0
+    self.back_pointer = 0
+    self.nccf_pov = 0
 
 
 class PitchFrameInfo:
   """Pitch帧信息类, 储存用于计算一帧pitch的信息.
 
   Attributes:
+    __num_states: 状态数.
     __state_info: 状态信息.
     __state_offset: 状态偏移.
     __cur_best_state: 当前最好的状态.
@@ -390,10 +392,143 @@ class PitchFrameInfo:
     Args:
       num_states: 状态数.
     """
-    self.__state_info = [StateInfo] * num_states
+    self.__num_states = num_states
+    self.__state_info = [StateInfo() for _ in range(num_states)]
     self.__state_offset = 0
     self.__cur_best_state = -1
     self.__prev_info = None
+
+  @staticmethod
+  def __cal_local_cost(soft_min_f0, nccf_pitch, lags):
+    """计算局部代价.
+
+    Args:
+      soft_min_f0: 最小soft f0.
+      nccf_pitch: nccf pitch.
+      lags: 偏移值列表.
+
+    Returns:
+      局部代价.
+    """
+    return 1 - nccf_pitch * (1 - soft_min_f0 * lags)
+
+  def set_nccf_pov(self, nccf_pov):
+    """设置nccf人声概率.
+
+    Args:
+      nccf_pov: nccf人声概率.
+    """
+    assert self.__num_states == len(nccf_pov)
+    for i in range(self.__num_states):
+      self.__state_info[i].nccf_pov = nccf_pov[i]
+
+  def compute_back_traces(self, conf, nccf_pitch, lags, prev_forward_cost,
+                          index_info, cur_forward_cost):  # TODO(tu): 直接返回.
+    """计算回溯路径.
+
+    Args:
+      conf: pitch配置.
+      nccf_pitch: nccf pitch.
+      lags: 偏移值列表.
+      prev_forward_cost: 上一帧的前向代价.
+      index_info: 索引信息, 记录每次计算的上下限偏移索引.
+      cur_forward_cost: 当前帧的前向代价.
+    """
+    assert self.__num_states == len(nccf_pitch)
+    local_cost = self.__cal_local_cost(conf.soft_min_f0, nccf_pitch, lags)
+    inter_frame_factor = pow(log(1 + conf.delta_pitch), 2) * conf.penalty_factor
+
+    last_back_pointer = 0
+    for i in range(self.__num_states):
+      start_j = last_back_pointer
+      best_cost = ((start_j - i) ** 2 * inter_frame_factor +
+                   prev_forward_cost[start_j])
+      best_j = start_j
+
+      for j in range(start_j + 1, self.__num_states):
+        cur_cost = (j - i) ** 2 * inter_frame_factor + prev_forward_cost[j]
+        if cur_cost < best_cost:
+          best_cost = cur_cost
+          best_j = j
+        else:
+          break
+
+      self.__state_info[i].back_pointer = best_j
+      cur_forward_cost[i] = best_cost
+      index_info[i, 0] = best_j
+      index_info[i, 1] = self.__num_states - 1
+      last_back_pointer = best_j
+
+    for it in range(self.__num_states):
+      changed = False
+      if it % 2 == 0:  # 后向.
+        last_back_pointer = self.__num_states - 1
+        for i in range(self.__num_states - 1, -1, -1):
+          lower_bound = index_info[i, 0]
+          upper_bound = min(index_info[i, 1], last_back_pointer)
+          if lower_bound == upper_bound:
+            last_back_pointer = lower_bound
+            continue
+
+          best_cost = cur_forward_cost[i]
+          best_j = self.__state_info[i].back_pointer
+          init_best_j = best_j
+
+          if best_j == upper_bound:
+            last_back_pointer = best_j
+            continue
+
+          for j in range(upper_bound, lower_bound + 1, -1):
+            cur_cost = (j - i) ** 2 * inter_frame_factor + prev_forward_cost[j]
+            if cur_cost < best_cost:
+              best_cost = cur_cost
+              best_j = j
+            elif best_j > j:
+                break
+
+          index_info[i, 1] = best_j
+          if best_j != init_best_j:
+            cur_forward_cost[i] = best_cost
+            self.__state_info[i].back_pointer = best_j
+            changed = True
+          last_back_pointer = best_j
+      else:  # 前向.
+        last_back_pointer = 0
+        for i in range(self.__num_states):
+          lower_bound = max(index_info[i, 0], last_back_pointer)
+          upper_bound = index_info[i, 1]
+          if lower_bound == upper_bound:
+            last_back_pointer = lower_bound
+            continue
+
+          best_cost = cur_forward_cost[i]
+          best_j = self.__state_info[i].back_pointer
+          init_best_j = best_j
+
+          if best_j == lower_bound:
+            last_back_pointer = best_j
+            continue
+
+          for j in range(lower_bound, upper_bound - 1):
+            cur_cost = (j - i) ** 2 * inter_frame_factor + prev_forward_cost[j]
+            if cur_cost < best_cost:
+              best_cost = cur_cost
+              best_j = j
+            elif best_j < j:
+                break
+
+          index_info[i, 0] = best_j
+          if best_j != init_best_j:
+            cur_forward_cost[i] = best_cost
+            self.__state_info[i].back_pointer = best_j
+            changed = True
+          last_back_pointer = best_j
+
+      if not changed:
+        break
+
+    self.__cur_best_state = -1
+    cur_forward_cost += local_cost
 
 
 class NccfInfo:
@@ -402,6 +537,7 @@ class NccfInfo:
   Attributes:
     avg_norm_prod: 平均范数内积.
     mean_square_energy: 均方能量.
+    nccf_pitch: nccf pitch.
   """
 
   def __init__(self, avg_norm_prod, mean_square_energy):
@@ -413,6 +549,7 @@ class NccfInfo:
     """
     self.avg_norm_prod = avg_norm_prod
     self.mean_square_energy = mean_square_energy
+    self.nccf_pitch = None
 
 
 class PitchExtractor:
@@ -649,7 +786,13 @@ class PitchExtractor:
     prev_frame_end_sample = 0
     cur_forward_cost = np.zeros(num_resample_lags)
 
-    exit(0)
+      if frame < self.__conf.recompute_frame:
+        self.__nccf_info[frame].nccf_pitch = nccf_pitch[frame_idx]
+      if frame == self.__conf.recompute_frame:
+        # TODO(tu): RecomputeBacktraces
+        pass
+
+    best_final_state = np.argmin(cur_forward_cost)
 
   def __input_finished(self):
     """完成所有输入."""
