@@ -6,8 +6,6 @@ import logging
 
 from base.utils import LOGGER_FORMAT
 
-__LEN = 0
-
 
 def __bubble_sorting(nums):
   """冒泡排序."""
@@ -141,6 +139,9 @@ def __heapify(nums, index):
   if largest != index:
     nums[index], nums[largest] = nums[largest], nums[index]
     __heapify(nums, largest)
+
+
+__LEN = 0
 
 
 def __build_top_heap(nums):
