@@ -98,8 +98,8 @@ def __merge_sort_internal(nums):
 def __merge_sort(nums):
   """归并排序."""
   new_nums = __merge_sort_internal(nums)
-  for i in range(len(nums)):
-    nums[i] = new_nums[i]
+  for i, num in enumerate(new_nums):
+    nums[i] = num
 
 
 def __partition(nums, left, right):
@@ -201,7 +201,7 @@ def __radix_sort(nums):
   mod = 10
   div = 1
   counter = [[] for _ in range(10)]
-  for i in range(max_digits):
+  for _ in range(max_digits):
     for num in nums:
       counter[num % mod // div].append(num)
 
