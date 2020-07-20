@@ -32,24 +32,6 @@ __LEN = 0
 #   return out_list
 #
 #
-# def bucket_sort(in_list: List) -> List:
-#   """桶排序."""
-#   min_value = min(in_list)
-#   max_value = max(in_list)
-#
-#   bucket_size = 5
-#   bucket_count = int(floor(max_value - min_value) / bucket_size + 1)
-#   buckets = [[] for _ in range(bucket_count)]
-#
-#   for value in in_list:
-#     buckets[int(floor(value - min_value) / bucket_size)].append(value)
-#
-#   out_list = list()
-#   for bucket in buckets:
-#     out_list.extend(insertion_sorting(bucket))
-#   return out_list
-#
-#
 
 
 def __bubble_sorting(nums):
@@ -200,6 +182,24 @@ def __counting_sort(nums, max_value=100):
       nums.extend([i] * num)
 
 
+def __bucket_sort(nums):
+  min_value, max_value = min(nums), max(nums)
+
+  bucket_size = 5
+  bucket_num = (max_value - min_value) // bucket_size + 1
+  buckets = [[] for _ in range(bucket_num)]
+
+  for num in nums:
+    buckets[(num - min_value) // bucket_size].append(num)
+
+  index = 0
+  for bucket in buckets:
+    __insertion_sorting(bucket)
+    for num in bucket:
+      nums[index] = num
+      index += 1
+
+
 def __radix_sort(nums):
   """基数排序."""
   max_digits = len(str(max(nums)))
@@ -233,7 +233,7 @@ def __cmd():
       ("快速", __quick_sort),
       ("堆", __heap_sort),
       ("计数", __counting_sort),
-      # ("桶", __bucket_sort),
+      ("桶", __bucket_sort),
       ("基数", __radix_sort)
   ]
 
