@@ -7,31 +7,6 @@ import logging
 from base.utils import LOGGER_FORMAT
 
 __LEN = 0
-#
-#
-# def shell_sort(in_list: List) -> List:
-#   """希尔排序."""
-#   out_list = in_list.copy()
-#   num = len(in_list)
-#
-#   gap = 1
-#   while gap < num / 3:  # 动态定义增量序列.
-#     gap = gap * 3 + 1
-#
-#   while gap > 0:
-#     for i in range(gap, num):
-#       current = out_list[i]
-#       j = i - gap
-#       while j >= 0 and current < out_list[j]:
-#         out_list[j + gap] = out_list[j]
-#         j -= gap
-#
-#       out_list[j + gap] = current
-#
-#     gap = floor(gap / 2)
-#   return out_list
-#
-#
 
 
 def __bubble_sorting(nums):
@@ -71,6 +46,24 @@ def __insertion_sorting(nums):
       nums[j] = nums[j - 1]
       j -= 1
     nums[j] = tmp
+
+
+def __shell_sort(nums):
+  """希尔排序."""
+  gap = 1
+  num = len(nums)
+  while gap < num / 3:  # 动态定义增量序列.
+    gap = gap * 3 + 1
+
+  while gap > 0:
+    for i in range(gap, num):
+      current = nums[i]
+      j = i - gap
+      while j >= 0 and current < nums[j]:
+        nums[j + gap] = nums[j]
+        j -= gap
+      nums[j + gap] = current
+    gap //= 2
 
 
 def __merge(nums1, nums2):
@@ -228,7 +221,7 @@ def __cmd():
       ("冒泡", __bubble_sorting),
       ("选择", __selection_sorting),
       ("插入", __insertion_sorting),
-      # ("希尔", __shell_sort),
+      ("希尔", __shell_sort),
       ("归并", __merge_sort),
       ("快速", __quick_sort),
       ("堆", __heap_sort),
