@@ -124,6 +124,9 @@ def __quick_sort(nums, left=None, right=None):
     __quick_sort(nums, index + 1, right)
 
 
+__LEN = 0
+
+
 def __heapify(nums, index):
   """堆调整."""
   left = 2 * index + 1
@@ -141,14 +144,11 @@ def __heapify(nums, index):
     __heapify(nums, largest)
 
 
-__LEN = 0
-
-
 def __build_top_heap(nums):
-  """建立顶堆."""
+  """建立大顶堆."""
   global __LEN  # pylint: disable=global-statement
-
   __LEN = len(nums)
+
   for i in range(__LEN // 2, -1, -1):
     __heapify(nums, i)
 
