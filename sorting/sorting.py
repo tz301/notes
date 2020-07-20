@@ -83,28 +83,6 @@ __LEN = 0
 #   return out_list
 #
 #
-# def radix_sort(in_list: List) -> List:
-#   """基数排序."""
-#   max_digit = len(str(max(in_list)))
-#
-#   out_list = in_list.copy()
-#   mod = 10
-#   dev = 1
-#   counter = [[] for _ in range(10)]
-#   for i in range(max_digit):
-#     for value in out_list:
-#       bucket = int((value % mod) / dev)
-#       counter[bucket].append(value)
-#
-#     out_list.clear()
-#     for counter_one in counter:
-#       if counter_one:
-#         out_list.extend(counter_one)
-#         counter_one.clear()
-#
-#     mod *= 10
-#     dev *= 10
-#   return out_list
 
 
 def __bubble_sorting(nums):
@@ -217,6 +195,27 @@ def __counting_sort(nums, max_value=100):
       nums.extend([i] * num)
 
 
+def __radix_sort(nums):
+  """基数排序."""
+  max_digits = len(str(max(nums)))
+
+  mod = 10
+  div = 1
+  counter = [[] for _ in range(10)]
+  for i in range(max_digits):
+    for num in nums:
+      counter[num % mod // div].append(num)
+
+    nums.clear()
+    for counter_one in counter:
+      if counter_one:
+        nums.extend(counter_one)
+        counter_one.clear()
+
+    mod *= 10
+    div *= 10
+
+
 def __cmd():
   """测试排序算法."""
   in_list = [5, 4, 2, 3, 29, 8, 1, 7, 13]
@@ -230,7 +229,7 @@ def __cmd():
       ("堆", __heap_sort),
       ("计数", __counting_sort),
       # ("桶", __bucket_sort),
-      # ("基数", __radix_sort)
+      ("基数", __radix_sort)
   ]
 
   ret = [1, 2, 3, 4, 5, 7, 8, 13, 29]
