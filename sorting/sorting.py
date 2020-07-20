@@ -32,39 +32,6 @@ __LEN = 0
 #   return out_list
 #
 #
-# def __merge(left, right):
-#   """合并两个有序序列."""
-#   left_index = 0
-#   right_index = 0
-#   out_list = list()
-#   while left_index < len(left) and right_index < len(right):
-#     if left[left_index] < right[right_index]:
-#       out_list.append(left[left_index])
-#       left_index += 1
-#     else:
-#       out_list.append(right[right_index])
-#       right_index += 1
-#
-#   if left_index == len(left):
-#     out_list.extend(right[right_index:])
-#
-#   if right_index == len(right):
-#     out_list.extend(left[left_index:])
-#   return out_list
-#
-#
-# def merge_sort(in_list: List) -> List:
-#   """归并排序."""
-#   num = len(in_list)
-#   if num < 2:
-#     return in_list
-#   else:
-#     middle_index = floor(num / 2)
-#     left = in_list[:middle_index]
-#     right = in_list[middle_index:]
-#     return __merge(merge_sort(left), merge_sort(right))
-#
-#
 # def bucket_sort(in_list: List) -> List:
 #   """桶排序."""
 #   min_value = min(in_list)
@@ -122,6 +89,44 @@ def __insertion_sorting(nums):
       nums[j] = nums[j - 1]
       j -= 1
     nums[j] = tmp
+
+
+def __merge(nums1, nums2):
+  """合并两个有序数组."""
+  result = list()
+  len1, len2 = len(nums1), len(nums2)
+  index1, index2 = 0, 0
+  while index1 < len1 or index2 < len2:
+    if index1 == len1:
+      result.append(nums2[index2])
+      index2 += 1
+    elif index2 == len2:
+      result.append(nums1[index1])
+      index1 += 1
+    elif nums1[index1] < nums2[index2]:
+      result.append(nums1[index1])
+      index1 += 1
+    else:
+      result.append(nums2[index2])
+      index2 += 1
+  return result
+
+
+def __merge_sort_internal(nums):
+  """归并排序."""
+  if len(nums) < 2:
+    return nums
+  else:
+    mid = len(nums) // 2
+    left, right = nums[:mid], nums[mid:]
+    return __merge(__merge_sort_internal(left), __merge_sort_internal(right))
+
+
+def __merge_sort(nums):
+  """归并排序."""
+  new_nums = __merge_sort_internal(nums)
+  for i in range(len(nums)):
+    nums[i] = new_nums[i]
 
 
 def __partition(nums, left, right):
@@ -224,7 +229,7 @@ def __cmd():
       ("选择", __selection_sorting),
       ("插入", __insertion_sorting),
       # ("希尔", __shell_sort),
-      # ("归并", __merge_sort),
+      ("归并", __merge_sort),
       ("快速", __quick_sort),
       ("堆", __heap_sort),
       ("计数", __counting_sort),
