@@ -124,7 +124,7 @@ kaldi pitch没有对每一帧是否为人声进行判断,
 1. 重采样.
 2. 归一化.
 3. NCCF(Normalized Cross Correlation Function)计算.
-4. NCCF上采样.
+4. 代价函数.
 
 ### 重采样
 
@@ -179,8 +179,49 @@ kaldi pitch没有对每一帧是否为人声进行判断,
 
 那么可以得到第<img src="/asr_feature/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>帧, 第<img src="/asr_feature/tex/6361dd721b68dd339b33b2652c0abd4b.svg?invert_in_darkmode&sanitize=true" align=middle width=5.2283516999999895pt height=22.831056599999986pt/>个偏移处的NCCF为:
 
-<p align="center"><img src="/asr_feature/tex/91b4c33b10389e0b3cf207f7848f2396.svg?invert_in_darkmode&sanitize=true" align=middle width=273.643392pt height=45.132167849999995pt/></p>
+<p align="center"><img src="/asr_feature/tex/d9fe8f19e2218da484571187b5a9fe06.svg?invert_in_darkmode&sanitize=true" align=middle width=253.37309909999996pt height=45.132167849999995pt/></p>
 
 其中, <img src="/asr_feature/tex/1921941e267a38d161d9fcc7b3df9a61.svg?invert_in_darkmode&sanitize=true" align=middle width=9.86687624999999pt height=14.15524440000002pt/>为窗内的样本数, 降低ballest有利于非人声区域pitch计算的连续性.
 
-### NCCF上采样
+在完成NCCF计算后, 还需要进行上采样.
+
+### 代价函数
+
+假定时间帧索引<img src="/asr_feature/tex/f5d2957ff2ce053b2035d65670e23a58.svg?invert_in_darkmode&sanitize=true" align=middle width=69.87988259999999pt height=22.465723500000017pt/>, 偏移值索引<img src="/asr_feature/tex/57adc74b8d4ab4488b56cb865fc1ac2d.svg?invert_in_darkmode&sanitize=true" align=middle width=66.23368454999998pt height=22.465723500000017pt/>.
+那么通过最小化代价函数来实现pitch的追踪, 代价函数定义在一系列索引
+<img src="/asr_feature/tex/330a32b6670610e978bb160959eb9e3e.svg?invert_in_darkmode&sanitize=true" align=middle width=82.01306684999999pt height=32.255810399999994pt/>上,
+对于任一时刻<img src="/asr_feature/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>, 元素<img src="/asr_feature/tex/e2c1c9e5979a43fea615fb7285840505.svg?invert_in_darkmode&sanitize=true" align=middle width=12.67127234999999pt height=14.15524440000002pt/>可以看作偏移值索引, 因此<img src="/asr_feature/tex/b4287656ce4d99ed0e10d83a9fc8dba7.svg?invert_in_darkmode&sanitize=true" align=middle width=74.06362589999999pt height=22.465723500000017pt/>.
+
+代价函数定义如下, 包含局部代价和惩罚项两个部分:
+
+<p align="center"><img src="/asr_feature/tex/e596007a529fcdf4ece4f0c01c6e3f43.svg?invert_in_darkmode&sanitize=true" align=middle width=440.69277944999993pt height=47.60747145pt/></p>
+
+其中, 局部代价为:
+
+<p align="center"><img src="/asr_feature/tex/a63d2bfc4b8481e5878d001ec66fbe3d.svg?invert_in_darkmode&sanitize=true" align=middle width=296.40688109999996pt height=17.031940199999998pt/></p>
+
+可以把<img src="/asr_feature/tex/26c88d76d165e91f324c9722a2f16f89.svg?invert_in_darkmode&sanitize=true" align=middle width=53.70340469999999pt height=22.465723500000017pt/>看作基础代价, 最小化代价即寻找NCCF峰值,
+<img src="/asr_feature/tex/5b8c9c1fa86e99b4bdf1aa1432102975.svg?invert_in_darkmode&sanitize=true" align=middle width=88.86913034999998pt height=22.831056599999986pt/>可以看作对较高偏移值的惩罚.
+
+为了寻找最优序列<img src="/asr_feature/tex/cfdba8e5dd0bbb133f26c2a138d3a13e.svg?invert_in_darkmode&sanitize=true" align=middle width=20.490909449999993pt height=24.65753399999998pt/>, 使得代价函数最小化, 采用Viterbi算法.
+
+定义<img src="/asr_feature/tex/34e83761e3d3c529020e21b4f8f5b5fc.svg?invert_in_darkmode&sanitize=true" align=middle width=38.74543694999999pt height=24.65753399999998pt/>为第<img src="/asr_feature/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>帧第<img src="/asr_feature/tex/8fceb32bd3f6803b77bbe1b1758a60b6.svg?invert_in_darkmode&sanitize=true" align=middle width=5.663225699999989pt height=21.68300969999999pt/>个偏移值处的Viterbi回溯,
+其中包含了第<img src="/asr_feature/tex/5101a7d5ba8bbe32e03a6d4e92afcc33.svg?invert_in_darkmode&sanitize=true" align=middle width=34.24649744999999pt height=21.18721440000001pt/>帧最优的偏移值索引, 从而可以从<img src="/asr_feature/tex/34e83761e3d3c529020e21b4f8f5b5fc.svg?invert_in_darkmode&sanitize=true" align=middle width=38.74543694999999pt height=24.65753399999998pt/>回溯最优路径.
+
+基础的Viterbi算法的时间复杂度为<img src="/asr_feature/tex/571755460cbfb71cf4af7c22a1496875.svg?invert_in_darkmode&sanitize=true" align=middle width=41.671282949999984pt height=26.76175259999998pt/>. 由于转移代价的凸函数特性, 可得:
+
+<p align="center"><img src="/asr_feature/tex/84ee7366a11686b1009bb6f09f8f1787.svg?invert_in_darkmode&sanitize=true" align=middle width=127.71890504999999pt height=16.438356pt/></p>
+
+因此, 可以优化Viterbi算法的复杂度近似<img src="/asr_feature/tex/0b14298bee8619f197ba4fb27b5f9f67.svg?invert_in_darkmode&sanitize=true" align=middle width=34.29682409999999pt height=24.65753399999998pt/>.
+
+定义前向代价为<img src="/asr_feature/tex/562259bf8f01cdbac75dd4594596fc69.svg?invert_in_darkmode&sanitize=true" align=middle width=38.80444424999999pt height=24.65753399999998pt/>.
+对于时刻<img src="/asr_feature/tex/99d32c17b0344b01c18cce1e210642dc.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>, 偏移值从<img src="/asr_feature/tex/509429ee3b9ec9b3e06eecf92fb0e7a4.svg?invert_in_darkmode&sanitize=true" align=middle width=35.80006649999999pt height=21.68300969999999pt/> 到<img src="/asr_feature/tex/5fcb0f0a97c176d0b83612b0c9284b45.svg?invert_in_darkmode&sanitize=true" align=middle width=64.40722364999998pt height=22.465723500000017pt/>遍历进行前向计算,
+在计算<img src="/asr_feature/tex/562259bf8f01cdbac75dd4594596fc69.svg?invert_in_darkmode&sanitize=true" align=middle width=38.80444424999999pt height=24.65753399999998pt/>和<img src="/asr_feature/tex/34e83761e3d3c529020e21b4f8f5b5fc.svg?invert_in_darkmode&sanitize=true" align=middle width=38.74543694999999pt height=24.65753399999998pt/>时,
+仅使用<img src="/asr_feature/tex/6d4e6cf619f21ae656c03bc5fe9d92f3.svg?invert_in_darkmode&sanitize=true" align=middle width=206.21210609999997pt height=24.65753399999998pt/>.
+
+之后, 在从<img src="/asr_feature/tex/5fcb0f0a97c176d0b83612b0c9284b45.svg?invert_in_darkmode&sanitize=true" align=middle width=64.40722364999998pt height=22.465723500000017pt/>到<img src="/asr_feature/tex/509429ee3b9ec9b3e06eecf92fb0e7a4.svg?invert_in_darkmode&sanitize=true" align=middle width=35.80006649999999pt height=21.68300969999999pt/>进行后向计算时,
+对前向代价<img src="/asr_feature/tex/a58f7199386004271513e0243a803709.svg?invert_in_darkmode&sanitize=true" align=middle width=234.52250579999992pt height=24.65753399999998pt/>进行遍历,
+看是否能够找到比更好的前向代价和回溯.
+
+完成前向后向后, 得到最优路径<img src="/asr_feature/tex/d7f5c36d0a6dd316b3092daa2a8b5a44.svg?invert_in_darkmode&sanitize=true" align=middle width=95.04739859999998pt height=32.255810399999994pt/>.
+那么, 可以得到每一帧的pitch为<img src="/asr_feature/tex/088390cbe8c0eec585fa68711f2039ff.svg?invert_in_darkmode&sanitize=true" align=middle width=38.462897549999994pt height=24.65753399999998pt/>, 每一帧的nccf为<img src="/asr_feature/tex/78e40632e6e79a5ee07d1d26f687dc55.svg?invert_in_darkmode&sanitize=true" align=middle width=31.57934174999999pt height=22.465723500000017pt/>.
