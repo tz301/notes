@@ -146,15 +146,15 @@ def __insertion_sorting(nums):
     nums[j] = tmp
 
 
-def __partition(nums, pivot, right):
+def __partition(nums, left, right):
   """快速排序分区."""
-  index = pivot + 1
-  for i in range(index, right + 1):
-    if nums[i] < nums[pivot]:
-      nums[i], nums[index] = nums[index], nums[i]
-      index += 1
-  nums[pivot], nums[index - 1] = nums[index - 1], nums[pivot]
-  return index - 1
+  pivot = left
+  for i in range(left, right):
+    if nums[i] < nums[right]:
+      nums[i], nums[pivot] = nums[pivot], nums[i]
+      pivot += 1
+  nums[right], nums[pivot] = nums[pivot], nums[right]
+  return pivot
 
 
 def __quick_sort(nums, left=None, right=None):
